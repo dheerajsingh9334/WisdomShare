@@ -10,15 +10,19 @@ const stripePaymentRouter = express.Router();
 stripePaymentRouter.post(
   "/checkout",
   isAuthenticated,
-  stripePaymentController.payment
+  stripePaymentController.payment,
 );
 
 //----verify payment----
-stripePaymentRouter.get("/verify/:paymentId", stripePaymentController.verify);
+stripePaymentRouter.get(
+  "/verify/:paymentId",
+  isAuthenticated,
+  stripePaymentController.verify,
+);
 stripePaymentRouter.get(
   "/free-plan",
   isAuthenticated,
-  stripePaymentController.free
+  stripePaymentController.free,
 );
 
 module.exports = stripePaymentRouter;

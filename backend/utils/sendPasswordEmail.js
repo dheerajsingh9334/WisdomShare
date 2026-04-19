@@ -1,35 +1,26 @@
-const nodemailer = require("nodemailer");
+const emailQueue = require("./emailQueue");
 
 const sendPasswordEmail = async (to, token) => {
   try {
-    //1. Create transporter
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
-      },
-    });
-    //create the message
-    const message = {
+    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    
+    await emailQueue.add("send-password-reset", {
       to,
-      subject: "Password",
-      html: `<p>You are receiving this email because you (or someone else) have requested the reset of a password.</p>
-      <p>Please click on the following link, or paste this into your browser to complete the process:</p>
-      <p>${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password/${token}</p>
-      <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+      subject: "Password Reset Request",
+      html: `
+        <p>You are receiving this email because you (or someone else) have requested the reset of a password.</p>
+        <p>Please click on the following link, or paste this into your browser to complete the process:</p>
+        <p>${baseUrl}/reset-password/${token}</p>
+        <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
       `,
-    };
-    //send the email
-    const info = await transporter.sendMail(message);
-    console.log("Email sent", info.messageId);
-    return info;
+    });
+    
+    console.log(`✅ Password reset email job added to queue for ${to}`);
   } catch (error) {
-    console.log(error);
-    throw new Error("Email sending failed");
+    console.error("❌ Failed to add password reset email job to queue:", error);
+    throw new Error("Failed to queue password reset email");
   }
 };
 
 module.exports = sendPasswordEmail;
+

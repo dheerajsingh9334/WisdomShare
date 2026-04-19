@@ -11,11 +11,14 @@ export const createPostAPI = async (data) => {
   return response.data;
 };
 
-//!Get all posts api
+//!Get all posts api — updated for cursor-based infinite scroll
 export const getAllPostsAPI = async (params = {}) => {
   const response = await axios.get(`${BASE_URL}`, {
-    params,
-    withCredentials: false,
+    params: {
+      ...params,
+      limit: params.limit || 20,
+    },
+    withCredentials: true, // Need auth for plan verification
   });
   return response.data;
 };
@@ -52,17 +55,25 @@ export const deletePostAPI = async (postId) => {
 
 //!Like post api
 export const likePostAPI = async (postId) => {
-  const response = await axios.put(`${BASE_URL}/likes/${postId}`, {}, {
-    withCredentials: true,
-  });
+  const response = await axios.put(
+    `${BASE_URL}/likes/${postId}`,
+    {},
+    {
+      withCredentials: true,
+    },
+  );
   return response.data;
 };
 
 //!Dislike post api
 export const dislikePostAPI = async (postId) => {
-  const response = await axios.put(`${BASE_URL}/dislikes/${postId}`, {}, {
-    withCredentials: true,
-  });
+  const response = await axios.put(
+    `${BASE_URL}/dislikes/${postId}`,
+    {},
+    {
+      withCredentials: true,
+    },
+  );
   return response.data;
 };
 
@@ -134,21 +145,33 @@ export const getUserScheduledPostsAPI = async (page = 1, limit = 10) => {
 };
 
 //!Update post status api
-export const updatePostStatusAPI = async (postId, status, scheduledFor = null) => {
-  const response = await axios.patch(`${BASE_URL}/${postId}/status`, {
-    status,
-    scheduledFor
-  }, {
-    withCredentials: true,
-  });
+export const updatePostStatusAPI = async (
+  postId,
+  status,
+  scheduledFor = null,
+) => {
+  const response = await axios.patch(
+    `${BASE_URL}/${postId}/status`,
+    {
+      status,
+      scheduledFor,
+    },
+    {
+      withCredentials: true,
+    },
+  );
   return response.data;
 };
 
 //!Publish scheduled posts api (admin/cron job)
 export const publishScheduledPostsAPI = async () => {
-  const response = await axios.post(`${BASE_URL}/publish-scheduled`, {}, {
-    withCredentials: true,
-  });
+  const response = await axios.post(
+    `${BASE_URL}/publish-scheduled`,
+    {},
+    {
+      withCredentials: true,
+    },
+  );
   return response.data;
 };
 
@@ -163,9 +186,13 @@ export const searchAllAPI = async (params = {}) => {
 
 //!Track post view api
 export const trackPostViewAPI = async (postId) => {
-  const response = await axios.post(`${BASE_URL}/track-view/${postId}`, {}, {
-    withCredentials: true,
-  });
+  const response = await axios.post(
+    `${BASE_URL}/track-view/${postId}`,
+    {},
+    {
+      withCredentials: true,
+    },
+  );
   return response.data;
 };
 

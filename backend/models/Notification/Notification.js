@@ -14,22 +14,23 @@ const notificationSchema = mongoose.Schema(
     type: {
       type: String,
       enum: [
-        'post_like',
-        'post_comment',
-        'new_follower',
-        'new_post_from_following',
-        'post_approved',
-        'post_rejected',
-        'account_verified',
-        'account_banned',
-        'plan_upgrade',
-        'plan_expiry',
-        'admin',
-        'system',
-        'update',
-        'announcement'
+        "post_like",
+        "post_comment",
+        "new_follower",
+        "new_post_from_following",
+        "post_approved",
+        "post_rejected",
+        "account_verified",
+        "account_banned",
+        "plan_upgrade",
+        "plan_expiry",
+        "admin",
+        "system",
+        "system_announcement",
+        "update",
+        "announcement",
       ],
-      required: true
+      required: true,
     },
     metadata: {
       actorId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // User who triggered the notification
@@ -38,17 +39,17 @@ const notificationSchema = mongoose.Schema(
       action: String, // What action was performed
       targetType: String, // Type of content (post, comment, etc.)
       targetId: mongoose.Schema.Types.ObjectId, // ID of the target content
-      additionalData: mongoose.Schema.Types.Mixed // Any additional data
+      additionalData: mongoose.Schema.Types.Mixed, // Any additional data
     },
     priority: {
       type: String,
-      enum: ['low', 'medium', 'high', 'urgent'],
-      default: 'medium'
-    }
+      enum: ["low", "medium", "high", "urgent"],
+      default: "medium",
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Index for better query performance

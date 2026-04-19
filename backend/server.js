@@ -10,6 +10,8 @@ const usersRouter = require("./router/user/usersRouter");
 const categoriesRouter = require("./router/category/categoriesRouter");
 const planRouter = require("./router/plan/planRouter");
 const stripePaymentRouter = require("./router/stripePayment/stripePaymentRouter");
+const chatRouter = require("./router/chat/chatRouter");
+const aiRouter = require("./router/ai/aiRouter");
 
 const notificationRouter = require("./router/notification/notificationRouter");
 const commentRouter = require("./router/comments/commentRouter");
@@ -39,66 +41,39 @@ cron.schedule(
   {
     scheduled: true,
     timezone: "America/New_York",
-  }
+  },
 );
 
-// Schedule task to publish scheduled posts every minute
+// Import BullMQ queue and worker
+const postQueue = require("./utils/postQueue");
+require("./workers/postWorker");
+require("./workers/emailWorker");
+require("./workers/notificationWorker");
+require("./workers/imageWorker");
+require("./workers/deleteWorker");
+require("./workers/aiWorker");
+
+// Schedule task to trigger BullMQ worker every minute for scheduled posts
 cron.schedule(
   "* * * * *", // Every minute
   async () => {
     try {
-      console.log("🕐 Checking for scheduled posts to publish...");
-      const now = new Date();
-      
-      // Import Post model directly here to avoid circular dependencies
-      const Post = require("./models/Post/Post");
-      const Notification = require("./models/Notification/Notification");
-      
-      const scheduledPosts = await Post.find({
-        status: 'scheduled',
-        scheduledFor: { $lte: now },
-        isPublic: false
-      });
-
-      let publishedCount = 0;
-      
-      for (const post of scheduledPosts) {
-        try {
-          await Post.findByIdAndUpdate(post._id, {
-            status: 'published',
-            publishedAt: now,
-            isPublic: true
-          });
-          
-          // Create notification
-          await Notification.create({
-            userId: post.author,
-            postId: post._id,
-            title: 'Post Published',
-            message: `Your scheduled post "${post.title}" has been published`,
-            type: 'system_announcement'
-          });
-          
-          publishedCount++;
-          console.log(`✅ Published scheduled post: ${post.title}`);
-        } catch (postError) {
-          console.error(`❌ Error publishing post ${post._id}:`, postError);
-        }
-      }
-
-      if (publishedCount > 0) {
-        console.log(`✅ Published ${publishedCount} scheduled posts`);
-      } else {
-        console.log("ℹ️ No scheduled posts to publish");
-      }
+      await postQueue.add(
+        "publish-scheduled-posts",
+        {},
+        {
+          removeOnComplete: true,
+          removeOnFail: { age: 24 * 3600 }, // Keep failed jobs for 1 day
+        },
+      );
     } catch (error) {
-      console.error("❌ Error in scheduled posts cron job:", error);
+      console.error("❌ Error adding job to post queue:", error);
     }
   },
   {
     scheduled: true,
     timezone: "America/New_York",
-  }
+  },
 );
 
 // Daily job: deactivate users inactive for 30+ days
@@ -109,16 +84,18 @@ cron.schedule(
       const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
       const result = await User.updateMany(
         { lastLogin: { $lt: cutoff }, isBanned: { $ne: true } },
-        { $set: { isActive: false } }
+        { $set: { isActive: false } },
       );
       if (result.modifiedCount > 0) {
-        console.log(`⚠️ Deactivated ${result.modifiedCount} inactive user accounts`);
+        console.log(
+          `⚠️ Deactivated ${result.modifiedCount} inactive user accounts`,
+        );
       }
     } catch (err) {
       console.error("❌ Error deactivating inactive users:", err);
     }
   },
-  { scheduled: true, timezone: "America/New_York" }
+  { scheduled: true, timezone: "America/New_York" },
 );
 
 const app = express();
@@ -128,13 +105,13 @@ const PORT = process.env.PORT || 5000;
 //Middlewares
 app.use(express.json()); //Pass json data
 // trust proxy for correct secure cookies on Render
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 // cors middleware with dynamic origin allow-list
 const allowedOrigins = [
   "http://localhost:5173",
   process.env.FRONTEND_URL,
   process.env.ADMIN_FRONTEND_URL,
-  ...(process.env.ADDITIONAL_CORS_ORIGINS ? process.env.ADDITIONAL_CORS_ORIGINS.split(',') : [])
+  ...(process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(",") : []),
 ].filter(Boolean);
 
 const corsOptions = {
@@ -155,7 +132,7 @@ const corsOptions = {
   credentials: true,
 };
 app.use(corse(corsOptions));
-app.options('*', corse(corsOptions));
+app.options("*", corse(corsOptions));
 // Passport middleware
 app.use(passport.initialize());
 app.use(cookieParser()); //automattically parses the cookie
@@ -167,16 +144,18 @@ app.use("/api/v1/plans", planRouter);
 app.use("/api/v1/stripe", stripePaymentRouter);
 app.use("/api/v1/notifications", notificationRouter);
 app.use("/api/v1/comments", commentRouter);
+app.use("/api/v1/chat", chatRouter);
+app.use("/api/v1/ai", aiRouter);
 app.use("/api/v1/admin/auth", adminAuthRouter);
 app.use("/api/v1/admin", adminManagementRouter);
 // app.use("/api/profile", profileRouter);
 
 // Health check endpoint
 app.get("/health", (req, res) => {
-  res.status(200).json({ 
-    status: "OK", 
+  res.status(200).json({
+    status: "OK",
     message: "Backend server is running",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
@@ -195,5 +174,11 @@ app.use((err, req, res, next) => {
   });
 });
 
+const http = require("http");
+const { initSocket } = require("./utils/socket");
+
+const server = http.createServer(app);
+initSocket(server);
+
 //!Start the server
-app.listen(PORT, console.log(`Server is up and running on port ${PORT}`));
+server.listen(PORT, console.log(`Server is up and running on port ${PORT}`));

@@ -76,33 +76,46 @@ const userSchema = new mongoose.Schema(
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // Link to other users
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }], // Saved posts for later reading
-    
+
     // User role fields (admin users are managed separately in Admin collection)
     role: {
       type: String,
       enum: ["user", "moderator"],
-      default: "user"
+      default: "user",
     },
     isBanned: {
       type: Boolean,
-      default: false
+      default: false,
     },
     banReason: {
       type: String,
-      default: null
+      default: null,
     },
     bannedAt: {
       type: Date,
-      default: null
+      default: null,
     },
     bannedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      default: null
-    }
+      default: null,
+    },
+    amount: {
+      type: Number,
+      default: 0,
+    },
+    idempotencyKey: {
+      type: String,
+      unique: true,
+      sparse: true, // Only enforce uniqueness if field is present
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  },
 );
+
+// Removed stray paymentSchema.index calls that belonged to Payment model
 //! Generate token for account verification
 userSchema.methods.generateAccVerificationToken = function () {
   const emailToken = crypto.randomBytes(20).toString("hex");
@@ -133,6 +146,15 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
   const bcrypt = require("bcrypt");
   return await bcrypt.compare(candidatePassword, this.password);
 };
+
+userSchema.index({ username: 1 });
+userSchema.index({ email: 1 });
+userSchema.index({ authMethod: 1, googleId: 1 });
+userSchema.index(
+  { username: "text", email: "text" },
+  { weights: { username: 10, email: 2 }, name: "user_text_search" },
+);
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

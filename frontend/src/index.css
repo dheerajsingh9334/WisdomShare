@@ -1,3 +1,6 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -84,7 +87,7 @@ html {
     scroll-snap-type: x proximity;
     scroll-padding: 0 0.5rem;
   }
-  
+
   .trending-carousel > div {
     scroll-snap-align: center;
   }
@@ -116,7 +119,7 @@ html {
     margin: 0 auto;
     padding: 0 1rem;
   }
-  
+
   /* Mobile post card optimizations with trending page style */
   .posts-grid article {
     width: 100%;
@@ -131,47 +134,47 @@ html {
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .posts-grid article:hover {
     transform: scale(1.02);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     border-color: rgba(59, 130, 246, 0.3);
   }
-  
+
   /* Mobile container improvements */
   .w-full.px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .max-w-7xl {
     max-width: 100%;
     margin: 0 auto;
   }
-  
+
   /* Mobile spacing optimizations */
   .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  
+
   .py-6 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-  
+
   /* Mobile trending carousel improvements with trending page style */
   .trending-carousel-container {
     margin: 0;
     padding: 0 1rem;
     max-width: 100%;
   }
-  
+
   .trending-carousel {
     margin: 0;
     padding: 0 0.5rem;
@@ -180,7 +183,7 @@ html {
     scrollbar-width: thin;
     scrollbar-color: #f97316 #f1f1f1;
   }
-  
+
   .trending-carousel-item {
     margin-right: 0.75rem;
     max-width: 100%;
@@ -192,7 +195,7 @@ html {
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .trending-carousel-item:hover {
     transform: scale(1.02);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -217,32 +220,32 @@ html {
   .dark .trending-nav-btn:hover {
     box-shadow: 0 8px 18px rgba(0,0,0,0.5);
   }
-  
+
   /* Ensure trending cards don't overflow on mobile */
   .trending-carousel .flex {
     padding: 0 0.5rem;
   }
-  
+
   .trending-carousel .w-\[260px\] {
     width: 280px;
     min-width: 280px;
     margin: 0 0.375rem;
   }
-  
+
   /* Mobile scrollbar adjustments */
   .trending-carousel::-webkit-scrollbar {
     height: 10px; /* Slightly larger on mobile for better touch */
   }
-  
+
   .trending-carousel::-webkit-scrollbar-thumb {
     background: linear-gradient(90deg, #f97316, #ef4444);
     border-radius: 5px;
   }
-  
+
   .trending-carousel::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(90deg, #ea580c, #dc2626);
   }
-  
+
   /* Mobile navigation buttons */
   .trending-nav-btn {
     width: 2.5rem;
@@ -250,12 +253,12 @@ html {
     padding: 0.5rem;
     opacity: 1 !important;
   }
-  
+
   .trending-nav-btn svg {
     width: 1rem;
     height: 1rem;
   }
-  
+
   /* Mobile carousel indicators */
   .carousel-indicator {
     width: 0.5rem;
@@ -263,7 +266,7 @@ html {
     min-width: 0.5rem;
     min-height: 0.5rem;
   }
-  
+
   .carousel-indicator.active {
     background-color: #f97316;
     transform: scale(1.25);
@@ -280,7 +283,7 @@ html {
     max-width: 100%;
     margin: 0 auto;
   }
-  
+
   .posts-grid article {
     max-width: 100%;
     margin: 0 auto;
@@ -292,7 +295,7 @@ html {
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .posts-grid article:hover {
     transform: scale(1.02);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -309,7 +312,7 @@ html {
     max-width: 100%;
     margin: 0 auto;
   }
-  
+
   .posts-grid article {
     max-width: 100%;
     margin: 0 auto;
@@ -321,7 +324,7 @@ html {
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .posts-grid article:hover {
     transform: scale(1.02);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -456,4 +459,87 @@ html {
   background: linear-gradient(to right, rgba(30, 64, 175, 0.3), rgba(67, 56, 202, 0.3));
   color: #93c5fd;
   border-color: rgba(59, 130, 246, 0.3);
+}
+
+@layer base {
+  .theme {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+  }
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+  .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }

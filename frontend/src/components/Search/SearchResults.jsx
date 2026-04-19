@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useSearchParams } from "react-router-dom";
-import { FaSearch, FaUser, FaFileAlt, FaEye, FaHeart, FaComment } from "react-icons/fa";
-import { searchAllAPI } from "../../APIServices/posts/postsAPI";
+import { FaSearch, FaEye, FaHeart, FaComment } from "react-icons/fa";
+import { semanticSearchDirectAPI } from "../../APIServices/ai/aiAPI";
 import truncateString from "../../utils/truncateString";
 
 const SearchResults = () => {
@@ -14,7 +14,7 @@ const SearchResults = () => {
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["search", { q: query, type, page }],
-    queryFn: () => searchAllAPI({ q: query, type, page }),
+    queryFn: () => semanticSearchDirectAPI({ query, page, limit: 12 }),
     enabled: query.length >= 2,
   });
 
@@ -58,16 +58,21 @@ const SearchResults = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
-          <p className="text-red-600 dark:text-red-400">Error: {error?.message}</p>
+          <p className="text-red-600 dark:text-red-400">
+            Error: {error?.message}
+          </p>
         </div>
       </div>
     );
   }
 
-  const results = data?.results || {};
-  const totalPosts = results.totalPosts || 0;
-  const totalUsers = results.totalUsers || 0;
-  const totalResults = totalPosts + totalUsers;
+  const results = {
+    posts: data?.data?.results || [],
+    users: [],
+  };
+  const totalPosts = data?.data?.totalCount || results.posts.length || 0;
+  const totalUsers = 0;
+  const totalResults = totalPosts;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -104,149 +109,109 @@ const SearchResults = () => {
           >
             Posts ({totalPosts})
           </button>
-          <button
-            onClick={() => handleTabChange("users")}
-            className={`py-2 px-1 border-b-2 font-medium text-sm ${
-              activeTab === "users"
-                ? "border-green-500 text-green-600 dark:text-green-400"
-                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-            }`}
-          >
-            Users ({totalUsers})
-          </button>
         </nav>
       </div>
 
       {/* Results */}
       <div className="space-y-8">
         {/* Posts Results */}
-        {(activeTab === "all" || activeTab === "posts") && results.posts && results.posts.length > 0 && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Posts
-            </h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {results.posts.map((post) => (
-                <article
-                  key={post._id}
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
-                >
-                  {post.image && (
-                    <div className="aspect-w-16 aspect-h-9">
-                      <img
-                        src={typeof post.image === "string" ? post.image : post.image.url}
-                        alt={post.title}
-                        className="w-full h-48 object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <div className="flex items-center mb-2">
-                      {post.author?.profilePicture ? (
+        {(activeTab === "all" || activeTab === "posts") &&
+          results.posts &&
+          results.posts.length > 0 && (
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                Posts matched by meaning
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {results.posts.map((post) => (
+                  <article
+                    key={post._id}
+                    className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-200"
+                  >
+                    {post.image && (
+                      <div className="aspect-w-16 aspect-h-9">
                         <img
-                          src={post.author?.profilePicture?.url || post.author?.profilePicture?.path || post.author?.profilePicture}
-                          alt={post.author?.username}
-                          className="w-8 h-8 rounded-full mr-2 object-cover border border-gray-200 dark:border-gray-600"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.nextElementSibling.style.display = 'flex';
-                          }}
+                          src={
+                            typeof post.image === "string"
+                              ? post.image
+                              : post.image.url
+                          }
+                          alt={post.title}
+                          className="w-full h-48 object-cover"
                         />
-                      ) : null}
-                      <div 
-                        className={`w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center mr-2 border border-gray-200 dark:border-gray-600 ${post.author?.profilePicture ? 'hidden' : 'flex'}`}
-                        style={{ display: post.author?.profilePicture ? 'none' : 'flex' }}
-                      >
-                        <span className="text-xs text-white font-medium">
-                          {post.author?.username?.charAt(0)?.toUpperCase() || "U"}
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <div className="flex items-center mb-2">
+                        {post.author?.profilePicture ? (
+                          <img
+                            src={
+                              post.author?.profilePicture?.url ||
+                              post.author?.profilePicture?.path ||
+                              post.author?.profilePicture
+                            }
+                            alt={post.author?.username}
+                            className="w-8 h-8 rounded-full mr-2 object-cover border border-gray-200 dark:border-gray-600"
+                            onError={(e) => {
+                              e.target.style.display = "none";
+                              e.target.nextElementSibling.style.display =
+                                "flex";
+                            }}
+                          />
+                        ) : null}
+                        <div
+                          className={`w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center mr-2 border border-gray-200 dark:border-gray-600 ${post.author?.profilePicture ? "hidden" : "flex"}`}
+                          style={{
+                            display: post.author?.profilePicture
+                              ? "none"
+                              : "flex",
+                          }}
+                        >
+                          <span className="text-xs text-white font-medium">
+                            {post.author?.username?.charAt(0)?.toUpperCase() ||
+                              "U"}
+                          </span>
+                        </div>
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                          {post.author?.username}
                         </span>
                       </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {post.author?.username}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      <Link to={`/posts/${post._id}`} className="hover:text-green-600 dark:hover:text-green-400">
-                        {post.title || truncateString(post.description, 50)}
-                      </Link>
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                      {truncateString(post.description, 120)}
-                    </p>
-                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                      <div className="flex items-center space-x-4">
-                        <span className="flex items-center">
-                          <FaEye className="mr-1" />
-                          {post.viewers?.length || 0}
-                        </span>
-                        <span className="flex items-center">
-                          <FaHeart className="mr-1" />
-                          {post.likes?.length || 0}
-                        </span>
-                        <span className="flex items-center">
-                          <FaComment className="mr-1" />
-                          {post.comments?.length || 0}
-                        </span>
-                      </div>
-                      <span>{new Date(post.createdAt).toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Users Results */}
-        {(activeTab === "all" || activeTab === "users") && results.users && results.users.length > 0 && (
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-              Users
-            </h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {results.users.map((user) => (
-                <div
-                  key={user._id}
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
-                >
-                  <div className="flex items-center space-x-4">
-                    {user.profilePicture ? (
-                      <img
-                        src={user.profilePicture?.url || user.profilePicture?.path || user.profilePicture}
-                        alt={user.username}
-                        className="w-15 h-15 rounded-full object-cover border border-gray-200 dark:border-gray-600"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.nextElementSibling.style.display = 'flex';
-                        }}
-                      />
-                    ) : null}
-                    <div 
-                      className={`w-15 h-15 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-gray-200 dark:border-gray-600 ${user.profilePicture ? 'hidden' : 'flex'}`}
-                      style={{ display: user.profilePicture ? 'none' : 'flex' }}
-                    >
-                      <span className="text-lg text-white font-medium">
-                        {user.username?.charAt(0)?.toUpperCase() || "U"}
-                      </span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        <Link to={`/user/${user._id}`} className="hover:text-green-600 dark:hover:text-green-400">
-                          {user.username}
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                        <Link
+                          to={`/posts/${post._id}`}
+                          className="hover:text-green-600 dark:hover:text-green-400"
+                        >
+                          {post.title || truncateString(post.description, 50)}
                         </Link>
                       </h3>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                        <span>{user.posts?.length || 0} posts</span>
-                        <span>{user.followers?.length || 0} followers</span>
-                        <span>{user.following?.length || 0} following</span>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        {truncateString(post.description, 120)}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center space-x-4">
+                          <span className="flex items-center">
+                            <FaEye className="mr-1" />
+                            {post.viewers?.length || 0}
+                          </span>
+                          <span className="flex items-center">
+                            <FaHeart className="mr-1" />
+                            {post.likes?.length || 0}
+                          </span>
+                          <span className="flex items-center">
+                            <FaComment className="mr-1" />
+                            {post.comments?.length || 0}
+                          </span>
+                        </div>
+                        <span>
+                          {new Date(post.createdAt).toLocaleDateString()}
+                        </span>
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </article>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* No Results */}
         {totalResults === 0 && (

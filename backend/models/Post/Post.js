@@ -5,8 +5,8 @@ const postSchema = new mongoose.Schema(
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
     content: { type: String, trim: true }, // Made optional since it's redundant with description
-  // URL-friendly identifier; not enforced unique to avoid conflicts in legacy data
-  slug: { type: String, trim: true, lowercase: true },
+    // URL-friendly identifier; not enforced unique to avoid conflicts in legacy data
+    slug: { type: String, trim: true, lowercase: true },
     image: {
       type: Object,
     },
@@ -27,12 +27,14 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     // Tags for better organization and discovery
-    tags: [{ 
-      type: String, 
-      trim: true,
-      lowercase: true,
-      maxlength: 20 
-    }],
+    tags: [
+      {
+        type: String,
+        trim: true,
+        lowercase: true,
+        maxlength: 20,
+      },
+    ],
     // Short summary for previews/SEO
     excerpt: { type: String, trim: true, maxlength: 500 },
     // Optional settings grouped under options
@@ -43,40 +45,46 @@ const postSchema = new mongoose.Schema(
       pinToProfile: { type: Boolean, default: false },
       featured: { type: Boolean, default: false },
       nsfw: { type: Boolean, default: false },
-      visibility: { type: String, enum: ['public', 'unlisted', 'private'], default: 'public' }
+      visibility: {
+        type: String,
+        enum: ["public", "unlisted", "private"],
+        default: "public",
+      },
     },
     // Post status and scheduling
     status: {
       type: String,
-      enum: ['draft', 'published', 'scheduled', 'archived'],
-      default: 'published', // Changed from 'draft' to 'published'
+      enum: ["draft", "published", "scheduled", "archived"],
+      default: "published", // Changed from 'draft' to 'published'
       validate: {
-        validator: function(v) {
-          return ['draft', 'published', 'scheduled', 'archived'].includes(v);
+        validator: function (v) {
+          return ["draft", "published", "scheduled", "archived"].includes(v);
         },
-        message: props => `${props.value} is not a valid status!`
-      }
+        message: (props) => `${props.value} is not a valid status!`,
+      },
     },
     publishedAt: {
       type: Date,
-      default: () => new Date() // Default to current date
+      default: () => new Date(), // Default to current date
     },
     scheduledFor: {
       type: Date,
-      default: null
+      default: null,
     },
     isPublic: {
       type: Boolean,
-      default: true // Changed from false to true
+      default: true, // Changed from false to true
     },
     // Basic SEO fields
     seo: {
       metaTitle: { type: String, trim: true, maxlength: 120 },
       metaDescription: { type: String, trim: true, maxlength: 200 },
-      canonicalUrl: { type: String, trim: true }
+      canonicalUrl: { type: String, trim: true },
     },
     // Estimated reading time in minutes
     readingTimeMinutes: { type: Number, default: 0 },
+    // Denormalized body length for fast plan-gating checks in feed queries
+    contentLength: { type: Number, default: 0 },
     viewsCount: { type: Number, default: 0 },
     // Interactions
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
@@ -90,14 +98,25 @@ const postSchema = new mongoose.Schema(
     // Flag for admin management - when true, user can't see in their analytics
     adminManaged: { type: Boolean, default: false },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Index for better search performance
-postSchema.index({ title: 'text', description: 'text', content: 'text', tags: 'text' });
-postSchema.index({ status: 1, publishedAt: 1 });
+postSchema.index(
+  { title: "text", description: "text", content: "text" },
+  {
+    weights: { title: 8, description: 4, content: 2 },
+    name: "post_text_search",
+  },
+);
+postSchema.index({ status: 1, isBlocked: 1, publishedAt: -1 }); // feed ordering
 postSchema.index({ scheduledFor: 1, status: 1 });
 postSchema.index({ tags: 1 });
 postSchema.index({ slug: 1 });
+// Compound indexes for targeted queries
+postSchema.index({ category: 1, status: 1, isBlocked: 1, publishedAt: -1 }); // category-filtered feed
+postSchema.index({ author: 1, status: 1, publishedAt: -1 }); // user post listing
+postSchema.index({ isBlocked: 1, status: 1 }); // moderation
+postSchema.index({ status: 1, isBlocked: 1, tags: 1, publishedAt: -1 }); // tag-filtered feed
 
 module.exports = mongoose.model("Post", postSchema);

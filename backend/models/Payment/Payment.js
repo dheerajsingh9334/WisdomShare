@@ -31,11 +31,24 @@ const paymentSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    idempotencyKey: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
+
+paymentSchema.index({ user: 1, status: 1 });
+paymentSchema.index({ reference: 1 }, { unique: true });
+paymentSchema.index(
+  { user: 1, idempotencyKey: 1 },
+  { unique: true, sparse: true },
+);
+paymentSchema.index({ user: 1, createdAt: -1 }); // fast per-user history lookup
 
 //! Compile to form the model
 const Payment = mongoose.model("Payment", paymentSchema);

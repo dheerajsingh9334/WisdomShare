@@ -1,13 +1,27 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useMemo, useState, useEffect } from "react";
-import { FaThumbsUp, FaThumbsDown, FaEye, FaComment, FaBookmark, FaRegBookmark, FaShare, FaArrowLeft } from "react-icons/fa";
+import {
+  FaThumbsUp,
+  FaThumbsDown,
+  FaEye,
+  FaComment,
+  FaBookmark,
+  FaRegBookmark,
+  FaShare,
+  FaArrowLeft,
+} from "react-icons/fa";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { dislikePostAPI, fetchPost, likePostAPI } from "../../APIServices/posts/postsAPI";
+import {
+  dislikePostAPI,
+  fetchPost,
+  likePostAPI,
+} from "../../APIServices/posts/postsAPI";
 import {
   userProfileAPI,
   savePostAPI,
   unsavePostAPI,
 } from "../../APIServices/users/usersAPI";
+import { summarizeBlogDirectAPI } from "../../APIServices/ai/aiAPI";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -39,10 +53,7 @@ const PostDetails = () => {
   });
 
   // Fetch profile
-  const {
-    data: profileData,
-    refetch: refetchProfile,
-  } = useQuery({
+  const { data: profileData, refetch: refetchProfile } = useQuery({
     queryKey: ["profile"],
     queryFn: userProfileAPI,
   });
@@ -52,20 +63,21 @@ const PostDetails = () => {
   const targetId = post?.author?._id;
   const userId = profileData?.user?._id;
   const isFollowing = profileData?.user?.following?.some(
-    (user) => user?._id?.toString() === targetId?.toString()
+    (user) => user?._id?.toString() === targetId?.toString(),
   );
-  
+
   // Track view for analytics (only if user is authenticated)
   useViewTracker(postId, !!profileData?.user);
-  
+
   // Local state for save status
   const [localIsSaved, setLocalIsSaved] = useState(false);
-  
+  const [summaryText, setSummaryText] = useState("");
+
   // Update local state when profile data changes
   useEffect(() => {
     if (profileData?.user?.savedPosts) {
       const savedStatus = profileData.user.savedPosts.some(
-        (savedPostId) => savedPostId?.toString() === postId?.toString()
+        (savedPostId) => savedPostId?.toString() === postId?.toString(),
       );
       setLocalIsSaved(savedStatus);
     }
@@ -80,27 +92,40 @@ const PostDetails = () => {
   }, [post?.description]);
 
   // Mutations
-  const likePostMutation = useMutation({ 
+  const likePostMutation = useMutation({
     mutationFn: likePostAPI,
-    onSuccess: () => refetchPost()
+    onSuccess: () => refetchPost(),
   });
-  const dislikePostMutation = useMutation({ 
+  const dislikePostMutation = useMutation({
     mutationFn: dislikePostAPI,
-    onSuccess: () => refetchPost()
+    onSuccess: () => refetchPost(),
   });
-  const savePostMutation = useMutation({ 
+  const savePostMutation = useMutation({
     mutationFn: savePostAPI,
     onSuccess: () => {
       setLocalIsSaved(true);
       refetchProfile();
-    }
+    },
   });
-  const unsavePostMutation = useMutation({ 
+  const unsavePostMutation = useMutation({
     mutationFn: unsavePostAPI,
     onSuccess: () => {
       setLocalIsSaved(false);
       refetchProfile();
-    }
+    },
+  });
+  const summarizeMutation = useMutation({
+    mutationFn: ({ payload }) => summarizeBlogDirectAPI(payload),
+    onSuccess: (response) => {
+      setSummaryText(response?.data?.summary || "");
+    },
+    onError: (summarizeError) => {
+      setSummaryText(
+        summarizeError?.response?.data?.message ||
+          summarizeError?.message ||
+          "Failed to summarize this post",
+      );
+    },
   });
 
   // Handlers
@@ -108,15 +133,15 @@ const PostDetails = () => {
     if (!userId) return;
     await likePostMutation.mutateAsync(postId);
   };
-  
+
   const dislikesPostHandler = async () => {
     if (!userId) return;
     await dislikePostMutation.mutateAsync(postId);
   };
-  
+
   const savePostHandler = async () => {
     if (!userId) return;
-    
+
     if (localIsSaved) {
       await unsavePostMutation.mutateAsync(postId);
     } else {
@@ -130,12 +155,23 @@ const PostDetails = () => {
       navigator.share({
         title: post?.title,
         text: post?.description?.substring(0, 100) + "...",
-        url: window.location.href
+        url: window.location.href,
       });
     } else {
       navigator.clipboard.writeText(window.location.href);
       alert("Link copied to clipboard!");
     }
+  };
+
+  const handleSummarizePost = () => {
+    if (!postId) return;
+    setSummaryText("");
+    summarizeMutation.mutate({
+      payload: {
+        postId,
+        maxWords: 120,
+      },
+    });
   };
 
   if (isLoading) {
@@ -155,7 +191,7 @@ const PostDetails = () => {
         <div className="text-center">
           <p className="text-red-500 text-lg mb-4">Error loading post</p>
           <p className="text-gray-600 dark:text-gray-300">{error.message}</p>
-          <button 
+          <button
             onClick={() => navigate(-1)}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
@@ -179,23 +215,29 @@ const PostDetails = () => {
               <FaArrowLeft className="h-4 w-4" />
               <span className="hidden sm:inline">Back</span>
             </button>
-            
+
             <div className="flex items-center gap-3">
               {userId && (
                 <>
                   <button
                     onClick={savePostHandler}
-                    disabled={savePostMutation.isPending || unsavePostMutation.isPending}
+                    disabled={
+                      savePostMutation.isPending || unsavePostMutation.isPending
+                    }
                     className={`p-2 rounded-full transition-colors ${
-                      localIsSaved 
-                        ? 'text-blue-600 bg-blue-50 hover:bg-blue-100' 
-                        : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'
+                      localIsSaved
+                        ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                        : "text-gray-400 hover:text-blue-600 hover:bg-blue-50"
                     }`}
-                    title={localIsSaved ? 'Unsave post' : 'Save post'}
+                    title={localIsSaved ? "Unsave post" : "Save post"}
                   >
-                    {localIsSaved ? <FaBookmark className="h-4 w-4" /> : <FaRegBookmark className="h-4 w-4" />}
+                    {localIsSaved ? (
+                      <FaBookmark className="h-4 w-4" />
+                    ) : (
+                      <FaRegBookmark className="h-4 w-4" />
+                    )}
                   </button>
-                  
+
                   <button
                     onClick={sharePostHandler}
                     className="p-2 rounded-full text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
@@ -247,18 +289,20 @@ const PostDetails = () => {
                   <Avatar user={post?.author} size="lg" />
                 </Link>
                 <div>
-                  <Link 
+                  <Link
                     to={`/user/${targetId}`}
                     className="block font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     {post?.author?.username || "Anonymous"}
                   </Link>
                   <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span>{new Date(post?.createdAt).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}</span>
+                    <span>
+                      {new Date(post?.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
                     <span>•</span>
                     <span>{readingMins} min read</span>
                   </div>
@@ -269,7 +313,7 @@ const PostDetails = () => {
                   )}
                 </div>
               </div>
-              
+
               {targetId && userId && userId !== targetId && (
                 <FollowButton
                   targetUserId={targetId}
@@ -279,6 +323,34 @@ const PostDetails = () => {
                   size="md"
                   variant="outline"
                 />
+              )}
+            </div>
+
+            <div className="mb-6 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/70 dark:bg-emerald-900/20 p-4">
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+                    AI Summary
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Summarize this blog with Gemini.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleSummarizePost}
+                  disabled={summarizeMutation.isPending}
+                  className="px-4 py-2 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 disabled:opacity-50"
+                >
+                  {summarizeMutation.isPending
+                    ? "Summarizing..."
+                    : "Summarize Post"}
+                </button>
+              </div>
+              {summaryText && (
+                <p className="mt-3 text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                  {summaryText}
+                </p>
               )}
             </div>
 
@@ -292,7 +364,7 @@ const PostDetails = () => {
                   <Avatar user={post.author} size="md" />
                   <div className="flex-1">
                     <h4 className="font-medium text-gray-900 dark:text-white">
-                      {post.author.username || 'Unknown User'}
+                      {post.author.username || "Unknown User"}
                     </h4>
                     {post.author.email && (
                       <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -321,8 +393,13 @@ const PostDetails = () => {
 
             {/* Content */}
             <div className="prose prose-lg max-w-none mb-8 dark:prose-invert">
-              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-                {post?.content || post?.description || "*No content available.*"}
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+              >
+                {post?.content ||
+                  post?.description ||
+                  "*No content available.*"}
               </ReactMarkdown>
             </div>
 
@@ -349,9 +426,9 @@ const PostDetails = () => {
                   disabled={!userId || likePostMutation.isPending}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                     post?.likes?.includes(userId)
-                      ? 'bg-green-50 text-green-600 hover:bg-green-100'
-                      : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
-                  } ${!userId ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      ? "bg-green-50 text-green-600 hover:bg-green-100"
+                      : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+                  } ${!userId ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   <FaThumbsUp className="h-4 w-4" />
                   <span>{post?.likes?.length || 0}</span>
@@ -362,9 +439,9 @@ const PostDetails = () => {
                   disabled={!userId || dislikePostMutation.isPending}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                     post?.dislikes?.includes(userId)
-                      ? 'bg-red-50 text-red-600 hover:bg-red-100'
-                      : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
-                  } ${!userId ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      ? "bg-red-50 text-red-600 hover:bg-red-100"
+                      : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+                  } ${!userId ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   <FaThumbsDown className="h-4 w-4" />
                   <span>{post?.dislikes?.length || 0}</span>
@@ -382,10 +459,10 @@ const PostDetails = () => {
 
                 {/* Analytics Button for Post Author */}
                 {userId && targetId && userId === targetId && (
-                  <AdvancedAnalyticsButton 
-                    post={post} 
-                    userPlan={profileData?.user?.plan} 
-                    isAuthor={true} 
+                  <AdvancedAnalyticsButton
+                    post={post}
+                    userPlan={profileData?.user?.plan}
+                    isAuthor={true}
                   />
                 )}
               </div>
@@ -393,7 +470,7 @@ const PostDetails = () => {
               {/* Social Share */}
               <div className="flex items-center gap-3">
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post?.title || '')}&url=${window.location.href}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post?.title || "")}&url=${window.location.href}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 text-blue-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"

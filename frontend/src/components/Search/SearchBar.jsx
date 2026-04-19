@@ -1,20 +1,38 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaTimes } from "react-icons/fa";
-import { searchAllAPI } from "../../APIServices/posts/postsAPI";
+import { semanticSearchDirectAPI } from "../../APIServices/ai/aiAPI";
 import { useQuery } from "@tanstack/react-query";
 
-const SearchBar = ({ className = "", placeholder = "Search posts, users, or content...", onSearchComplete }) => {
+const SearchBar = ({
+  className = "",
+  placeholder = "Search posts, users, or content...",
+  onSearchComplete,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm.trim());
+    }, 350);
+
+    return () => clearTimeout(timeout);
+  }, [searchTerm]);
+
   const { data: searchResults, isLoading } = useQuery({
-    queryKey: ["search-preview", searchTerm],
-    queryFn: () => searchAllAPI({ q: searchTerm, type: "all", limit: 5 }),
-    enabled: searchTerm.length >= 2,
+    queryKey: ["search-preview", debouncedSearchTerm],
+    queryFn: () =>
+      semanticSearchDirectAPI({
+        query: debouncedSearchTerm,
+        page: 1,
+        limit: 5,
+      }),
+    enabled: debouncedSearchTerm.length >= 2,
     staleTime: 30000, // Cache for 30 seconds
   });
 
@@ -69,8 +87,10 @@ const SearchBar = ({ className = "", placeholder = "Search posts, users, or cont
     setShowResults(false);
   };
 
-  const results = searchResults?.results || {};
-  const hasResults = (results.posts && results.posts.length > 0) || (results.users && results.users.length > 0);
+  const results = {
+    posts: searchResults?.data?.results || [],
+  };
+  const hasResults = results.posts.length > 0;
 
   return (
     <div ref={searchRef} className={`relative ${className}`}>
@@ -105,10 +125,10 @@ const SearchBar = ({ className = "", placeholder = "Search posts, users, or cont
           ) : hasResults ? (
             <div>
               {/* Posts Results */}
-              {results.posts && results.posts.length > 0 && (
+              {results.posts.length > 0 && (
                 <div>
                   <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                    Posts
+                    Posts matched by meaning
                   </div>
                   {results.posts.map((post) => (
                     <button
@@ -119,7 +139,11 @@ const SearchBar = ({ className = "", placeholder = "Search posts, users, or cont
                       <div className="flex items-center space-x-3">
                         {post.image && (
                           <img
-                            src={typeof post.image === "string" ? post.image : post.image.url}
+                            src={
+                              typeof post.image === "string"
+                                ? post.image
+                                : post.image.url
+                            }
                             alt={post.title}
                             className="w-8 h-8 rounded object-cover"
                           />
@@ -153,18 +177,25 @@ const SearchBar = ({ className = "", placeholder = "Search posts, users, or cont
                       <div className="flex items-center space-x-3">
                         {user.profilePicture ? (
                           <img
-                            src={user.profilePicture?.url || user.profilePicture?.path || user.profilePicture}
+                            src={
+                              user.profilePicture?.url ||
+                              user.profilePicture?.path ||
+                              user.profilePicture
+                            }
                             alt={user.username}
                             className="w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-600"
                             onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.nextElementSibling.style.display = 'flex';
+                              e.target.style.display = "none";
+                              e.target.nextElementSibling.style.display =
+                                "flex";
                             }}
                           />
                         ) : null}
-                        <div 
-                          className={`w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-gray-200 dark:border-gray-600 ${user.profilePicture ? 'hidden' : 'flex'}`}
-                          style={{ display: user.profilePicture ? 'none' : 'flex' }}
+                        <div
+                          className={`w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-gray-200 dark:border-gray-600 ${user.profilePicture ? "hidden" : "flex"}`}
+                          style={{
+                            display: user.profilePicture ? "none" : "flex",
+                          }}
                         >
                           <span className="text-xs text-white font-medium">
                             {user.username?.charAt(0)?.toUpperCase() || "U"}
