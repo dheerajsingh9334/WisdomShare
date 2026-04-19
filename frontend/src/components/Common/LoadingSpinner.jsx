@@ -26,7 +26,7 @@ const LoadingSpinner = ({ size = "md", message = "Loading..." }) => {
  */
 export const PageLoader = ({ message = "Loading page..." }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-black text-white">
       <div className="text-center">
         <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto"></div>
         <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">{message}</p>
@@ -42,18 +42,18 @@ export const CardSkeleton = ({ count = 1 }) => {
   return (
     <>
       {Array.from({ length: count }).map((_, index) => (
-        <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 animate-pulse">
+        <div key={index} className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-md p-6 animate-pulse">
           <div className="flex items-center space-x-4 mb-4">
             <div className="rounded-full bg-gray-300 dark:bg-gray-600 h-10 w-10"></div>
             <div className="space-y-2 flex-1">
-              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
-              <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded w-1/2"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-600  w-3/4"></div>
+              <div className="h-3 bg-gray-300 dark:bg-gray-600  w-1/2"></div>
             </div>
           </div>
           <div className="space-y-3">
-            <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-5/6"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-600 "></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-600  w-5/6"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-600  w-3/4"></div>
           </div>
         </div>
       ))}
@@ -68,13 +68,13 @@ export const ListSkeleton = ({ count = 5 }) => {
   return (
     <div className="space-y-4">
       {Array.from({ length: count }).map((_, index) => (
-        <div key={index} className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm animate-pulse">
+        <div key={index} className="flex items-center space-x-4 p-4 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm animate-pulse">
           <div className="rounded-full bg-gray-300 dark:bg-gray-600 h-8 w-8"></div>
           <div className="space-y-2 flex-1">
-            <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
-            <div className="h-3 bg-gray-300 dark:bg-gray-600 rounded w-1/2"></div>
+            <div className="h-4 bg-gray-300 dark:bg-gray-600  w-3/4"></div>
+            <div className="h-3 bg-gray-300 dark:bg-gray-600  w-1/2"></div>
           </div>
-          <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded w-16"></div>
+          <div className="h-6 bg-gray-300 dark:bg-gray-600  w-16"></div>
         </div>
       ))}
     </div>
@@ -115,7 +115,7 @@ export class ErrorBoundary extends React.Component {
         <div className="min-h-[400px] flex items-center justify-center">
           <div className="text-center p-8">
             <div className="text-red-500 text-6xl mb-4">⚠️</div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-xl font-semibold text-white mb-2">
               Something went wrong
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
@@ -123,7 +123,7 @@ export class ErrorBoundary extends React.Component {
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white px-4 py-2  hover:bg-blue-700 transition-colors"
             >
               Reload Page
             </button>

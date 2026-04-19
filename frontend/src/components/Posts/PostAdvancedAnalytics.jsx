@@ -61,9 +61,9 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
 
   const UserModal = ({ user, onClose }) => (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 max-w-md w-full mx-4">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">User Profile</h3>
+          <h3 className="text-lg font-semibold text-white">User Profile</h3>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             <FaTimes />
           </button>
@@ -71,11 +71,11 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
         <div className="flex items-center space-x-3 mb-4">
           <img src={user.profilePicture} alt={user.username} className="w-16 h-16 rounded-full" />
           <div>
-            <h4 className="font-medium text-gray-900 dark:text-white">{user.username}</h4>
-            <span className={`px-2 py-1 rounded text-xs ${
+            <h4 className="font-medium text-white">{user.username}</h4>
+            <span className={`px-2 py-1  text-xs ${
               user.plan === 'Pro' ? 'bg-purple-100 text-purple-800' :
               user.plan === 'Premium' ? 'bg-blue-100 text-blue-800' :
-              'bg-gray-100 text-gray-800'
+              'bg-gray-100 text-gray-100'
             }`}>
               {user.plan} Plan
             </span>
@@ -87,7 +87,7 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
 
   if (!hasAnalyticsAccess) {
     return (
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border border-purple-200 dark:border-purple-700 rounded-lg p-6">
+      <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border border-purple-200 dark:border-purple-700  p-6">
         <div className="text-center">
           <FaCrown className="mx-auto text-4xl text-purple-500 mb-4" />
           <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-2">
@@ -109,7 +109,7 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
           </div>
           <Link
             to="/plan-management"
-            className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center space-x-2"
+            className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3  font-medium transition-colors inline-flex items-center space-x-2"
           >
             <FaCrown />
             <span>Upgrade to Pro</span>
@@ -120,11 +120,11 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+    <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-white/10 border-white/10">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
+          <h2 className="text-lg font-semibold text-white flex items-center space-x-2">
             <FaChartLine className="text-purple-500" />
             <span>Advanced Analytics</span>
             <FaCrown className="text-yellow-500" />
@@ -136,7 +136,7 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-gray-200 dark:border-gray-700">
+      <div className="flex border-b border-white/10 border-white/10">
         <button
           onClick={() => setActiveTab('views')}
           className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
@@ -183,7 +183,7 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
         {activeTab === 'views' && (
           <div className="space-y-3">
             {analyticsData.views.map((view) => (
-              <div key={view.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div key={view.id} className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                 <div className="flex items-center space-x-3">
                   <img
                     src={view.user.profilePicture}
@@ -192,15 +192,15 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
                     onClick={() => {setSelectedUser(view.user); setShowModal(true);}}
                   />
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{view.user.username}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">{view.location}</p>
+                    <p className="font-medium text-white">{view.user.username}</p>
+                    <p className="text-xs text-gray-400">{view.location}</p>
                   </div>
                 </div>
                 <div className="text-right">
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     {new Date(view.timestamp).toLocaleDateString()}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-400">
                     {new Date(view.timestamp).toLocaleTimeString()}
                   </p>
                 </div>
@@ -212,7 +212,7 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
         {activeTab === 'likes' && (
           <div className="space-y-3">
             {analyticsData.likes.map((like) => (
-              <div key={like.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div key={like.id} className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                 <div className="flex items-center space-x-3">
                   <img
                     src={like.user.profilePicture}
@@ -221,11 +221,11 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
                     onClick={() => {setSelectedUser(like.user); setShowModal(true);}}
                   />
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-white">{like.user.username}</p>
-                    <span className={`px-2 py-1 rounded text-xs ${
+                    <p className="font-medium text-white">{like.user.username}</p>
+                    <span className={`px-2 py-1  text-xs ${
                       like.user.plan === 'Pro' ? 'bg-purple-100 text-purple-800' :
                       like.user.plan === 'Premium' ? 'bg-blue-100 text-blue-800' :
-                      'bg-gray-100 text-gray-800'
+                      'bg-gray-100 text-gray-100'
                     }`}>
                       {like.user.plan}
                     </span>
@@ -245,7 +245,7 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
         {activeTab === 'comments' && (
           <div className="space-y-3">
             {analyticsData.comments.map((comment) => (
-              <div key={comment.id} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div key={comment.id} className="p-3 bg-gray-50 bg-white/5 ">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center space-x-3">
                     <img
@@ -255,8 +255,8 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
                       onClick={() => {setSelectedUser(comment.user); setShowModal(true);}}
                     />
                     <div>
-                      <p className="font-medium text-gray-900 dark:text-white">{comment.user.username}</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="font-medium text-white">{comment.user.username}</p>
+                      <p className="text-xs text-gray-400">
                         {new Date(comment.timestamp).toLocaleDateString()}
                       </p>
                     </div>
@@ -280,13 +280,13 @@ const PostAdvancedAnalytics = ({ userPlan, isAuthor, onDeleteComment, onFlagComm
                     </div>
                   )}
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">{comment.content}</p>
-                <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-gray-300 text-sm mb-2">{comment.content}</p>
+                <div className="flex items-center space-x-4 text-xs text-gray-400">
                   <span className="flex items-center space-x-1">
                     <FaHeart className="text-red-400" />
                     <span>{comment.likes} likes</span>
                   </span>
-                  <span className={`px-2 py-1 rounded ${
+                  <span className={`px-2 py-1  ${
                     comment.isApproved 
                       ? 'bg-green-100 text-green-800' 
                       : 'bg-yellow-100 text-yellow-800'

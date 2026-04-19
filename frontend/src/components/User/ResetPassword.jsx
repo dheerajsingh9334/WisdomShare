@@ -62,9 +62,9 @@ const ResetPassword = () => {
     },
   });
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white mb-6">
+    <div className="flex items-center justify-center min-h-screen bg-black text-white py-12">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-8  shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-semibold text-center text-white mb-6">
           Change Your Password
         </h2>
         
@@ -75,17 +75,17 @@ const ResetPassword = () => {
         <form className="space-y-6" onSubmit={formik.handleSubmit}>
           {/* Current Password */}
           <div>
-            <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-300 mb-2">
               Current Password
             </label>
             <div className="relative">
-              <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-md focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
+              <div className="flex items-center border border-white/20 border-white/20  focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
                 <RiLockPasswordLine className="mx-3 text-orange-500" />
                 <input
                   type={showCurrentPassword ? "text" : "password"}
                   id="currentPassword"
                   {...formik.getFieldProps("currentPassword")}
-                  className="w-full px-3 py-2 border-0 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
+                  className="w-full px-3 py-2 border-0 bg-transparent text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
                   placeholder="Enter your current password"
                 />
                 <button
@@ -106,17 +106,17 @@ const ResetPassword = () => {
 
           {/* New Password */}
           <div>
-            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-300 mb-2">
               New Password
             </label>
             <div className="relative">
-              <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-md focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
+              <div className="flex items-center border border-white/20 border-white/20  focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
                 <RiLockPasswordLine className="mx-3 text-orange-500" />
                 <input
                   type={showNewPassword ? "text" : "password"}
                   id="newPassword"
                   {...formik.getFieldProps("newPassword")}
-                  className="w-full px-3 py-2 border-0 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
+                  className="w-full px-3 py-2 border-0 bg-transparent text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
                   placeholder="Enter your new password"
                 />
                 <button
@@ -132,7 +132,7 @@ const ResetPassword = () => {
                   {formik.errors.newPassword}
                 </div>
               )}
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 Password must be at least 6 characters long
               </p>
             </div>
@@ -140,17 +140,17 @@ const ResetPassword = () => {
 
           {/* Confirm New Password */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">
               Confirm New Password
             </label>
             <div className="relative">
-              <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-md focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
+              <div className="flex items-center border border-white/20 border-white/20  focus-within:ring-2 focus-within:ring-orange-500 focus-within:border-transparent">
                 <RiLockPasswordLine className="mx-3 text-orange-500" />
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
                   {...formik.getFieldProps("confirmPassword")}
-                  className="w-full px-3 py-2 border-0 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
+                  className="w-full px-3 py-2 border-0 bg-transparent text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
                   placeholder="Confirm your new password"
                 />
                 <button
@@ -172,7 +172,7 @@ const ResetPassword = () => {
           <button
             type="submit"
             disabled={userMutation.isPending}
-            className="w-full px-4 py-2 text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full px-4 py-2 text-white bg-orange-600  hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {userMutation.isPending ? "Changing Password..." : "Change Password"}
           </button>

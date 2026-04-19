@@ -323,7 +323,11 @@ const stripePaymentController = {
 
             await User.findByIdAndUpdate(
               userId,
-              { hasSelectedPlan: true, plan: plan._id },
+              { 
+                hasSelectedPlan: true, 
+                plan: plan._id,
+                planExpirationDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days from now
+              },
               { session },
             );
           });
@@ -358,6 +362,7 @@ const stripePaymentController = {
           });
           userFound.hasSelectedPlan = true;
           userFound.plan = plan._id;
+          userFound.planExpirationDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days from now
           await userFound.save();
         } finally {
           session.endSession();

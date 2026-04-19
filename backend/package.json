@@ -4,6 +4,7 @@
   "description": "This is the api for the backend",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js",
     "seed:plans": "node utils/seedPlans.js",
     "create:admin": "node utils/createAdminUser.js",

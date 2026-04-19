@@ -154,7 +154,7 @@ const DashboardScheduled = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Scheduled Posts</h2>
+        <h2 className="text-2xl font-bold text-white">Scheduled Posts</h2>
         <div className="text-sm text-gray-500">
           {scheduledData?.totalScheduled || 0} scheduled post{scheduledData?.totalScheduled !== 1 ? 's' : ''}
         </div>
@@ -163,26 +163,26 @@ const DashboardScheduled = () => {
       {scheduledData?.scheduledPosts?.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-4xl mb-4">⏰</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No scheduled posts</h3>
-          <p className="text-gray-500 dark:text-gray-400">Schedule your drafts to publish automatically!</p>
+          <h3 className="text-lg font-medium text-white mb-2">No scheduled posts</h3>
+          <p className="text-gray-400">Schedule your drafts to publish automatically!</p>
         </div>
       ) : (
         <div className="space-y-4">
           {scheduledData?.scheduledPosts?.map((post) => (
             <div
               key={post._id}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+              className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-6"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-white mb-2">
                     {post.title}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                     {decodeHtmlEntities(post.description)}
                   </p>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
                     <span className="flex items-center gap-1">
                       <FaCalendar className="h-4 w-4" />
                       {new Date(post.scheduledFor).toLocaleDateString()}
@@ -218,28 +218,28 @@ const DashboardScheduled = () => {
                 <div className="flex items-center gap-2 ml-4">
                   <button
                     onClick={() => handlePublishNow(post)}
-                    className="px-3 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors"
+                    className="px-3 py-2 bg-green-600 text-white text-sm  hover:bg-green-700 transition-colors"
                   >
                     <FaPlay className="h-3 w-3 mr-1" />
                     Publish Now
                   </button>
                   <button
                     onClick={() => handleEditSchedule(post)}
-                    className="px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-3 py-2 bg-blue-600 text-white text-sm  hover:bg-blue-700 transition-colors"
                   >
                     <FaEdit className="h-3 w-3 mr-1" />
                     Edit Schedule
                   </button>
                   <button
                     onClick={() => handleMoveToDraft(post)}
-                    className="px-3 py-2 bg-gray-600 text-white text-sm rounded-lg hover:bg-gray-700 transition-colors"
+                    className="px-3 py-2 bg-gray-600 text-white text-sm  hover:bg-gray-700 transition-colors"
                   >
                     Move to Draft
                   </button>
                   <button
                     onClick={() => handleDelete(post._id)}
                     disabled={deleteMutation.isPending}
-                    className="px-3 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+                    className="px-3 py-2 bg-red-600 text-white text-sm  hover:bg-red-700 transition-colors disabled:opacity-50"
                   >
                     <FaTrash className="h-4 w-4" />
                   </button>
@@ -256,7 +256,7 @@ const DashboardScheduled = () => {
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50"
+            className="px-3 py-2 border border-white/20  disabled:opacity-50"
           >
             Previous
           </button>
@@ -266,7 +266,7 @@ const DashboardScheduled = () => {
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === scheduledData.pagination.totalPages}
-            className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50"
+            className="px-3 py-2 border border-white/20  disabled:opacity-50"
           >
             Next
           </button>
@@ -276,8 +276,8 @@ const DashboardScheduled = () => {
       {/* Edit Modal */}
       {showEditModal && selectedPost && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold text-white mb-4">
               {editData.status === 'published' ? 'Publish Now' : 
                editData.status === 'scheduled' ? 'Edit Schedule' : 'Move to Draft'}
             </h3>
@@ -285,7 +285,7 @@ const DashboardScheduled = () => {
             <div className="space-y-4">
               {editData.status === 'scheduled' && (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     New Schedule Date & Time
                   </label>
                   <input
@@ -293,7 +293,7 @@ const DashboardScheduled = () => {
                     value={editData.scheduledFor}
                     onChange={(e) => setEditData({ ...editData, scheduledFor: e.target.value })}
                     min={new Date().toISOString().slice(0, 16)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-white/20  focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               )}
@@ -302,7 +302,7 @@ const DashboardScheduled = () => {
                 <button
                   onClick={handleSubmitEdit}
                   disabled={updateStatusMutation.isPending || (editData.status === 'scheduled' && !editData.scheduledFor)}
-                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50"
                 >
                   {updateStatusMutation.isPending ? 'Processing...' : 
                    editData.status === 'published' ? 'Publish Now' : 
@@ -310,7 +310,7 @@ const DashboardScheduled = () => {
                 </button>
                 <button
                   onClick={() => setShowEditModal(false)}
-                  className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                  className="flex-1 px-4 py-2 bg-gray-500 text-white  hover:bg-gray-600"
                 >
                   Cancel
                 </button>

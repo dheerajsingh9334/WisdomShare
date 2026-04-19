@@ -51,7 +51,7 @@ const Profile = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <FaSpinner className="h-12 w-12 text-blue-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-300 text-lg">Loading your profile...</p>
@@ -62,7 +62,7 @@ const Profile = () => {
 
   if (isError) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
           <FaExclamationTriangle className="h-16 w-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-red-600 mb-4">Profile Loading Error</h2>
@@ -71,7 +71,7 @@ const Profile = () => {
           </p>
           <button
             onClick={() => refetch()}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            className="bg-blue-600 text-white px-6 py-3  hover:bg-blue-700 transition-colors font-medium"
           >
             Retry Loading
           </button>
@@ -91,7 +91,7 @@ const Profile = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <FaUser className="h-16 w-16 text-gray-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-600 mb-2">No User Data</h2>
@@ -102,10 +102,10 @@ const Profile = () => {
   }
 
   return (
-    <div className={`max-w-6xl mx-auto ${r.spacing.containerSmall} bg-gray-50 dark:bg-gray-900 min-h-screen`}>
+    <div className={`max-w-6xl mx-auto ${r.spacing.containerSmall} bg-black text-white min-h-screen`}>
       {/* Plan Status Banner */}
       {usage && (
-        <div className="mb-4 sm:mb-6 p-4 sm:p-6 rounded-xl border bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 dark:border-blue-700 shadow-sm">
+        <div className="mb-4 sm:mb-6 p-4 sm:p-6  border bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 dark:border-blue-700 shadow-sm">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center space-x-3 sm:space-x-4">
               {usage.plan.tier === 'pro' && <FaCrown className="text-yellow-500 text-xl sm:text-2xl" />}
@@ -117,16 +117,16 @@ const Profile = () => {
                   <span className={`inline-flex items-center px-3 py-1 rounded-full ${r.text.bodySmall} font-medium ${planBadge?.className}`}>
                     {planBadge?.text}
                   </span>
-                  <span className={`${r.text.h4} font-semibold text-gray-900 dark:text-white`}>
+                  <span className={`${r.text.h4} font-semibold text-white`}>
                     {usage.plan.planName || 'Current Plan'}
                   </span>
                 </div>
                 
-                <div className={`mt-2 ${r.text.bodySmall} text-gray-600 dark:text-gray-400`}>
+                <div className={`mt-2 ${r.text.bodySmall} text-gray-400`}>
                   {usage.posts.unlimited ? (
                     <span className="text-green-600 dark:text-green-400">Unlimited posts available</span>
                   ) : (
-                    <span className={hasReachedLimit ? 'text-red-600 dark:text-red-400' : isNearLimit ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-600 dark:text-gray-400'}>
+                    <span className={hasReachedLimit ? 'text-red-600 dark:text-red-400' : isNearLimit ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-400'}>
                       {usage.posts.current} of {usage.posts.limit} posts used
                       {hasReachedLimit && ' - Limit reached!'}
                       {isNearLimit && !hasReachedLimit && ' - Approaching limit!'}
@@ -139,7 +139,7 @@ const Profile = () => {
             {upgradeButton && (
               <Link
                 to={upgradeButton.href}
-                className={`inline-flex items-center px-3 sm:px-4 py-2 rounded-lg ${r.text.bodySmall} font-medium transition-colors ${upgradeButton.className}`}
+                className={`inline-flex items-center px-3 sm:px-4 py-2  ${r.text.bodySmall} font-medium transition-colors ${upgradeButton.className}`}
               >
                 {upgradeButton.icon && <upgradeButton.icon className="mr-2" />}
                 {upgradeButton.text}
@@ -149,7 +149,7 @@ const Profile = () => {
         </div>
       )}
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm overflow-hidden">
         {/* Profile Header */}
         <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 p-4 sm:p-6 lg:p-8 text-white">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4 sm:gap-6">
@@ -193,11 +193,11 @@ const Profile = () => {
         </div>
 
         {/* Profile Actions */}
-        <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="p-4 sm:p-6 border-b border-white/10 border-white/10">
           <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
             <Link
               to="/dashboard/plan-management"
-              className={`inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${r.text.bodySmall} font-medium`}
+              className={`inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors ${r.text.bodySmall} font-medium`}
             >
               <FaCrown className="mr-2" />
               Manage Plan
@@ -205,7 +205,7 @@ const Profile = () => {
             <div className="flex items-center gap-3 justify-center sm:justify-start">
               {/* <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="p-2  hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 title="Toggle dark mode"
               >
                 {isDarkMode ? (
@@ -216,7 +216,7 @@ const Profile = () => {
               </button> */}
               <Link
                 to="/dashboard/settings"
-                className={`inline-flex items-center justify-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors ${r.text.bodySmall} font-medium`}
+                className={`inline-flex items-center justify-center px-4 py-2 bg-gray-600 text-white  hover:bg-gray-700 transition-colors ${r.text.bodySmall} font-medium`}
               >
                 <FaEdit className="mr-2" />
                 Edit Profile
@@ -229,7 +229,7 @@ const Profile = () => {
         <div className="p-4 sm:p-6">
           <div className={`${r.layout.grid2} gap-4 sm:gap-6 mb-6 sm:mb-8`}>
             <div className="space-y-4">
-              <h3 className={`${r.text.h4} font-semibold text-gray-900 dark:text-white flex items-center`}>
+              <h3 className={`${r.text.h4} font-semibold text-white flex items-center`}>
                 <FaUser className="mr-2 text-blue-600" />
                 Basic Information
               </h3>
@@ -267,9 +267,9 @@ const Profile = () => {
             </div>
 
             <div className="space-y-4">
-              <h3 className={`${r.text.h4} font-semibold text-gray-900 dark:text-white`}>Account Status</h3>
+              <h3 className={`${r.text.h4} font-semibold text-white`}>Account Status</h3>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                   <span className={`${r.text.bodySmall} text-gray-600 dark:text-gray-300`}>Status</span>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                     user?.isBanned ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
@@ -277,7 +277,7 @@ const Profile = () => {
                     {user?.isBanned ? 'Banned' : 'Active'}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                   <span className={`${r.text.bodySmall} text-gray-600 dark:text-gray-300`}>Role</span>
                   <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                     {user?.role || 'User'}
@@ -289,15 +289,15 @@ const Profile = () => {
 
           {/* Posts Section */}
           <div>
-            <h3 className={`${r.text.h3} font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6`}>Your Posts</h3>
+            <h3 className={`${r.text.h3} font-semibold text-white mb-4 sm:mb-6`}>Your Posts</h3>
             {user?.posts?.length === 0 ? (
               <div className="text-center py-8 sm:py-12">
                 <FaFileAlt className="h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mx-auto mb-4" />
                 <h4 className={`${r.text.h4} font-medium text-gray-600 dark:text-gray-300 mb-2`}>No posts yet</h4>
-                <p className={`${r.text.body} text-gray-500 dark:text-gray-400 mb-4`}>Start creating content to see your posts here.</p>
+                <p className={`${r.text.body} text-gray-400 mb-4`}>Start creating content to see your posts here.</p>
                 <Link
                   to="/dashboard/create-post"
-                  className={`inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors ${r.text.bodySmall}`}
+                  className={`inline-flex items-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors ${r.text.bodySmall}`}
                 >
                   <FaEdit className="mr-2" />
                   Create Your First Post
@@ -308,13 +308,13 @@ const Profile = () => {
                 {user?.posts?.map((post) => {
                   const imageUrl = typeof post.image === 'string' ? post.image : post.image?.url;
                   return (
-                    <div key={post._id} className="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div key={post._id} className="bg-gray-50 bg-white/5  overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                       {imageUrl && (
                         <img src={imageUrl} alt="Post" className="w-full h-32 sm:h-48 object-cover" />
                       )}
                       <div className="p-3 sm:p-4">
                         <Link to={`/posts/${post._id}`} className="block">
-                          <h4 className={`font-semibold text-gray-900 dark:text-white mb-2 hover:text-blue-600 transition-colors line-clamp-2 ${r.text.bodySmall}`}>
+                          <h4 className={`font-semibold text-white mb-2 hover:text-blue-600 transition-colors line-clamp-2 ${r.text.bodySmall}`}>
                             {post.title || "Untitled"}
                           </h4>
                         </Link>
@@ -326,13 +326,13 @@ const Profile = () => {
                         <div className="flex gap-2">
                           <Link
                             to={`/posts/${post._id}`}
-                            className="flex-1 text-center px-3 py-2 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-600 text-sm transition-colors"
+                            className="flex-1 text-center px-3 py-2 border border-white/20 border-white/20  hover:bg-gray-100 dark:hover:bg-gray-600 text-sm transition-colors"
                           >
                             View
                           </Link>
                           <Link
                             to={`/edit-post/${post._id}`}
-                            className="flex-1 text-center px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm transition-colors"
+                            className="flex-1 text-center px-3 py-2 bg-green-600 text-white  hover:bg-green-700 text-sm transition-colors"
                           >
                             Edit
                           </Link>

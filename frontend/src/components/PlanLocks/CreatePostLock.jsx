@@ -6,7 +6,7 @@ const CreatePostLock = ({ children, userPlan }) => {
 
   if (!hasCreatePostAccess) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+      <div className="bg-red-50 border border-red-200  p-4 mb-4">
         <div className="flex items-center">
           <div className="flex-shrink-0">
             <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">

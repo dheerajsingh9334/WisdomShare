@@ -9,8 +9,11 @@ import {
   FaComment, 
   FaCalendarAlt,
   FaGlobe,
-  FaExternalLinkAlt
+  FaExternalLinkAlt,
+  FaStar,
+  FaFire
 } from 'react-icons/fa';
+import { SalesDashboard } from '../ui/live-sales-dashboard';
 
 const Analytics = () => {
   
@@ -26,7 +29,7 @@ const Analytics = () => {
 
   if (!canAccess) {
     return (
-      <div className="bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="bg-black text-white py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <PlanUpgradePrompt 
             feature="Analytics"
@@ -41,11 +44,11 @@ const Analytics = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="bg-black text-white py-12">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <span className="ml-3 text-gray-600 dark:text-gray-400">Loading analytics...</span>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+            <span className="ml-3 text-gray-400">Loading analytics...</span>
           </div>
         </div>
       </div>
@@ -54,7 +57,7 @@ const Analytics = () => {
 
   if (error) {
     return (
-      <div className="bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="bg-black text-white py-12">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center">
             <p className="text-red-600 dark:text-red-400">Failed to load analytics data. Please try again.</p>
@@ -74,205 +77,151 @@ const Analytics = () => {
   const totalFollowing = user?.following?.length || 0;
   const totalPosts = posts.length;
 
-  // Get top performing posts based on real data
-  const topPosts = posts
-    .map(post => ({
-      ...post,
-      views: post.viewers?.length || 0,
-      likes: post.likes?.length || 0,
-      comments: post.comments?.length || 0
-    }))
-    .sort((a, b) => b.views - a.views)
-    .slice(0, 5);
-
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="bg-black text-white py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2 uppercase tracking-tighter">
             📊 Advanced Analytics
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Get detailed insights about your content performance
+          <p className="text-gray-500 text-sm uppercase tracking-widest">
+            Content performance insights
           </p>
         </div>
 
-        {/* Overview Stats with Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <Link to="/dashboard/posts" className="block">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <FaEye className="h-8 w-8 text-blue-500" />
-                  <div className="ml-5">
-                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      Total Views
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900 dark:text-white">
-                      {totalViews.toLocaleString()}
-                    </dd>
-                  </div>
+        {/* Overview Stats with Links - Divide Grid Style */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl mb-8 overflow-hidden rounded-none">
+          <Link to="/dashboard/posts" className="block p-8 hover:bg-white/5 transition-all group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <FaEye className="h-8 w-8 text-white/50 group-hover:text-white group-hover:scale-110 transition-all" />
+                <div className="ml-5">
+                  <dt className="text-[10px] font-bold text-gray-500 truncate tracking-[0.2em] uppercase">
+                    Total Views
+                  </dt>
+                  <dd className="text-3xl font-light text-white mt-1">
+                    {totalViews.toLocaleString()}
+                  </dd>
                 </div>
-                <FaExternalLinkAlt className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
               </div>
+              <FaExternalLinkAlt className="h-3 w-3 text-gray-700 group-hover:text-white transition-colors" />
             </div>
           </Link>
 
-          <Link to="/dashboard/posts" className="block">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <FaThumbsUp className="h-8 w-8 text-green-500" />
-                  <div className="ml-5">
-                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      Total Likes
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900 dark:text-white">
-                      {totalLikes.toLocaleString()}
-                    </dd>
-                  </div>
+          <Link to="/dashboard/posts" className="block p-8 hover:bg-white/5 transition-all group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <FaThumbsUp className="h-8 w-8 text-white/50 group-hover:text-white group-hover:scale-110 transition-all" />
+                <div className="ml-5">
+                  <dt className="text-[10px] font-bold text-gray-500 truncate tracking-[0.2em] uppercase">
+                    Total Likes
+                  </dt>
+                  <dd className="text-3xl font-light text-white mt-1">
+                    {totalLikes.toLocaleString()}
+                  </dd>
                 </div>
-                <FaExternalLinkAlt className="h-4 w-4 text-gray-400 group-hover:text-green-500 transition-colors" />
               </div>
+              <FaExternalLinkAlt className="h-3 w-3 text-gray-700 group-hover:text-white transition-colors" />
             </div>
           </Link>
 
-          <Link to="/dashboard/posts" className="block">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <FaComment className="h-8 w-8 text-purple-500" />
-                  <div className="ml-5">
-                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      Total Comments
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900 dark:text-white">
-                      {totalComments.toLocaleString()}
-                    </dd>
-                  </div>
+          <Link to="/dashboard/posts" className="block p-8 hover:bg-white/5 transition-all group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <FaComment className="h-8 w-8 text-white/50 group-hover:text-white group-hover:scale-110 transition-all" />
+                <div className="ml-5">
+                  <dt className="text-[10px] font-bold text-gray-500 truncate tracking-[0.2em] uppercase">
+                    Total Comments
+                  </dt>
+                  <dd className="text-3xl font-light text-white mt-1">
+                    {totalComments.toLocaleString()}
+                  </dd>
                 </div>
-                <FaExternalLinkAlt className="h-4 w-4 text-gray-400 group-hover:text-purple-500 transition-colors" />
               </div>
+              <FaExternalLinkAlt className="h-3 w-3 text-gray-700 group-hover:text-white transition-colors" />
             </div>
           </Link>
         </div>
 
-        {/* Additional Stats with Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Link to="/dashboard/posts" className="block">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <FaCalendarAlt className="h-8 w-8 text-indigo-500" />
-                  <div className="ml-5">
-                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      Total Posts
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900 dark:text-white">
-                      {totalPosts.toLocaleString()}
-                    </dd>
-                  </div>
+        {/* Additional Stats with Links - Divide Grid Style */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl mb-8 overflow-hidden rounded-none">
+          <Link to="/dashboard/posts" className="block p-6 hover:bg-white/5 transition-all group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <FaCalendarAlt className="h-5 w-5 text-white/40 group-hover:text-white transition-all" />
+                <div className="ml-4">
+                  <dt className="text-[9px] font-bold text-gray-500 truncate tracking-widest uppercase">
+                    Total Posts
+                  </dt>
+                  <dd className="text-xl font-bold text-white mt-1">
+                    {totalPosts.toLocaleString()}
+                  </dd>
                 </div>
-                <FaExternalLinkAlt className="h-4 w-4 text-gray-400 group-hover:text-indigo-500 transition-colors" />
               </div>
+              <FaExternalLinkAlt className="h-3 w-3 text-gray-800 group-hover:text-white transition-colors" />
             </div>
           </Link>
 
-          <Link to="/dashboard/my-followings" className="block">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-200 cursor-pointer group">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <FaGlobe className="h-8 w-8 text-teal-500" />
-                  <div className="ml-5">
-                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                      Following
-                    </dt>
-                    <dd className="text-lg font-medium text-gray-900 dark:text-white">
-                      {totalFollowing.toLocaleString()}
-                    </dd>
-                  </div>
+          <Link to="/dashboard/my-followings" className="block p-6 hover:bg-white/5 transition-all group">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <FaGlobe className="h-5 w-5 text-white/40 group-hover:text-white transition-all" />
+                <div className="ml-4">
+                  <dt className="text-[9px] font-bold text-gray-500 truncate tracking-widest uppercase">
+                    Following
+                  </dt>
+                  <dd className="text-xl font-bold text-white mt-1">
+                    {totalFollowing.toLocaleString()}
+                  </dd>
                 </div>
-                <FaExternalLinkAlt className="h-4 w-4 text-gray-400 group-hover:text-teal-500 transition-colors" />
               </div>
+              <FaExternalLinkAlt className="h-3 w-3 text-gray-800 group-hover:text-white transition-colors" />
             </div>
           </Link>
+          
+          <div className="p-6 hover:bg-white/5 transition-all group cursor-default">
+            <div className="flex items-center">
+               <FaStar className="h-5 w-5 text-white/40 group-hover:text-white transition-all" />
+               <div className="ml-4">
+                  <dt className="text-[9px] font-bold text-gray-500 truncate tracking-widest uppercase">
+                    Plan Tier
+                  </dt>
+                  <dd className="text-xl font-bold text-white mt-1">
+                    {typeof userPlan === 'object' ? userPlan?.planName : (userPlan || 'Free')}
+                  </dd>
+               </div>
+            </div>
+          </div>
 
-
-
-
+          <div className="p-6 hover:bg-white/5 transition-all group cursor-default">
+            <div className="flex items-center">
+               <FaFire className="h-5 w-5 text-white/40 group-hover:text-white transition-all" />
+               <div className="ml-4">
+                  <dt className="text-[9px] font-bold text-gray-500 truncate tracking-widest uppercase">
+                    Status
+                  </dt>
+                  <dd className="text-xl font-bold text-white mt-1">
+                    Active
+                  </dd>
+               </div>
+            </div>
+          </div>
         </div>
-
-
-
-        {/* Top Performing Posts */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-              Top Performing Posts
-            </h3>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Post Title
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Views
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Likes
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Comments
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Published
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                {topPosts.length > 0 ? topPosts.map((post) => (
-                  <tr key={post._id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <Link 
-                        to={`/posts/${post._id}`}
-                        className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-                      >
-                        {post.title || 'Untitled'}
-                      </Link>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900 dark:text-white">
-                        {post.views.toLocaleString()}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900 dark:text-white">
-                        {post.likes.toLocaleString()}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900 dark:text-white">
-                        {post.comments.toLocaleString()}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                      {post.createdAt ? new Date(post.createdAt).toLocaleDateString() : 'N/A'}
-                    </td>
-                  </tr>
-                )) : (
-                  <tr>
-                    <td colSpan="5" className="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
-                      No posts yet. Start creating content to see analytics!
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+        
+        {/* Real-time Performance Tracking */}
+        <div className="mb-8">
+          <SalesDashboard 
+            totalPosts={totalPosts}
+            totalFollowing={totalFollowing}
+            avgLikes={totalPosts > 0 ? totalLikes / totalPosts : 0}
+            posts={posts.map(p => ({
+              ...p,
+              views: p.viewers?.length || 0,
+              likesCount: p.likes?.length || 0,
+              commentsCount: p.comments?.length || 0
+            }))}
+          />
         </div>
       </div>
     </div>

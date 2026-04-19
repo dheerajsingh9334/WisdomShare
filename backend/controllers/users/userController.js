@@ -198,7 +198,8 @@ const userController = {
           profilePicture: user?.profilePicture,
           role: user?.role,
           isEmailVerified: user?.isEmailVerified,
-          plan: user?.plan, // Include the populated plan data
+          plan: user?.plan,
+          planExpirationDate: user?.planExpirationDate,
         });
       }
     } catch (error) {
@@ -569,7 +570,7 @@ getUserProfileById: asyncHandler(async (req, res) => {
     const user = await User.findById(req.user)
       .populate("plan")
       .populate("posts")
-      .select("plan posts totalPosts totalViews totalLikes totalComments");
+      .select("plan posts totalPosts totalViews totalLikes totalComments planExpirationDate");
 
     if (!user) {
       throw new Error("User not found");
@@ -577,6 +578,7 @@ getUserProfileById: asyncHandler(async (req, res) => {
 
     const currentPostCount = user.posts?.length || 0;
   const userPlan = user.plan;
+  const planExpirationDate = user.planExpirationDate;
   const tier = (userPlan?.tier || userPlan?.planName || 'free').toString().toLowerCase();
   const tierDefaults = { free: 30, premium: 100, pro: 300 };
   const effectiveLimit = (typeof userPlan?.postLimit === 'number') ? userPlan.postLimit : tierDefaults[tier] ?? 30;
@@ -585,11 +587,11 @@ getUserProfileById: asyncHandler(async (req, res) => {
     const usage = {
       posts: {
         current: currentPostCount,
-  limit: effectiveLimit, // per day
-  unlimited: false
+        limit: effectiveLimit,
+        unlimited: false
       },
-  plan: userPlan || { tier: "free", planName: "Free", postLimit: 20 },
-              // Earnings functionality removed
+      plan: userPlan || { tier: "free", planName: "Free", postLimit: 20 },
+      planExpirationDate: planExpirationDate,
     };
 
     res.json({ usage });

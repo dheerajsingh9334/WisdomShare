@@ -56,9 +56,9 @@ const Register = () => {
   console.log(userMutation);
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-900 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8">
+      <div className="w-full max-w-md bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create account</h1>
+          <h1 className="text-3xl font-bold text-white">Create account</h1>
           <p className="text-gray-600 dark:text-gray-300">Join and share your stories</p>
         </div>
 
@@ -74,7 +74,7 @@ const Register = () => {
             <input
               type="text"
               {...formik.getFieldProps("username")}
-              className="w-full rounded-lg p-3 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+              className="w-full  p-3 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-blue-500"
               placeholder="Choose a username"
             />
             {formik.touched.username && formik.errors.username && (
@@ -87,7 +87,7 @@ const Register = () => {
             <input
               type="email"
               {...formik.getFieldProps("email")}
-              className="w-full rounded-lg p-3 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+              className="w-full  p-3 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-blue-500"
               placeholder="you@example.com"
             />
             {formik.touched.email && formik.errors.email && (
@@ -101,7 +101,7 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 {...formik.getFieldProps("password")}
-                className="w-full rounded-lg p-3 pr-10 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                className="w-full  p-3 pr-10 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-blue-500"
                 placeholder="Create a password"
               />
               <button
@@ -121,23 +121,23 @@ const Register = () => {
           <button
             type="submit"
             disabled={userMutation.isPending}
-            className="w-full h-12 inline-flex items-center justify-center text-white font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+            className="w-full h-12 inline-flex items-center justify-center text-white font-semibold  bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
           >
             {userMutation.isPending ? "Creating..." : "Sign Up"}
           </button>
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-gray-300 dark:border-gray-600" />
+              <span className="w-full border-t border-white/20 border-white/20" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white dark:bg-gray-800 px-2 text-gray-500 dark:text-gray-400">Or continue with</span>
+              <span className="bg-black/50 backdrop-blur-xl border border-white/10 text-white px-2 text-gray-400">Or continue with</span>
             </div>
           </div>
 
           <a
             href={`${BASE_URL}/users/auth/google`}
-            className="w-full h-12 inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+            className="w-full h-12 inline-flex items-center justify-center gap-2  border border-white/20 border-white/20 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
           >
             <FaGoogle className="text-red-500" /> Sign up with Google
           </a>

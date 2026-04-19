@@ -176,7 +176,7 @@ const PostDetails = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-300">Loading post...</p>
@@ -187,13 +187,13 @@ const PostDetails = () => {
 
   if (isError) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-500 text-lg mb-4">Error loading post</p>
           <p className="text-gray-600 dark:text-gray-300">{error.message}</p>
           <button
             onClick={() => navigate(-1)}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors"
           >
             Go Back
           </button>
@@ -203,14 +203,14 @@ const PostDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-black text-white">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className="sticky top-0 z-10 bg-black/50 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 border-white/10 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="flex items-center gap-2 text-gray-400 hover:text-white dark:hover:text-white transition-colors"
             >
               <FaArrowLeft className="h-4 w-4" />
               <span className="hidden sm:inline">Back</span>
@@ -254,7 +254,7 @@ const PostDetails = () => {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <article className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <article className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 overflow-hidden">
           {/* Hero Image */}
           {image && (
             <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 xl:h-96 overflow-hidden">
@@ -278,12 +278,12 @@ const PostDetails = () => {
             )}
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
               {post?.title || "Untitled Post"}
             </h1>
 
             {/* Author Section */}
-            <div className="flex items-center justify-between mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/10 border-white/10">
               <div className="flex items-center gap-4">
                 <Link to={`/user/${targetId}`}>
                   <Avatar user={post?.author} size="lg" />
@@ -291,11 +291,11 @@ const PostDetails = () => {
                 <div>
                   <Link
                     to={`/user/${targetId}`}
-                    className="block font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="block font-semibold text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     {post?.author?.username || "Anonymous"}
                   </Link>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
                     <span>
                       {new Date(post?.createdAt).toLocaleDateString("en-US", {
                         year: "numeric",
@@ -307,7 +307,7 @@ const PostDetails = () => {
                     <span>{readingMins} min read</span>
                   </div>
                   {post?.author?.bio && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 max-w-md">
+                    <p className="text-sm text-gray-400 mt-2 max-w-md">
                       {post.author.bio}
                     </p>
                   )}
@@ -326,13 +326,13 @@ const PostDetails = () => {
               )}
             </div>
 
-            <div className="mb-6 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/70 dark:bg-emerald-900/20 p-4">
+            <div className="mb-6  border border-emerald-200 dark:border-emerald-800 bg-emerald-50/70 dark:bg-emerald-900/20 p-4">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-sm font-semibold text-white">
                     AI Summary
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-400">
                     Summarize this blog with Gemini.
                   </p>
                 </div>
@@ -340,7 +340,7 @@ const PostDetails = () => {
                   type="button"
                   onClick={handleSummarizePost}
                   disabled={summarizeMutation.isPending}
-                  className="px-4 py-2 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 disabled:opacity-50"
+                  className="px-4 py-2  bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 disabled:opacity-50"
                 >
                   {summarizeMutation.isPending
                     ? "Summarizing..."
@@ -348,7 +348,7 @@ const PostDetails = () => {
                 </button>
               </div>
               {summaryText && (
-                <p className="mt-3 text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                <p className="mt-3 text-sm text-gray-300 whitespace-pre-line">
                   {summaryText}
                 </p>
               )}
@@ -356,23 +356,23 @@ const PostDetails = () => {
 
             {/* User Profile Info */}
             {post?.author && (
-              <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+              <div className="mb-6 p-4 bg-gray-50 bg-white/5/50  border border-white/10 border-white/20">
+                <h3 className="text-sm font-medium text-gray-300 mb-3">
                   About the Author
                 </h3>
                 <div className="flex items-center gap-4">
                   <Avatar user={post.author} size="md" />
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 dark:text-white">
+                    <h4 className="font-medium text-white">
                       {post.author.username || "Unknown User"}
                     </h4>
                     {post.author.email && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-gray-400">
                         {post.author.email}
                       </p>
                     )}
                     {post.author.bio && (
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-gray-400 mt-1">
                         {post.author.bio}
                       </p>
                     )}
@@ -410,7 +410,7 @@ const PostDetails = () => {
                   <Link
                     key={index}
                     to={`/?tag=${encodeURIComponent(tag)}`}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                    className="px-3 py-1 bg-gray-100 bg-white/5 text-gray-300 text-sm rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                   >
                     #{tag}
                   </Link>
@@ -419,12 +419,12 @@ const PostDetails = () => {
             )}
 
             {/* Engagement Section */}
-            <div className="flex items-center justify-between py-6 border-t border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between py-6 border-t border-white/10 border-white/10">
               <div className="flex items-center gap-6">
                 <button
                   onClick={likePostHandler}
                   disabled={!userId || likePostMutation.isPending}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  className={`flex items-center gap-2 px-4 py-2  transition-colors ${
                     post?.likes?.includes(userId)
                       ? "bg-green-50 text-green-600 hover:bg-green-100"
                       : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
@@ -437,7 +437,7 @@ const PostDetails = () => {
                 <button
                   onClick={dislikesPostHandler}
                   disabled={!userId || dislikePostMutation.isPending}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  className={`flex items-center gap-2 px-4 py-2  transition-colors ${
                     post?.dislikes?.includes(userId)
                       ? "bg-red-50 text-red-600 hover:bg-red-100"
                       : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
@@ -447,12 +447,12 @@ const PostDetails = () => {
                   <span>{post?.dislikes?.length || 0}</span>
                 </button>
 
-                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2 text-gray-400">
                   <FaEye className="h-4 w-4" />
                   <span>{post?.viewers?.length || 0}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2 text-gray-400">
                   <FaComment className="h-4 w-4" />
                   <span>{post?.comments?.length || 0}</span>
                 </div>
@@ -473,7 +473,7 @@ const PostDetails = () => {
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post?.title || "")}&url=${window.location.href}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-blue-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                  className="p-2 text-blue-400 hover:text-blue-600 hover:bg-blue-50  transition-colors"
                   title="Share on Twitter"
                 >
                   <FaTwitter className="h-4 w-4" />
@@ -482,7 +482,7 @@ const PostDetails = () => {
                   href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors"
+                  className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50  transition-colors"
                   title="Share on Facebook"
                 >
                   <FaFacebook className="h-4 w-4" />

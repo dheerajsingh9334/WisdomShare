@@ -17,48 +17,41 @@ export default defineConfig({
   base: '/',
   server: {
     port: 5173,
+    // Add hmr options for better stability
+    hmr: {
+      overlay: true,
+    },
   },
   build: {
-    target: 'es2015',
+    target: 'esnext', // Modern browsers for better performance
     minify: 'terser',
     cssMinify: true,
     sourcemap: false,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          // Vendor chunks
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          ui: ['@heroicons/react', 'react-icons'],
-          state: ['@reduxjs/toolkit', 'react-redux', '@tanstack/react-query'],
-          utils: ['axios', 'formik', 'yup'],
-          editor: ['react-quill', 'quill'],
-          charts: ['recharts'],
-          // Admin chunk
-          admin: [
-            './src/components/Admin/AdminGlobalLayout.jsx',
-            './src/components/Admin/AdminMainDashboard.jsx',
-            './src/components/Admin/UserManagement.jsx',
-            './src/components/Admin/PostManagement.jsx'
-          ]
+          // Core vendors
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-state': ['@reduxjs/toolkit', 'react-redux', '@tanstack/react-query'],
+          // Heavy UI & Animation
+          'vendor-ui': ['framer-motion', 'lucide-react', 'react-icons', '@heroicons/react'],
+          // Large utility packages
+          'vendor-utils': ['axios', 'formik', 'yup', 'redux-persist', '@stripe/react-stripe-js'],
+          // Specialized heavy editors/viewers
+          'vendor-editor': ['react-quill', 'quill', 'react-markdown', 'rehype-raw', 'remark-gfm'],
+          'vendor-charts': ['recharts'],
         },
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/').pop().replace('.jsx', '').replace('.js', '') : 'chunk';
-          return `js/${facadeModuleId}-[hash].js`;
-        },
+        chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: 'js/[name]-[hash].js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.css')) {
-            return 'css/[name]-[hash][extname]';
-          }
-          return 'assets/[name]-[hash][extname]';
-        }
+        assetFileNames: 'assets/[name]-[hash][extname]'
       },
     },
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
       },
     },
   },
@@ -70,7 +63,32 @@ export default defineConfig({
       '@reduxjs/toolkit',
       'react-redux',
       '@tanstack/react-query',
-      'axios'
+      'axios',
+      'framer-motion',
+      'lucide-react',
+      'react-icons',
+      'react-icons/fa',
+      'react-icons/md',
+      'react-icons/hi',
+      'react-icons/bi',
+      'react-icons/io',
+      '@heroicons/react/24/outline',
+      '@heroicons/react/24/solid',
+      'recharts',
+      'quill',
+      'react-quill',
+      'formik',
+      'yup',
+      'redux-persist',
+      'react-markdown',
+      'rehype-raw',
+      'remark-gfm'
     ],
+    // Force dependency discovery for some packages that might be missed
+    entries: [
+      './src/main.jsx',
+      './src/App.jsx'
+    ]
   },
 });
+

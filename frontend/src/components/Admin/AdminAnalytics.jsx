@@ -40,6 +40,7 @@ import {
   FaDollarSign,
   FaServer
 } from 'react-icons/fa';
+import { SalesDashboard } from '../ui/live-sales-dashboard';
 
 const AdminAnalytics = () => {
   const [timeRange, setTimeRange] = useState('7d');
@@ -218,14 +219,14 @@ const AdminAnalytics = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600  p-6 text-white">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold mb-2">Platform Analytics</h1>
             <p className="text-blue-100">Real-time insights into your platform's performance</p>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 bg-white/20 rounded-lg px-4 py-2">
+            <div className="flex items-center space-x-2 bg-white/20  px-4 py-2">
               <FaCalendar className="h-4 w-4" />
               <select 
                 value={timeRange} 
@@ -233,13 +234,13 @@ const AdminAnalytics = () => {
                 className="bg-transparent text-white border-none outline-none"
               >
                 {timeRanges.map(range => (
-                  <option key={range.value} value={range.value} className="text-gray-800">
+                  <option key={range.value} value={range.value} className="text-gray-100">
                     {range.label}
                   </option>
                 ))}
               </select>
             </div>
-            <button className="bg-white/20 hover:bg-white/30 rounded-lg px-4 py-2 flex items-center space-x-2 transition-colors">
+            <button className="bg-white/20 hover:bg-white/30  px-4 py-2 flex items-center space-x-2 transition-colors">
               <FaDownload className="h-4 w-4" />
               <span>Export</span>
             </button>
@@ -247,8 +248,18 @@ const AdminAnalytics = () => {
         </div>
       </div>
 
+      {/* Real-time Sales Tracker */}
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+        <SalesDashboard 
+          totalPosts={analyticsData.posts.total}
+          totalFollowing={0}
+          avgLikes={analyticsData.posts.total > 0 ? analyticsData.engagement.totalLikes / analyticsData.posts.total : 0}
+          posts={[]} 
+        />
+      </div>
+
       {/* Metric Selector */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
         <div className="flex flex-wrap gap-4">
           {metrics.map(metric => {
             const Icon = metric.icon;
@@ -256,10 +267,10 @@ const AdminAnalytics = () => {
               <button
                 key={metric.value}
                 onClick={() => setSelectedMetric(metric.value)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                className={`flex items-center space-x-3 px-4 py-3  transition-all ${
                   selectedMetric === metric.value
                     ? `${getMetricColor(metric.color)} text-white`
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    : 'bg-gray-100 bg-white/5 text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
                 <Icon className="h-5 w-5" />
@@ -271,8 +282,8 @@ const AdminAnalytics = () => {
       </div>
 
       {/* Chart Type Selector */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Chart Type</h3>
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+        <h3 className="text-lg font-bold text-white mb-4">Chart Type</h3>
         <div className="flex flex-wrap gap-4">
           {chartTypes.map(type => {
             const Icon = type.icon;
@@ -280,10 +291,10 @@ const AdminAnalytics = () => {
               <button
                 key={type.value}
                 onClick={() => setChartType(type.value)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                className={`flex items-center space-x-3 px-4 py-3  transition-all ${
                   chartType === type.value
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    : 'bg-gray-100 bg-white/5 text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
                 <Icon className="h-5 w-5" />
@@ -295,8 +306,8 @@ const AdminAnalytics = () => {
       </div>
 
       {/* Main Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+        <h3 className="text-xl font-bold text-white mb-6">
           {metrics.find(m => m.value === selectedMetric)?.label} Trends
         </h3>
         <div className="h-80">
@@ -306,111 +317,81 @@ const AdminAnalytics = () => {
         </div>
       </div>
 
-      {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+      {/* Key Metrics - Divide Grid Style */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl overflow-hidden">
+        <div className="p-8 transition-all hover:bg-white/5 group">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-              <FaUsers className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+            <div className="p-3 bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+              <FaUsers className="h-6 w-6 text-blue-500" />
             </div>
             {getTrendIcon(analyticsData.users.trend)}
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+          <h3 className="text-3xl font-bold text-white mb-1">
             {analyticsData.users.total.toLocaleString()}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">Total Users</p>
-          <div className="flex items-center text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              {analyticsData.users.growth}
-            </span>
-            <span className="text-gray-500 dark:text-gray-400 ml-1">vs last period</span>
-          </div>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">Total Users</p>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+        <div className="p-8 transition-all hover:bg-white/5 group">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg">
-              <FaFileAlt className="h-6 w-6 text-green-600 dark:text-green-400" />
+            <div className="p-3 bg-green-500/10 group-hover:bg-green-500/20 transition-colors">
+              <FaFileAlt className="h-6 w-6 text-green-500" />
             </div>
             {getTrendIcon(analyticsData.content.trend)}
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+          <h3 className="text-3xl font-bold text-white mb-1">
             {analyticsData.content.totalPosts.toLocaleString()}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">Total Posts</p>
-          <div className="flex items-center text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              {analyticsData.content.growth}
-            </span>
-            <span className="text-gray-500 dark:text-gray-400 ml-1">vs last period</span>
-          </div>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">Total Posts</p>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+        <div className="p-8 transition-all hover:bg-white/5 group">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-              <FaEye className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+            <div className="p-3 bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+              <FaEye className="h-6 w-6 text-purple-500" />
             </div>
             {getTrendIcon(analyticsData.engagement.trend)}
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+          <h3 className="text-3xl font-bold text-white mb-1">
             {analyticsData.engagement.totalViews.toLocaleString()}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">Total Views</p>
-          <div className="flex items-center text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              {analyticsData.engagement.growth}
-            </span>
-            <span className="text-gray-500 dark:text-gray-400 ml-1">vs last period</span>
-          </div>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">Total Views</p>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+        <div className="p-8 transition-all hover:bg-white/5 group">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
-              <FaServer className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+            <div className="p-3 bg-orange-500/10 group-hover:bg-orange-500/20 transition-colors">
+              <FaServer className="h-6 w-6 text-orange-500" />
             </div>
             <div className="text-green-500">
               <FaArrowUp className="h-4 w-4" />
             </div>
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+          <h3 className="text-3xl font-bold text-white mb-1">
             {analyticsData.performance.uptime}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">System Uptime</p>
-          <div className="flex items-center text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              +0.1%
-            </span>
-            <span className="text-gray-500 dark:text-gray-400 ml-1">vs last month</span>
-          </div>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">System Uptime</p>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+        <div className="p-8 transition-all hover:bg-white/5 group">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
-              <FaDollarSign className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+            <div className="p-3 bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
+              <FaDollarSign className="h-6 w-6 text-emerald-500" />
             </div>
             {getTrendIcon(analyticsData.revenue.trend)}
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+          <h3 className="text-3xl font-bold text-white mb-1">
             ${analyticsData.revenue.totalUsers?.toLocaleString() || '0'}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-2">Total Revenue</p>
-          <div className="flex items-center text-sm">
-            <span className="text-green-600 dark:text-green-400 font-medium">
-              {analyticsData.revenue.growth}
-            </span>
-            <span className="text-gray-500 dark:text-gray-400 ml-1">vs last period</span>
-          </div>
+          <p className="text-xs font-medium text-gray-500 uppercase tracking-widest">Total Revenue</p>
         </div>
       </div>
 
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Device Usage Chart */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center">
             <FaMobile className="mr-2 text-blue-600" />
             Device Usage
           </h3>
@@ -438,8 +419,8 @@ const AdminAnalytics = () => {
         </div>
 
         {/* Country Distribution Chart */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center">
             <FaGlobe className="mr-2 text-purple-600" />
             Top Countries
           </h3>
@@ -460,103 +441,103 @@ const AdminAnalytics = () => {
       {/* Detailed Analytics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* User Analytics */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center">
             <FaUsers className="mr-2 text-blue-600" />
             User Analytics
           </h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <span className="text-gray-600 dark:text-gray-400">New Users Today</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{analyticsData.users.newUsers}</span>
+            <div className="flex justify-between items-center p-3 bg-gray-50 bg-white/5 ">
+              <span className="text-gray-400">New Users Today</span>
+              <span className="font-semibold text-white">{analyticsData.users.newUsers}</span>
             </div>
-            <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <span className="text-gray-600 dark:text-gray-400">Active Users</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{analyticsData.users.activeUsers}</span>
+            <div className="flex justify-between items-center p-3 bg-gray-50 bg-white/5 ">
+              <span className="text-gray-400">Active Users</span>
+              <span className="font-semibold text-white">{analyticsData.users.activeUsers}</span>
             </div>
-            <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <span className="text-gray-600 dark:text-gray-400">Premium Users</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{analyticsData.users.premiumUsers}</span>
+            <div className="flex justify-between items-center p-3 bg-gray-50 bg-white/5 ">
+              <span className="text-gray-400">Premium Users</span>
+              <span className="font-semibold text-white">{analyticsData.users.premiumUsers}</span>
             </div>
           </div>
         </div>
 
         {/* Content Analytics */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center">
             <FaFileAlt className="mr-2 text-green-600" />
             Content Analytics
           </h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <span className="text-gray-600 dark:text-gray-400">Published Today</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{analyticsData.content.publishedToday}</span>
+            <div className="flex justify-between items-center p-3 bg-gray-50 bg-white/5 ">
+              <span className="text-gray-400">Published Today</span>
+              <span className="font-semibold text-white">{analyticsData.content.publishedToday}</span>
             </div>
-            <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <span className="text-gray-600 dark:text-gray-400">Drafts</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{analyticsData.content.drafts}</span>
+            <div className="flex justify-between items-center p-3 bg-gray-50 bg-white/5 ">
+              <span className="text-gray-400">Drafts</span>
+              <span className="font-semibold text-white">{analyticsData.content.drafts}</span>
             </div>
-            <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <span className="text-gray-600 dark:text-gray-400">Scheduled</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{analyticsData.content.scheduled}</span>
+            <div className="flex justify-between items-center p-3 bg-gray-50 bg-white/5 ">
+              <span className="text-gray-400">Scheduled</span>
+              <span className="font-semibold text-white">{analyticsData.content.scheduled}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Engagement Metrics */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+        <h3 className="text-xl font-bold text-white mb-6 flex items-center">
           <FaHeart className="mr-2 text-purple-600" />
           Engagement Metrics
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+          <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 ">
             <FaHeart className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="text-2xl font-bold text-white">
               {analyticsData.engagement.likes.toLocaleString()}
             </div>
-            <div className="text-gray-600 dark:text-gray-400">Total Likes</div>
+            <div className="text-gray-400">Total Likes</div>
           </div>
-          <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 ">
             <FaComments className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="text-2xl font-bold text-white">
               {analyticsData.engagement.comments.toLocaleString()}
             </div>
-            <div className="text-gray-600 dark:text-gray-400">Total Comments</div>
+            <div className="text-gray-400">Total Comments</div>
           </div>
-          <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 ">
             <FaShare className="h-8 w-8 text-green-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+            <div className="text-2xl font-bold text-white">
               {analyticsData.engagement.shares.toLocaleString()}
             </div>
-            <div className="text-gray-600 dark:text-gray-400">Total Shares</div>
+            <div className="text-gray-400">Total Shares</div>
           </div>
         </div>
       </div>
 
       {/* Performance Metrics */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-sm">
+        <h3 className="text-xl font-bold text-white mb-6 flex items-center">
           <FaChartLine className="mr-2 text-orange-600" />
           Performance Metrics
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Avg Load Time</div>
-            <div className="text-xl font-bold text-gray-900 dark:text-white">{analyticsData.performance.avgLoadTime}</div>
+          <div className="p-4 bg-orange-50 dark:bg-orange-900/20 ">
+            <div className="text-sm text-gray-400 mb-1">Avg Load Time</div>
+            <div className="text-xl font-bold text-white">{analyticsData.performance.avgLoadTime}</div>
           </div>
-          <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Uptime</div>
-            <div className="text-xl font-bold text-gray-900 dark:text-white">{analyticsData.performance.uptime}</div>
+          <div className="p-4 bg-green-50 dark:bg-green-900/20 ">
+            <div className="text-sm text-gray-400 mb-1">Uptime</div>
+            <div className="text-xl font-bold text-white">{analyticsData.performance.uptime}</div>
           </div>
-          <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Error Rate</div>
-            <div className="text-xl font-bold text-gray-900 dark:text-white">{analyticsData.performance.errorRate}</div>
+          <div className="p-4 bg-red-50 dark:bg-red-900/20 ">
+            <div className="text-sm text-gray-400 mb-1">Error Rate</div>
+            <div className="text-xl font-bold text-white">{analyticsData.performance.errorRate}</div>
           </div>
-          <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Bandwidth</div>
-            <div className="text-xl font-bold text-gray-900 dark:text-white">{analyticsData.performance.bandwidth}</div>
+          <div className="p-4 bg-blue-50 dark:bg-blue-900/20 ">
+            <div className="text-sm text-gray-400 mb-1">Bandwidth</div>
+            <div className="text-xl font-bold text-white">{analyticsData.performance.bandwidth}</div>
           </div>
         </div>
       </div>

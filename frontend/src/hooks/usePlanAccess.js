@@ -109,7 +109,7 @@ export const usePlanAccess = () => {
     const badges = {
       [PLAN_TIERS.FREE]: {
         text: 'FREE',
-        className: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+        className: 'bg-gray-100 text-gray-700 bg-white/5 dark:text-gray-300',
         color: 'gray'
       },
       [PLAN_TIERS.PREMIUM]: {

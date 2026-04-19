@@ -26,7 +26,7 @@ const AdvancedEditorLock = ({ userPlan, children, isActive = false }) => {
   return (
     <div className="relative">
       {/* Locked Editor Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-purple-900/90 rounded-lg flex items-center justify-center z-10 backdrop-blur-sm">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-purple-900/90  flex items-center justify-center z-10 backdrop-blur-sm">
         <div className="text-center text-white p-6 max-w-md">
           <div className="mb-4">
             <FaLock className="mx-auto text-4xl mb-2 animate-pulse" />
@@ -50,7 +50,7 @@ const AdvancedEditorLock = ({ userPlan, children, isActive = false }) => {
           </button>
 
           {showFeatures && (
-            <div className="bg-white/10 rounded-lg p-4 mb-4 text-left">
+            <div className="bg-white/10  p-4 mb-4 text-left">
               <h4 className="font-semibold mb-3 text-center">What you&apos;ll get:</h4>
               <div className="space-y-2">
                 {advancedFeatures.slice(0, 4).map((feature, index) => {
@@ -75,7 +75,7 @@ const AdvancedEditorLock = ({ userPlan, children, isActive = false }) => {
           <div className="space-y-3">
             <Link
               to="/dashboard/billing"
-              className={`block w-full py-3 px-6 rounded-lg font-medium transition-all transform hover:scale-105 ${
+              className={`block w-full py-3 px-6  font-medium transition-all transform hover:scale-105 ${
                 requiredPlan === PLAN_TIERS.PREMIUM
                   ? 'bg-blue-600 hover:bg-blue-700 text-white'
                   : 'bg-purple-600 hover:bg-purple-700 text-white'

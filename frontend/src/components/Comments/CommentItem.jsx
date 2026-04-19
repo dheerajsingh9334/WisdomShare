@@ -103,17 +103,17 @@ const CommentItem = ({
   });
 
   return (
-    <div className={`${level > 0 ? 'ml-4 sm:ml-8 border-l-2 border-gray-200 dark:border-gray-700 pl-2 sm:pl-4' : ''}`}>
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-3 sm:p-4 mb-4 shadow-sm border border-gray-100 dark:border-gray-700">
+    <div className={`${level > 0 ? 'ml-4 sm:ml-8 border-l-2 border-white/10 border-white/10 pl-2 sm:pl-4' : ''}`}>
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-3 sm:p-4 mb-4 shadow-sm border border-white/5 border-white/10">
         {/* Comment Header */}
         <div className="flex items-start gap-2 sm:gap-3 mb-3">
           <Avatar user={comment.author} size="md" />
           <div className="flex-1 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
-              <span className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
+              <span className="font-semibold text-white text-sm sm:text-base">
                 {comment.author?.username || "Anonymous"}
               </span>
-              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+              <span className="text-xs sm:text-sm text-gray-400">
                 {new Date(comment.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'short',
@@ -138,7 +138,7 @@ const CommentItem = ({
               <textarea
                 {...editFormik.getFieldProps("content")}
                 rows="3"
-                className="w-full border border-gray-300 dark:border-gray-600 p-3 rounded-lg dark:bg-gray-700 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full border border-white/20 border-white/20 p-3  bg-white/5 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Edit your comment..."
               />
               {editFormik.touched.content && editFormik.errors.content && (
@@ -148,7 +148,7 @@ const CommentItem = ({
                 <button
                   type="submit"
                   disabled={updateMutation.isPending}
-                  className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white text-sm  hover:bg-blue-700 disabled:opacity-50"
                 >
                   <FaCheck className="h-3 w-3" />
                   {updateMutation.isPending ? "Saving..." : "Save"}
@@ -156,7 +156,7 @@ const CommentItem = ({
                 <button
                   type="button"
                   onClick={() => setIsEditing(false)}
-                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gray-500 text-white text-sm rounded-lg hover:bg-gray-600"
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gray-500 text-white text-sm  hover:bg-gray-600"
                 >
                   <FaTimes className="h-3 w-3" />
                   Cancel
@@ -164,7 +164,7 @@ const CommentItem = ({
               </div>
             </form>
           ) : (
-            <p className="text-gray-800 dark:text-gray-200 mb-3 text-sm sm:text-base leading-relaxed">
+            <p className="text-gray-200 mb-3 text-sm sm:text-base leading-relaxed">
               {comment.content}
             </p>
           )}
@@ -174,10 +174,10 @@ const CommentItem = ({
             <button
               onClick={handleLike}
               disabled={likeMutation.isPending || !currentUserId}
-              className={`flex items-center gap-1 px-2 py-1.5 rounded-lg transition-colors ${
+              className={`flex items-center gap-1 px-2 py-1.5  transition-colors ${
                 isLiked
                   ? "text-red-600 bg-red-50 dark:bg-red-900/20"
-                  : "text-gray-600 dark:text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                  : "text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
               } ${!currentUserId ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
             >
               <FaHeart className={`h-3 w-3 ${isLiked ? "fill-current" : ""}`} />
@@ -187,7 +187,7 @@ const CommentItem = ({
             <button
               onClick={handleReply}
               disabled={!currentUserId}
-              className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors ${
+              className={`flex items-center gap-1 px-2 py-1.5  text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors ${
                 !currentUserId ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
               }`}
             >
@@ -199,7 +199,7 @@ const CommentItem = ({
               <>
                 <button
                   onClick={handleEdit}
-                  className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  className="flex items-center gap-1 px-2 py-1.5  text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                 >
                   <FaEdit className="h-3 w-3" />
                   <span className="hidden sm:inline">Edit</span>
@@ -207,7 +207,7 @@ const CommentItem = ({
                 <button
                   onClick={handleDelete}
                   disabled={deleteMutation.isPending}
-                  className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                  className="flex items-center gap-1 px-2 py-1.5  text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                 >
                   <FaTrash className="h-3 w-3" />
                   <span className="hidden sm:inline">{deleteMutation.isPending ? "Deleting..." : "Delete"}</span>
@@ -218,7 +218,7 @@ const CommentItem = ({
 
           {/* Reply Form */}
           {isReplying && (
-            <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div className="mt-4 p-3 bg-gray-50 bg-white/5 ">
               <CommentReplyForm
                 postId={postId}
                 parentCommentId={comment._id}
@@ -307,7 +307,7 @@ const CommentReplyForm = ({ postId, parentCommentId, onCancel, onSuccess }) => {
       <textarea
         {...formik.getFieldProps("content")}
         rows="2"
-        className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded-lg dark:bg-gray-800 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full border border-white/20 border-white/20 p-2  bg-black/60 backdrop-blur-xl border border-white/10 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         placeholder="Write a reply..."
       />
       {formik.touched.content && formik.errors.content && (
@@ -317,14 +317,14 @@ const CommentReplyForm = ({ postId, parentCommentId, onCancel, onSuccess }) => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex-1 sm:flex-none flex items-center justify-center px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          className="flex-1 sm:flex-none flex items-center justify-center px-3 py-2 bg-blue-600 text-white text-sm  hover:bg-blue-700 disabled:opacity-50"
         >
           {isSubmitting ? "Posting..." : "Post Reply"}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 sm:flex-none flex items-center justify-center px-3 py-2 bg-gray-500 text-white text-sm rounded-lg hover:bg-gray-600"
+          className="flex-1 sm:flex-none flex items-center justify-center px-3 py-2 bg-gray-500 text-white text-sm  hover:bg-gray-600"
         >
           Cancel
         </button>

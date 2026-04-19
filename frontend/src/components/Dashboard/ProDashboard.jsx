@@ -96,11 +96,11 @@ const ProDashboard = ({ userPlan }) => {
   if (!hasAnalyticsAccess) {
     return (
       <div className="max-w-4xl mx-auto p-6">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-8 text-center text-white">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600  p-8 text-center text-white">
           <FaCrown className="mx-auto mb-4" size={48} />
           <h2 className="text-2xl font-bold mb-2">Unlock Pro Analytics</h2>
           <p className="mb-4 opacity-90">Get detailed insights about your audience and content performance</p>
-          <button className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          <button className="bg-black/40 backdrop-blur-md text-white text-purple-600 px-6 py-3  font-semibold hover:bg-gray-100 transition-colors">
             Upgrade to Pro
           </button>
         </div>
@@ -112,15 +112,15 @@ const ProDashboard = ({ userPlan }) => {
     return (
       <div className="max-w-6xl mx-auto p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-300 rounded w-1/4 mb-6"></div>
+          <div className="h-8 bg-gray-300  w-1/4 mb-6"></div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="h-24 bg-gray-300 rounded-lg"></div>
+              <div key={i} className="h-24 bg-gray-300 "></div>
             ))}
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="h-64 bg-gray-300 rounded-lg"></div>
-            <div className="h-64 bg-gray-300 rounded-lg"></div>
+            <div className="h-64 bg-gray-300 "></div>
+            <div className="h-64 bg-gray-300 "></div>
           </div>
         </div>
       </div>
@@ -134,8 +134,8 @@ const ProDashboard = ({ userPlan }) => {
         <div className="flex items-center space-x-3">
           <FaChartLine className="text-purple-600" size={32} />
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Pro Analytics Dashboard</h1>
-            <p className="text-gray-600 dark:text-gray-400">Advanced insights for your content</p>
+            <h1 className="text-3xl font-bold text-white">Pro Analytics Dashboard</h1>
+            <p className="text-gray-400">Advanced insights for your content</p>
           </div>
           <div className="flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-blue-100 px-3 py-1 rounded-full">
             <FaCrown className="text-purple-600" size={16} />
@@ -149,10 +149,10 @@ const ProDashboard = ({ userPlan }) => {
             <button
               key={range}
               onClick={() => setSelectedTimeRange(range)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-4 py-2  text-sm font-medium transition-colors ${
                 selectedTimeRange === range
                   ? 'bg-purple-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 bg-white/5 dark:text-gray-300 dark:hover:bg-gray-600'
               }`}
             >
               {range === '7d' ? 'Last 7 days' : range === '30d' ? 'Last 30 days' : 'Last 90 days'}
@@ -163,11 +163,11 @@ const ProDashboard = ({ userPlan }) => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Total Views</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.totalViews.toLocaleString()}</p>
+              <p className="text-gray-400 text-sm font-medium">Total Views</p>
+              <p className="text-3xl font-bold text-white">{analyticsData.totalViews.toLocaleString()}</p>
               <p className="text-green-600 text-sm flex items-center mt-1">
                 <FaArrowUp className="mr-1" size={12} />
                 +{analyticsData.weeklyGrowth.views}% this week
@@ -177,11 +177,11 @@ const ProDashboard = ({ userPlan }) => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Total Likes</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.totalLikes.toLocaleString()}</p>
+              <p className="text-gray-400 text-sm font-medium">Total Likes</p>
+              <p className="text-3xl font-bold text-white">{analyticsData.totalLikes.toLocaleString()}</p>
               <p className="text-green-600 text-sm flex items-center mt-1">
                 <FaArrowUp className="mr-1" size={12} />
                 +{analyticsData.weeklyGrowth.likes}% this week
@@ -191,11 +191,11 @@ const ProDashboard = ({ userPlan }) => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Total Comments</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.totalComments.toLocaleString()}</p>
+              <p className="text-gray-400 text-sm font-medium">Total Comments</p>
+              <p className="text-3xl font-bold text-white">{analyticsData.totalComments.toLocaleString()}</p>
               <p className="text-green-600 text-sm flex items-center mt-1">
                 <FaArrowUp className="mr-1" size={12} />
                 +{analyticsData.weeklyGrowth.comments}% this week
@@ -205,11 +205,11 @@ const ProDashboard = ({ userPlan }) => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">Followers</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">{analyticsData.totalFollowers.toLocaleString()}</p>
+              <p className="text-gray-400 text-sm font-medium">Followers</p>
+              <p className="text-3xl font-bold text-white">{analyticsData.totalFollowers.toLocaleString()}</p>
               <p className="text-green-600 text-sm flex items-center mt-1">
                 <FaArrowUp className="mr-1" size={12} />
                 +{analyticsData.weeklyGrowth.followers}% this week
@@ -223,22 +223,22 @@ const ProDashboard = ({ userPlan }) => {
       {/* Top Posts and Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top Performing Posts */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
             <FaArrowUp className="mr-2 text-green-600" />
             Top Performing Posts
           </h3>
           <div className="space-y-4">
             {analyticsData.topPosts.map((post, index) => (
-              <div key={post.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div key={post.id} className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-1">
                     <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-bold">
                       #{index + 1}
                     </span>
-                    <h4 className="font-medium text-gray-900 dark:text-white text-sm">{post.title}</h4>
+                    <h4 className="font-medium text-white text-sm">{post.title}</h4>
                   </div>
-                  <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
+                  <div className="flex items-center space-x-4 text-xs text-gray-400">
                     <span className="flex items-center">
                       <FaEye className="mr-1" size={10} />
                       {post.views.toLocaleString()}
@@ -263,14 +263,14 @@ const ProDashboard = ({ userPlan }) => {
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
             <FaClock className="mr-2 text-blue-600" />
             Recent Activity
           </h3>
           <div className="space-y-3">
             {analyticsData.recentActivity.map((activity, index) => (
-              <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 bg-white/5 ">
                 <div className={`p-2 rounded-full ${
                   activity.type === 'like' ? 'bg-red-100 text-red-600' :
                   activity.type === 'comment' ? 'bg-green-100 text-green-600' :
@@ -283,7 +283,7 @@ const ProDashboard = ({ userPlan }) => {
                   {activity.type === 'follow' && <FaUsers size={14} />}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-gray-900 dark:text-white">
+                  <p className="text-sm text-white">
                     <span className="font-semibold">{activity.user}</span>
                     {activity.type === 'like' && ' liked your post '}
                     {activity.type === 'comment' && ' commented on '}
@@ -291,7 +291,7 @@ const ProDashboard = ({ userPlan }) => {
                     {activity.type === 'follow' && ' started following you'}
                     {activity.post && <span className="font-medium">&ldquo;{activity.post}&rdquo;</span>}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">{activity.time}</p>
+                  <p className="text-xs text-gray-400">{activity.time}</p>
                 </div>
               </div>
             ))}
@@ -301,8 +301,8 @@ const ProDashboard = ({ userPlan }) => {
 
       {/* Audience Insights - Pro Feature */}
       {hasReaderAccess && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 shadow-lg border border-white/5 border-white/10">
+          <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
             <FaGlobe className="mr-2 text-purple-600" />
             Audience Insights
             <span className="ml-2 bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">PRO</span>
@@ -311,13 +311,13 @@ const ProDashboard = ({ userPlan }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Geographic Distribution */}
             <div>
-              <h4 className="font-medium text-gray-900 dark:text-white mb-3">Top Countries</h4>
+              <h4 className="font-medium text-white mb-3">Top Countries</h4>
               <div className="space-y-2">
                 {analyticsData.audienceInsights.countries.map((country, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <span className="text-sm text-gray-700 dark:text-gray-300">{country.name}</span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">({country.count})</span>
+                      <span className="text-sm text-gray-300">{country.name}</span>
+                      <span className="text-xs text-gray-400">({country.count})</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-16 h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
@@ -326,7 +326,7 @@ const ProDashboard = ({ userPlan }) => {
                           style={{ width: `${country.percentage}%` }}
                         ></div>
                       </div>
-                      <span className="text-sm text-gray-700 dark:text-gray-300 w-8">{country.percentage}%</span>
+                      <span className="text-sm text-gray-300 w-8">{country.percentage}%</span>
                     </div>
                   </div>
                 ))}
@@ -335,11 +335,11 @@ const ProDashboard = ({ userPlan }) => {
 
             {/* Age Demographics */}
             <div>
-              <h4 className="font-medium text-gray-900 dark:text-white mb-3">Age Groups</h4>
+              <h4 className="font-medium text-white mb-3">Age Groups</h4>
               <div className="space-y-2">
                 {analyticsData.audienceInsights.demographics.ageGroups.map((group, index) => (
                   <div key={index} className="flex items-center justify-between">
-                    <span className="text-sm text-gray-700 dark:text-gray-300">{group.range}</span>
+                    <span className="text-sm text-gray-300">{group.range}</span>
                     <div className="flex items-center space-x-2">
                       <div className="w-16 h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                         <div 
@@ -347,7 +347,7 @@ const ProDashboard = ({ userPlan }) => {
                           style={{ width: `${group.percentage}%` }}
                         ></div>
                       </div>
-                      <span className="text-sm text-gray-700 dark:text-gray-300 w-8">{group.percentage}%</span>
+                      <span className="text-sm text-gray-300 w-8">{group.percentage}%</span>
                     </div>
                   </div>
                 ))}

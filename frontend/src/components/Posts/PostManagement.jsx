@@ -170,7 +170,7 @@ const PostManagement = () => {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        <span className="ml-3 text-gray-600 dark:text-gray-400">Loading your posts...</span>
+        <span className="ml-3 text-gray-400">Loading your posts...</span>
       </div>
     );
   }
@@ -178,10 +178,10 @@ const PostManagement = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           Post Management
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-400">
           Manage your posts and see detailed engagement information
         </p>
       </div>
@@ -195,7 +195,7 @@ const PostManagement = () => {
             placeholder="Search your posts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+            className="w-full pl-10 pr-4 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white"
           />
         </div>
       </div>
@@ -204,32 +204,32 @@ const PostManagement = () => {
       {filteredPosts.length === 0 ? (
         <div className="text-center py-12">
           <FaComment className="mx-auto text-4xl text-gray-400 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h3 className="text-xl font-semibold text-white mb-2">
             {searchTerm ? 'No posts found' : 'No posts yet'}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-400">
             {searchTerm ? 'Try a different search term' : 'Create your first post to see it here'}
           </p>
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-900">
+              <thead className="bg-black text-white">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Post
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Engagement
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Created
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -244,10 +244,10 @@ const PostManagement = () => {
                     <td className="px-6 py-4">
                       <div className="flex items-center">
                         <div>
-                          <div className="text-sm font-medium text-gray-900 dark:text-white">
+                          <div className="text-sm font-medium text-white">
                             {post.title || 'Untitled'}
                           </div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">
+                          <div className="text-sm text-gray-400 line-clamp-1">
                             {post.description || 'No description'}
                           </div>
                         </div>
@@ -259,7 +259,7 @@ const PostManagement = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center space-x-4 text-sm text-gray-400">
                         <div className="flex items-center space-x-1">
                           <FaEye className="text-blue-600" />
                           <span>{post.viewsCount || 0}</span>
@@ -274,7 +274,7 @@ const PostManagement = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {new Date(post.createdAt).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -286,7 +286,7 @@ const PostManagement = () => {
                         className={`flex items-center space-x-1 ${
                           hasProAccess 
                             ? "text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300" 
-                            : "text-gray-500 dark:text-gray-400"
+                            : "text-gray-400"
                         }`}
                         title={hasProAccess ? "View detailed analytics" : "Pro plan required for detailed analytics"}
                       >
@@ -314,9 +314,9 @@ const PostManagement = () => {
       {/* Post Details Modal */}
       {selectedPost && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-purple-600">
+            <div className="flex items-center justify-between p-6 border-b border-white/10 border-white/10 bg-gradient-to-r from-blue-600 to-purple-600">
               <div>
                 <h2 className="text-xl font-bold text-white">{selectedPost.title}</h2>
                 <p className="text-blue-100 text-sm">Post Management Details</p>
@@ -330,7 +330,7 @@ const PostManagement = () => {
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-gray-200 dark:border-gray-700">
+            <div className="flex border-b border-white/10 border-white/10">
               <button
                 onClick={() => setSelectedTab('views')}
                 className={`px-6 py-3 text-sm font-medium ${
@@ -371,16 +371,16 @@ const PostManagement = () => {
               {loading ? (
                 <div className="flex items-center justify-center py-12">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                  <span className="ml-3 text-gray-600 dark:text-gray-400">Loading details...</span>
+                  <span className="ml-3 text-gray-400">Loading details...</span>
                 </div>
               ) : !hasProAccess ? (
                 // Pro plan required for detailed views
                 <div className="text-center py-12">
                   <FaLock className="mx-auto text-4xl text-gray-400 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-white mb-2">
                     Pro Feature Required
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  <p className="text-gray-400 mb-6">
                     Upgrade to Pro to see detailed viewer analytics, including who viewed, liked, and commented on your posts.
                   </p>
                   <PlanUpgradePrompt 
@@ -395,13 +395,13 @@ const PostManagement = () => {
                   {/* Views Tab */}
                   {selectedTab === 'views' && (
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                      <h3 className="text-lg font-semibold text-white mb-4">
                         Who Viewed Your Post
                       </h3>
                       {postDetails?.viewers && postDetails.viewers.length > 0 ? (
                         <div className="space-y-3">
                           {postDetails.viewers.map((viewer, index) => (
-                            <div key={viewer._id || index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div key={viewer._id || index} className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                               <div className="flex items-center space-x-3">
                                 <Link 
                                   to={`/user/${viewer._id}`}
@@ -415,7 +415,7 @@ const PostManagement = () => {
                                         : viewer.profilePicture?.url || viewer.profilePicture
                                       }
                                       alt={viewer.username || 'User'}
-                                      className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-600 hover:border-blue-400 transition-colors cursor-pointer"
+                                      className="w-10 h-10 rounded-full object-cover border-2 border-white/10 border-white/20 hover:border-blue-400 transition-colors cursor-pointer"
                                       onError={(e) => {
                                         e.target.style.display = 'none';
                                         e.target.nextSibling.style.display = 'flex';
@@ -423,7 +423,7 @@ const PostManagement = () => {
                                     />
                                   ) : null}
                                   <div 
-                                    className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-medium border-2 border-gray-200 dark:border-gray-600 hover:border-blue-400 transition-colors cursor-pointer"
+                                    className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-medium border-2 border-white/10 border-white/20 hover:border-blue-400 transition-colors cursor-pointer"
                                     style={{ display: viewer.profilePicture ? 'none' : 'flex' }}
                                   >
                                     <FaUser />
@@ -434,17 +434,17 @@ const PostManagement = () => {
                                     to={`/user/${viewer._id}`}
                                     className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                                   >
-                                    <p className="font-medium text-gray-900 dark:text-white">
+                                    <p className="font-medium text-white">
                                       {viewer.username || 'Anonymous User'}
                                     </p>
                                   </Link>
-                                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                                  <p className="text-sm text-gray-400">
                                     {viewer.email ? `${viewer.email}` : 'Viewer'}
                                   </p>
                                 </div>
                               </div>
                               <div className="text-right">
-                                <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                <p className="text-sm text-gray-400 flex items-center">
                                   <FaClock className="mr-1" size={12} />
                                   {viewer.viewedAt ? new Date(viewer.viewedAt).toLocaleDateString() : 'Recently'}
                                 </p>
@@ -453,7 +453,7 @@ const PostManagement = () => {
                           ))}
                         </div>
                       ) : (
-                        <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                        <div className="text-center text-gray-400 py-8">
                           <FaEye className="mx-auto text-4xl mb-4" />
                           <p>No views yet</p>
                         </div>
@@ -464,13 +464,13 @@ const PostManagement = () => {
                   {/* Likes Tab */}
                   {selectedTab === 'likes' && (
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                      <h3 className="text-lg font-semibold text-white mb-4">
                         Who Liked Your Post
                       </h3>
                       {postDetails?.likers && postDetails.likers.length > 0 ? (
                         <div className="space-y-3">
                           {postDetails.likers.map((liker, index) => (
-                            <div key={liker._id || index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div key={liker._id || index} className="flex items-center justify-between p-3 bg-gray-50 bg-white/5 ">
                               <div className="flex items-center space-x-3">
                                 <Link 
                                   to={`/user/${liker._id}`}
@@ -484,7 +484,7 @@ const PostManagement = () => {
                                         : liker.profilePicture?.url || liker.profilePicture
                                       }
                                       alt={liker.username || 'User'}
-                                      className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-600 hover:border-red-400 transition-colors cursor-pointer"
+                                      className="w-10 h-10 rounded-full object-cover border-2 border-white/10 border-white/20 hover:border-red-400 transition-colors cursor-pointer"
                                       onError={(e) => {
                                         e.target.style.display = 'none';
                                         e.target.nextSibling.style.display = 'flex';
@@ -492,7 +492,7 @@ const PostManagement = () => {
                                     />
                                   ) : null}
                                   <div 
-                                    className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center text-sm font-medium border-2 border-gray-200 dark:border-gray-600 hover:border-red-400 transition-colors cursor-pointer"
+                                    className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center text-sm font-medium border-2 border-white/10 border-white/20 hover:border-red-400 transition-colors cursor-pointer"
                                     style={{ display: liker.profilePicture ? 'none' : 'flex' }}
                                   >
                                     <FaHeart />
@@ -503,17 +503,17 @@ const PostManagement = () => {
                                     to={`/user/${liker._id}`}
                                     className="hover:text-red-600 dark:hover:text-red-400 transition-colors"
                                   >
-                                    <p className="font-medium text-gray-900 dark:text-white">
+                                    <p className="font-medium text-white">
                                       {liker.username || 'Anonymous User'}
                                     </p>
                                   </Link>
-                                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                                  <p className="text-sm text-gray-400">
                                     {liker.email ? `${liker.email}` : 'Liked your post'}
                                   </p>
                                 </div>
                               </div>
                               <div className="text-right">
-                                <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                <p className="text-sm text-gray-400 flex items-center">
                                   <FaClock className="mr-1" size={12} />
                                   {liker.likedAt ? new Date(liker.likedAt).toLocaleDateString() : 'Recently'}
                                 </p>
@@ -522,7 +522,7 @@ const PostManagement = () => {
                           ))}
                         </div>
                       ) : (
-                        <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                        <div className="text-center text-gray-400 py-8">
                           <FaHeart className="mx-auto text-4xl mb-4" />
                           <p>No likes yet</p>
                         </div>
@@ -533,13 +533,13 @@ const PostManagement = () => {
                   {/* Comments Tab */}
                   {selectedTab === 'comments' && (
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                      <h3 className="text-lg font-semibold text-white mb-4">
                         Comments on Your Post
                       </h3>
                       {postDetails?.comments && postDetails.comments.length > 0 ? (
                         <div className="space-y-4">
                           {postDetails.comments.map((comment, index) => (
-                            <div key={comment._id || index} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div key={comment._id || index} className="p-4 bg-gray-50 bg-white/5 ">
                               <div className="flex items-start space-x-3">
                                 <Link 
                                   to={`/user/${comment.author?._id}`}
@@ -553,7 +553,7 @@ const PostManagement = () => {
                                         : comment.author.profilePicture?.url || comment.author.profilePicture
                                       }
                                       alt={comment.author?.username || 'User'}
-                                      className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 dark:border-gray-600 hover:border-green-400 transition-colors cursor-pointer"
+                                      className="w-10 h-10 rounded-full object-cover border-2 border-white/10 border-white/20 hover:border-green-400 transition-colors cursor-pointer"
                                       onError={(e) => {
                                         e.target.style.display = 'none';
                                         e.target.nextSibling.style.display = 'flex';
@@ -561,7 +561,7 @@ const PostManagement = () => {
                                     />
                                   ) : null}
                                   <div 
-                                    className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-medium border-2 border-gray-200 dark:border-gray-600 hover:border-green-400 transition-colors cursor-pointer"
+                                    className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-medium border-2 border-white/10 border-white/20 hover:border-green-400 transition-colors cursor-pointer"
                                     style={{ display: comment.author?.profilePicture ? 'none' : 'flex' }}
                                   >
                                     <FaComment />
@@ -574,11 +574,11 @@ const PostManagement = () => {
                                         to={`/user/${comment.author?._id}`}
                                         className="hover:text-green-600 dark:hover:text-green-400 transition-colors"
                                       >
-                                        <p className="font-medium text-gray-900 dark:text-white">
+                                        <p className="font-medium text-white">
                                           {comment.author?.username || 'Anonymous User'}
                                         </p>
                                       </Link>
-                                      <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                                      <p className="text-sm text-gray-400 flex items-center">
                                         <FaClock className="mr-1" size={12} />
                                         {comment.createdAt ? new Date(comment.createdAt).toLocaleDateString() : 'Recently'}
                                       </p>
@@ -587,18 +587,18 @@ const PostManagement = () => {
                                       <button
                                         onClick={() => handleDeleteComment(comment._id)}
                                         disabled={deleteCommentMutation.isPending}
-                                        className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 p-1 rounded transition-colors hover:bg-red-50 dark:hover:bg-red-900/20"
+                                        className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 p-1  transition-colors hover:bg-red-50 dark:hover:bg-red-900/20"
                                         title="Delete Comment"
                                       >
                                         <FaTrash size={14} />
                                       </button>
                                     )}
                                   </div>
-                                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                                  <p className="text-gray-300 text-sm leading-relaxed">
                                     {comment.content || comment.text || 'No content'}
                                   </p>
                                   {comment.author?.email && (
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                    <p className="text-xs text-gray-400 mt-1">
                                       {comment.author.email}
                                     </p>
                                   )}
@@ -608,7 +608,7 @@ const PostManagement = () => {
                           ))}
                         </div>
                       ) : (
-                        <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                        <div className="text-center text-gray-400 py-8">
                           <FaComment className="mx-auto text-4xl mb-4" />
                           <p>No comments yet</p>
                         </div>

@@ -50,12 +50,12 @@ const PlanUpgradePrompt = ({
     return (
       <div className={`inline-flex items-center gap-2 text-sm ${className}`}>
         <FaLock className="text-gray-400" />
-        <span className="text-gray-600 dark:text-gray-400">
+        <span className="text-gray-400">
           Requires {requiredPlan}
         </span>
         <Link
           to="/pricing"
-          className={`px-2 py-1 bg-${getPlanColor(requiredPlan)}-600 hover:bg-${getPlanColor(requiredPlan)}-700 text-white text-xs rounded transition-colors duration-200`}
+          className={`px-2 py-1 bg-${getPlanColor(requiredPlan)}-600 hover:bg-${getPlanColor(requiredPlan)}-700 text-white text-xs  transition-colors duration-200`}
         >
           Upgrade
         </Link>
@@ -65,7 +65,7 @@ const PlanUpgradePrompt = ({
 
   if (variant === "banner") {
     return (
-      <div className={`bg-gradient-to-r from-${getPlanColor(requiredPlan)}-500 to-${getPlanColor(requiredPlan)}-600 rounded-lg p-4 text-white ${className}`}>
+      <div className={`bg-gradient-to-r from-${getPlanColor(requiredPlan)}-500 to-${getPlanColor(requiredPlan)}-600  p-4 text-white ${className}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {showIcon && getPlanIcon(requiredPlan)}
@@ -76,7 +76,7 @@ const PlanUpgradePrompt = ({
           </div>
           <Link
             to="/pricing"
-            className="px-4 py-2 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200"
+            className="px-4 py-2 bg-black/40 backdrop-blur-md text-white text-white  font-semibold hover:bg-gray-50 transition-colors duration-200"
           >
             Upgrade Now
           </Link>
@@ -87,32 +87,32 @@ const PlanUpgradePrompt = ({
 
   // Default variant
   return (
-    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 ${className}`}>
+    <div className={`bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-4 ${className}`}>
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0">
-          <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+          <div className="w-10 h-10 bg-gray-100 bg-white/5 rounded-full flex items-center justify-center">
             <FaLock className="text-gray-400" />
           </div>
         </div>
         <div className="flex-1">
-          <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+          <h4 className="font-semibold text-white mb-1">
             {feature} is locked
           </h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          <p className="text-sm text-gray-400 mb-3">
             Upgrade to {requiredPlan} to unlock this feature and many more.
           </p>
           
           {/* Plan Comparison */}
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 mb-3">
+          <div className="bg-gray-50 bg-white/5  p-3 mb-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600 dark:text-gray-400">Current Plan:</span>
-              <span className="font-medium text-gray-900 dark:text-white">
+              <span className="text-gray-400">Current Plan:</span>
+              <span className="font-medium text-white">
                 {planTier === PLAN_TIERS.PRO ? 'PRO' : planTier === PLAN_TIERS.PREMIUM ? 'PREMIUM' : 'FREE'}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm mt-1">
-              <span className="text-gray-600 dark:text-gray-400">Required Plan:</span>
-              <span className="font-medium text-gray-900 dark:text-white">{requiredPlan}</span>
+              <span className="text-gray-400">Required Plan:</span>
+              <span className="font-medium text-white">{requiredPlan}</span>
             </div>
           </div>
 
@@ -120,14 +120,14 @@ const PlanUpgradePrompt = ({
           <div className="flex flex-col sm:flex-row gap-2">
             <Link
               to="/pricing"
-              className={`inline-flex items-center justify-center px-4 py-2 bg-${getPlanColor(requiredPlan)}-600 hover:bg-${getPlanColor(requiredPlan)}-700 text-white text-sm font-medium rounded-lg transition-colors duration-200`}
+              className={`inline-flex items-center justify-center px-4 py-2 bg-${getPlanColor(requiredPlan)}-600 hover:bg-${getPlanColor(requiredPlan)}-700 text-white text-sm font-medium  transition-colors duration-200`}
             >
               {showIcon && getPlanIcon(requiredPlan)}
               <span className="ml-2">Upgrade to {requiredPlan}</span>
             </Link>
             <Link
               to="/pricing"
-              className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 text-sm font-medium rounded-lg transition-colors duration-200"
+              className="inline-flex items-center justify-center px-4 py-2 border border-white/20 text-gray-700 bg-black/40 backdrop-blur-md text-white hover:bg-gray-50 text-sm font-medium  transition-colors duration-200"
             >
               View All Plans
             </Link>

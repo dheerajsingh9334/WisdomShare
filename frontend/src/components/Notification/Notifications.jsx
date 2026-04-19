@@ -97,13 +97,13 @@ const Notifications = () => {
               {title}
             </div>
           )}
-          <div className="text-gray-700 dark:text-gray-300 mb-2 break-words">
+          <div className="text-gray-300 mb-2 break-words">
             {message}
           </div>
           
           {/* Admin Contact Information */}
           {metadata?.additionalData?.adminContact && (
-            <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg overflow-hidden">
+            <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  overflow-hidden">
               <div className="text-sm text-blue-800 dark:text-blue-200 font-medium mb-1">
                 📧 Contact Admin:
               </div>
@@ -133,18 +133,18 @@ const Notifications = () => {
     if (metadata?.actorName && metadata?.action) {
       return (
         <div className="w-full overflow-hidden">
-          <span className="font-semibold text-gray-900 dark:text-white break-words">
+          <span className="font-semibold text-white break-words">
             {metadata.actorName}
           </span>
-          <span className="text-gray-600 dark:text-gray-400 break-words"> {metadata.action}</span>
+          <span className="text-gray-400 break-words"> {metadata.action}</span>
           {metadata.targetType && (
-            <span className="text-gray-600 dark:text-gray-400 break-words"> your {metadata.targetType}</span>
+            <span className="text-gray-400 break-words"> your {metadata.targetType}</span>
           )}
         </div>
       );
     }
     
-    return <span className="text-gray-700 dark:text-gray-300 break-words">{message || 'Notification'}</span>;
+    return <span className="text-gray-300 break-words">{message || 'Notification'}</span>;
   };
 
   const getNotificationLink = (notification) => {
@@ -172,11 +172,11 @@ const Notifications = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="min-h-screen bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">Loading notifications...</p>
+            <p className="mt-4 text-gray-400">Loading notifications...</p>
           </div>
         </div>
       </div>
@@ -185,7 +185,7 @@ const Notifications = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="min-h-screen bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center text-red-600 dark:text-red-400">
             <p>Error loading notifications: {error.message}</p>
@@ -196,18 +196,18 @@ const Notifications = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-black text-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 mb-6 sm:mb-8">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 mb-6 sm:mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-6 mb-4 lg:mb-6">
             <div className="flex items-center space-x-3">
               <FaBell className="text-2xl sm:text-3xl text-green-600 dark:text-green-400" />
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white">
                   Notifications
                 </h1>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   {unreadCount?.unreadCount || 0} unread notifications
                 </p>
               </div>
@@ -218,7 +218,7 @@ const Notifications = () => {
                 <button
                   onClick={handleMarkAllAsRead}
                   disabled={markAllAsReadMutation.isPending}
-                  className="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors text-sm"
+                  className="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-green-600 text-white  hover:bg-green-700 disabled:opacity-50 transition-colors text-sm"
                 >
                   <FaCheck className="mr-2" />
                   Mark all as read
@@ -229,7 +229,7 @@ const Notifications = () => {
                 <button
                   onClick={handleDeleteAllNotifications}
                   disabled={deleteAllNotificationsMutation.isPending}
-                  className="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors text-sm"
+                  className="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-red-600 text-white  hover:bg-red-700 disabled:opacity-50 transition-colors text-sm"
                 >
                   <FaTrashAlt className="mr-2" />
                   Delete all
@@ -242,13 +242,13 @@ const Notifications = () => {
           <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 sm:gap-4">
             <div className="flex items-center space-x-2">
               <FaFilter className="text-gray-500" />
-              <span className="text-sm text-gray-600 dark:text-gray-400">Filter:</span>
+              <span className="text-sm text-gray-400">Filter:</span>
             </div>
             
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="w-full sm:w-auto px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"
+              className="w-full sm:w-auto px-3 py-2 border border-white/20 border-white/20  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white text-sm"
             >
               <option value="all">All Types</option>
               <option value="new_follower">Followers</option>
@@ -267,10 +267,10 @@ const Notifications = () => {
 
             <button
               onClick={() => setShowUnreadOnly(!showUnreadOnly)}
-              className={`w-full sm:w-auto inline-flex items-center justify-center px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`w-full sm:w-auto inline-flex items-center justify-center px-3 py-2  text-sm font-medium transition-colors ${
                 showUnreadOnly
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300'
+                  : 'bg-gray-200 dark:bg-gray-600 text-gray-300'
               }`}
             >
               {showUnreadOnly ? <FaEye className="mr-2" /> : <FaEyeSlash className="mr-2" />}
@@ -282,12 +282,12 @@ const Notifications = () => {
         {/* Notifications List */}
         <div className="space-y-4">
           {filteredNotifications.length === 0 ? (
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-12 text-center">
+            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-12 text-center">
               <FaBell className="text-6xl text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-semibold text-white mb-2">
                 No notifications found
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-400">
                 {showUnreadOnly 
                   ? "You're all caught up! No unread notifications."
                   : "You don't have any notifications yet."
@@ -298,7 +298,7 @@ const Notifications = () => {
             filteredNotifications.map((notification) => (
               <div
                 key={notification._id}
-                className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 transition-all duration-200 ${
+                className={`bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 transition-all duration-200 ${
                   !notification.isRead 
                     ? 'ring-2 ring-green-500/20 bg-green-50/50 dark:bg-green-900/10' 
                     : 'hover:shadow-xl'
@@ -307,7 +307,7 @@ const Notifications = () => {
                 <div className="flex items-start space-x-3 sm:space-x-4">
                   {/* Icon */}
                   <div className="flex-shrink-0 mt-1">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 bg-white/5 flex items-center justify-center">
                       {getNotificationIcon(notification.type)}
                     </div>
                   </div>
@@ -319,7 +319,7 @@ const Notifications = () => {
                         {getNotificationContent(notification)}
                         
                         {notification.metadata?.additionalData && (
-                          <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 overflow-hidden">
+                          <div className="mt-2 text-sm text-gray-400 overflow-hidden">
                             {/* Render additional data safely with proper overflow handling */}
                             <div className="break-words max-w-full">
                               {typeof notification.metadata.additionalData === 'string' 
@@ -329,7 +329,7 @@ const Notifications = () => {
                                     <summary className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
                                       View Additional Data
                                     </summary>
-                                    <div className="mt-2 p-2 bg-gray-100 dark:bg-gray-700 rounded text-xs font-mono break-all overflow-x-auto">
+                                    <div className="mt-2 p-2 bg-gray-100 bg-white/5  text-xs font-mono break-all overflow-x-auto">
                                       {JSON.stringify(notification.metadata.additionalData, null, 2)}
                                     </div>
                                   </details>

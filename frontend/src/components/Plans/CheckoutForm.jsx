@@ -172,16 +172,16 @@ const CheckoutForm = () => {
         };
       case "free":
         return {
-          bg: "bg-gray-50 dark:bg-gray-900/20",
-          border: "border-gray-200 dark:border-gray-700",
-          text: "text-gray-700 dark:text-gray-300",
+          bg: "bg-black text-white/20",
+          border: "border-white/10 border-white/10",
+          text: "text-gray-300",
           button: "bg-gray-600 hover:bg-gray-700",
         };
       default:
         return {
-          bg: "bg-gray-50 dark:bg-gray-900/20",
-          border: "border-gray-200 dark:border-gray-700",
-          text: "text-gray-700 dark:text-gray-300",
+          bg: "bg-black text-white/20",
+          border: "border-white/10 border-white/10",
+          text: "text-gray-300",
           button: "bg-gray-600 hover:bg-gray-700",
         };
     }
@@ -191,7 +191,7 @@ const CheckoutForm = () => {
   if (effectivePlanId && !currentPlan && !plansLoading) {
     return (
       <div className="bg-gray-900 h-screen -mt-4 flex justify-center items-center">
-        <div className="w-96 mx-auto my-4 p-6 bg-white rounded-lg shadow-md text-center">
+        <div className="w-96 mx-auto my-4 p-6 bg-black/40 backdrop-blur-md text-white  shadow-md text-center">
           <div className="mb-4">
             <svg
               className="w-16 h-16 text-red-500 mx-auto"
@@ -207,14 +207,14 @@ const CheckoutForm = () => {
               />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Invalid Plan</h2>
+          <h2 className="text-xl font-bold text-white mb-2">Invalid Plan</h2>
           <p className="text-gray-600 mb-4">
             The selected plan &quot;{effectivePlanId}&quot; is not valid. Please
             select a plan from our pricing page.
           </p>
           <button
             onClick={() => navigate("/pricing")}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200"
+            className="px-6 py-2 bg-green-600 text-white  hover:bg-green-700 transition-colors duration-200"
           >
             View Plans
           </button>
@@ -308,7 +308,7 @@ const CheckoutForm = () => {
   if (!stripe || !elements) {
     return (
       <div className="bg-gray-900 h-screen -mt-4 flex justify-center items-center">
-        <div className="w-96 mx-auto my-4 p-6 bg-white rounded-lg shadow-md text-center">
+        <div className="w-96 mx-auto my-4 p-6 bg-black/40 backdrop-blur-md text-white  shadow-md text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading payment form...</p>
         </div>
@@ -324,22 +324,22 @@ const CheckoutForm = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Plan Details Section */}
           <div
-            className={`p-6 rounded-lg shadow-md ${planColors.bg} ${planColors.border} border`}
+            className={`p-6  shadow-md ${planColors.bg} ${planColors.border} border`}
           >
             <div className="text-center mb-6">
               <div className="flex justify-center mb-4">
                 {getPlanIcon(currentPlan?.tier)}
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-3xl font-bold text-white mb-2">
                 {currentPlan?.planName}
               </h2>
               <div className="text-4xl font-bold mb-2">
                 <span className={planColors.text}>${currentPlan?.price}</span>
-                <span className="text-lg text-gray-600 dark:text-gray-400">
+                <span className="text-lg text-gray-400">
                   /month
                 </span>
               </div>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-400">
                 {currentPlan?.postLimit
                   ? `${currentPlan.postLimit} posts`
                   : "Unlimited posts"}
@@ -348,14 +348,14 @@ const CheckoutForm = () => {
 
             {/* Plan Features */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-semibold text-white mb-4">
                 What&apos;s included:
               </h3>
               <ul className="space-y-3 max-h-96 overflow-y-auto">
                 {currentPlan?.features?.map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300 text-sm">
+                    <span className="text-gray-300 text-sm">
                       {feature}
                     </span>
                   </li>
@@ -364,14 +364,14 @@ const CheckoutForm = () => {
             </div>
 
             {/* Plan Benefits */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-6">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-4 mb-6">
+              <h4 className="font-semibold text-white mb-3">
                 Plan Benefits:
               </h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center">
                   <FaInfinity className="text-blue-500 mr-2" />
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span className="text-gray-300">
                     {currentPlan?.postLimit
                       ? `${currentPlan.postLimit} posts`
                       : "Unlimited posts"}
@@ -379,7 +379,7 @@ const CheckoutForm = () => {
                 </div>
                 <div className="flex items-center">
                   <FaStar className="text-yellow-500 mr-2" />
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span className="text-gray-300">
                     {currentPlan?.tier === "free"
                       ? "Basic"
                       : currentPlan?.tier === "premium"
@@ -390,7 +390,7 @@ const CheckoutForm = () => {
                 </div>
                 <div className="flex items-center">
                   <FaCheck className="text-green-500 mr-2" />
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span className="text-gray-300">
                     {currentPlan?.tier === "free" ? "Standard" : "Priority"}{" "}
                     support
                   </span>
@@ -400,12 +400,12 @@ const CheckoutForm = () => {
           </div>
 
           {/* Payment Form Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-md p-6">
             <div className="mb-6 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2">
                 Complete Your Purchase
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm">
                 {currentPlan
                   ? `Upgrading to ${currentPlan.planName}`
                   : "Enter your payment details to continue"}
@@ -451,7 +451,7 @@ const CheckoutForm = () => {
               type="submit"
               onClick={handleSubmit}
               disabled={isProcessing || paymentMutation?.isPending}
-              className={`w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${planColors.button} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200`}
+              className={`w-full py-3 px-4 border border-transparent  shadow-sm text-sm font-medium text-white ${planColors.button} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200`}
             >
               {isProcessing
                 ? "Processing..."
@@ -462,7 +462,7 @@ const CheckoutForm = () => {
             <button
               type="button"
               onClick={() => navigate("/pricing")}
-              className="w-full mt-3 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+              className="w-full mt-3 py-2 px-4 border border-white/20  shadow-sm text-sm font-medium text-gray-700 bg-black/40 backdrop-blur-md text-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
             >
               Cancel
             </button>
@@ -473,7 +473,7 @@ const CheckoutForm = () => {
             </div>
 
             {/* Money-back guarantee */}
-            <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+            <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 ">
               <div className="flex items-center text-sm text-green-700 dark:text-green-300">
                 <FaCheck className="mr-2" />
                 <span>30-day money-back guarantee</span>

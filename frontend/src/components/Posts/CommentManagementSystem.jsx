@@ -81,7 +81,7 @@ const CommentManagementSystem = ({
 
   if (!hasCommentAccess) {
     return (
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-6">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-700  p-6">
         <div className="text-center">
           <FaComment className="mx-auto text-4xl text-blue-500 mb-4" />
           <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">
@@ -101,7 +101,7 @@ const CommentManagementSystem = ({
               🛡️ Moderation Tools
             </span>
           </div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3  font-medium transition-colors">
             Upgrade to Premium
           </button>
         </div>
@@ -110,11 +110,11 @@ const CommentManagementSystem = ({
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+    <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-white/10 border-white/10">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
+          <h2 className="text-lg font-semibold text-white flex items-center space-x-2">
             <FaComment className="text-blue-500" />
             <span>Comment Management</span>
             {isAuthor && <FaUserShield className="text-green-500" />}
@@ -136,7 +136,7 @@ const CommentManagementSystem = ({
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filter === filterType
                   ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                  : 'bg-gray-100 bg-white/5 text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
               }`}
             >
               {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
@@ -156,25 +156,25 @@ const CommentManagementSystem = ({
 
         {/* Bulk Actions */}
         {isAuthor && selectedComments.length > 0 && (
-          <div className="flex items-center space-x-2 p-2 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center space-x-2 p-2 bg-gray-50 bg-white/5 ">
+            <span className="text-sm text-gray-400">
               {selectedComments.length} selected
             </span>
             <button
               onClick={() => handleBulkAction('approve')}
-              className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded text-sm"
+              className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white  text-sm"
             >
               <FaThumbsUp className="inline mr-1" /> Approve
             </button>
             <button
               onClick={() => handleBulkAction('flag')}
-              className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded text-sm"
+              className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white  text-sm"
             >
               <FaFlag className="inline mr-1" /> Flag
             </button>
             <button
               onClick={() => handleBulkAction('delete')}
-              className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
+              className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white  text-sm"
             >
               <FaTrash className="inline mr-1" /> Delete
             </button>
@@ -185,7 +185,7 @@ const CommentManagementSystem = ({
       {/* Comments List */}
       <div className="max-h-96 overflow-y-auto">
         {filteredComments.length === 0 ? (
-          <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+          <div className="p-8 text-center text-gray-400">
             <FaComment className="mx-auto text-3xl mb-2" />
             <p>No comments match the current filter.</p>
           </div>
@@ -218,25 +218,25 @@ const CommentManagementSystem = ({
                     <div className="flex items-center space-x-2 mb-1">
                       <Link 
                         to={`/user/${comment.user._id}`}
-                        className="font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="font-medium text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         {comment.user.username}
                       </Link>
-                      <span className={`px-2 py-1 rounded text-xs ${
+                      <span className={`px-2 py-1  text-xs ${
                         comment.user.plan === 'Pro' 
                           ? 'bg-purple-100 text-purple-800' 
                           : comment.user.plan === 'Premium'
                           ? 'bg-blue-100 text-blue-800'
-                          : 'bg-gray-100 text-gray-800'
+                          : 'bg-gray-100 text-gray-100'
                       }`}>
                         {comment.user.plan}
                       </span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                      <span className="text-xs text-gray-400">
                         {new Date(comment.timestamp).toLocaleDateString()}
                       </span>
                     </div>
 
-                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                    <p className="text-gray-300 mb-2">
                       {comment.content}
                     </p>
 
@@ -276,25 +276,25 @@ const CommentManagementSystem = ({
 
                     {/* Reply Input */}
                     {replyingTo === comment.id && (
-                      <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <div className="mt-3 p-3 bg-gray-50 bg-white/5 ">
                         <textarea
                           value={replyText}
                           onChange={(e) => setReplyText(e.target.value)}
                           placeholder="Write your reply..."
-                          className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded text-sm resize-none"
+                          className="w-full p-2 border border-white/20 border-white/20  text-sm resize-none"
                           rows="2"
                         />
                         <div className="flex justify-end space-x-2 mt-2">
                           <button
                             onClick={() => setReplyingTo(null)}
-                            className="px-3 py-1 text-sm text-gray-600 hover:text-gray-800"
+                            className="px-3 py-1 text-sm text-gray-600 hover:text-gray-100"
                           >
                             Cancel
                           </button>
                           <button
                             onClick={handleReply}
                             disabled={!replyText.trim()}
-                            className="px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded text-sm"
+                            className="px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white  text-sm"
                           >
                             Reply
                           </button>
@@ -308,7 +308,7 @@ const CommentManagementSystem = ({
                     <div className="flex flex-col space-y-1">
                       <button
                         onClick={() => onApproveComment?.(comment.id)}
-                        className={`p-2 rounded ${
+                        className={`p-2  ${
                           comment.isApproved 
                             ? 'text-green-600 bg-green-100' 
                             : 'text-gray-400 hover:text-green-600'

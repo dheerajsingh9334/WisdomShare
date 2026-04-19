@@ -83,7 +83,7 @@ const DashboardDrafts = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">My Drafts</h2>
+        <h2 className="text-2xl font-bold text-white">My Drafts</h2>
         <div className="text-sm text-gray-500">
           {draftsData?.totalDrafts || 0} draft{draftsData?.totalDrafts !== 1 ? 's' : ''}
         </div>
@@ -92,26 +92,26 @@ const DashboardDrafts = () => {
       {draftsData?.drafts?.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-4xl mb-4">📝</div>
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No drafts yet</h3>
-          <p className="text-gray-500 dark:text-gray-400">Start writing to create your first draft!</p>
+          <h3 className="text-lg font-medium text-white mb-2">No drafts yet</h3>
+          <p className="text-gray-400">Start writing to create your first draft!</p>
         </div>
       ) : (
         <div className="space-y-4">
           {draftsData?.drafts?.map((draft) => (
             <div
               key={draft._id}
-              className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6"
+              className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-6"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-semibold text-white mb-2">
                     {draft.title}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
                     {draft.description}
                   </p>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
                     <span className="flex items-center gap-1">
                       <FaCalendar className="h-4 w-4" />
                       {new Date(draft.updatedAt).toLocaleDateString()}
@@ -144,20 +144,20 @@ const DashboardDrafts = () => {
                 <div className="flex items-center gap-2 ml-4">
                   <button
                     onClick={() => handlePublish(draft)}
-                    className="px-3 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors"
+                    className="px-3 py-2 bg-green-600 text-white text-sm  hover:bg-green-700 transition-colors"
                   >
                     Publish
                   </button>
                   <button
                     onClick={() => handleSchedule(draft)}
-                    className="px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-3 py-2 bg-blue-600 text-white text-sm  hover:bg-blue-700 transition-colors"
                   >
                     Schedule
                   </button>
                   <button
                     onClick={() => handleDelete(draft._id)}
                     disabled={deleteMutation.isPending}
-                    className="px-3 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+                    className="px-3 py-2 bg-red-600 text-white text-sm  hover:bg-red-700 transition-colors disabled:opacity-50"
                   >
                     <FaTrash className="h-4 w-4" />
                   </button>
@@ -174,7 +174,7 @@ const DashboardDrafts = () => {
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50"
+            className="px-3 py-2 border border-white/20  disabled:opacity-50"
           >
             Previous
           </button>
@@ -184,7 +184,7 @@ const DashboardDrafts = () => {
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === draftsData.pagination.totalPages}
-            className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50"
+            className="px-3 py-2 border border-white/20  disabled:opacity-50"
           >
             Next
           </button>
@@ -194,14 +194,14 @@ const DashboardDrafts = () => {
       {/* Publish/Schedule Modal */}
       {showPublishModal && selectedDraft && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold text-white mb-4">
               {publishData.status === 'published' ? 'Publish Draft' : 'Schedule Draft'}
             </h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {publishData.status === 'published' ? 'Publish Status' : 'Schedule Date & Time'}
                 </label>
                 {publishData.status === 'scheduled' && (
@@ -210,7 +210,7 @@ const DashboardDrafts = () => {
                     value={publishData.scheduledFor}
                     onChange={(e) => setPublishData({ ...publishData, scheduledFor: e.target.value })}
                     min={new Date().toISOString().slice(0, 16)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-white/20  focus:ring-2 focus:ring-blue-500"
                   />
                 )}
               </div>
@@ -219,14 +219,14 @@ const DashboardDrafts = () => {
                 <button
                   onClick={handleSubmitPublish}
                   disabled={updateStatusMutation.isPending || (publishData.status === 'scheduled' && !publishData.scheduledFor)}
-                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50"
                 >
                   {updateStatusMutation.isPending ? 'Processing...' : 
                    publishData.status === 'published' ? 'Publish Now' : 'Schedule Post'}
                 </button>
                 <button
                   onClick={() => setShowPublishModal(false)}
-                  className="flex-1 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                  className="flex-1 px-4 py-2 bg-gray-500 text-white  hover:bg-gray-600"
                 >
                   Cancel
                 </button>

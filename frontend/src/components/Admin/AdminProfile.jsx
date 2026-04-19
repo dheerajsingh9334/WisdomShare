@@ -227,11 +227,11 @@ const AdminProfile = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="min-h-screen bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">Loading profile...</p>
+            <p className="mt-4 text-gray-400">Loading profile...</p>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@ const AdminProfile = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="min-h-screen bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center text-red-600 dark:text-red-400">
             <p>Error loading profile: {error.message}</p>
@@ -253,18 +253,18 @@ const AdminProfile = () => {
   const profileAdmin = profileData?.admin;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-black text-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 mb-8">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-6 mb-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-3">
               <FaUser className="text-3xl text-blue-600 dark:text-blue-400" />
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-3xl font-bold text-white">
                   Admin Profile
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400">
                   Manage your profile and contact information
                 </p>
               </div>
@@ -273,7 +273,7 @@ const AdminProfile = () => {
             {!isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors"
               >
                 <FaEdit className="mr-2" />
                 Edit Profile
@@ -285,25 +285,25 @@ const AdminProfile = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Basic Info */}
             <div className="space-y-4">
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              <div className="bg-gray-50 bg-white/5  p-4">
+                <h3 className="text-lg font-semibold text-white mb-3">
                   Basic Information
                 </h3>
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       Username
                     </label>
-                    <p className="text-gray-900 dark:text-white font-medium">{profileAdmin?.username}</p>
+                    <p className="text-white font-medium">{profileAdmin?.username}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       Email
                     </label>
-                    <p className="text-gray-900 dark:text-white">{profileAdmin?.email}</p>
+                    <p className="text-white">{profileAdmin?.email}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       Role
                     </label>
                     <span className="inline-flex items-center px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
@@ -316,24 +316,24 @@ const AdminProfile = () => {
 
             {/* Contact & Bio */}
             <div className="space-y-4">
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              <div className="bg-gray-50 bg-white/5  p-4">
+                <h3 className="text-lg font-semibold text-white mb-3">
                   Contact & Bio
                 </h3>
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       First Name
                     </label>
-                    <p className="text-gray-900 dark:text-white">
+                    <p className="text-white">
                       {profileAdmin?.profile?.firstName || "Not set"}
                     </p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-300 mb-1">
                       Last Name
                     </label>
-                    <p className="text-gray-900 dark:text-white">
+                    <p className="text-white">
                       {profileAdmin?.profile?.lastName || "Not set"}
                     </p>
                   </div>
@@ -344,8 +344,8 @@ const AdminProfile = () => {
         </div>
 
         {/* Profile Form */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-6">
+          <h2 className="text-2xl font-bold text-white mb-6">
             {isEditing ? "Edit Profile" : "Profile Details"}
           </h2>
 
@@ -353,7 +353,7 @@ const AdminProfile = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* First Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   First Name
                 </label>
                 {isEditing ? (
@@ -362,11 +362,11 @@ const AdminProfile = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-white/20 border-white/20  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter first name"
                   />
                 ) : (
-                  <p className="text-gray-900 dark:text-white">
+                  <p className="text-white">
                     {profileAdmin?.profile?.firstName || "Not set"}
                   </p>
                 )}
@@ -374,7 +374,7 @@ const AdminProfile = () => {
 
               {/* Last Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Last Name
                 </label>
                 {isEditing ? (
@@ -383,11 +383,11 @@ const AdminProfile = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-white/20 border-white/20  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter last name"
                   />
                 ) : (
-                  <p className="text-gray-900 dark:text-white">
+                  <p className="text-white">
                     {profileAdmin?.profile?.lastName || "Not set"}
                   </p>
                 )}
@@ -396,7 +396,7 @@ const AdminProfile = () => {
 
             {/* Bio */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Bio
               </label>
               {isEditing ? (
@@ -405,11 +405,11 @@ const AdminProfile = () => {
                   value={formData.bio}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-white/20 border-white/20  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Tell users about yourself..."
                 />
               ) : (
-                <p className="text-gray-900 dark:text-white">
+                <p className="text-white">
                   {profileAdmin?.profile?.bio || "No bio added yet"}
                 </p>
               )}
@@ -417,11 +417,11 @@ const AdminProfile = () => {
 
             {/* Contact Information */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 <FaEnvelope className="inline mr-2" />
                 Contact Information
               </label>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+              <p className="text-xs text-gray-400 mb-2">
                 This information will be shown to users when you send broadcast notifications or ban users
               </p>
               {isEditing ? (
@@ -430,12 +430,12 @@ const AdminProfile = () => {
                   value={formData.contactInfo}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-white/20 border-white/20  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Add your contact information, office hours, preferred contact method, etc..."
                 />
               ) : (
-                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
-                  <p className="text-gray-900 dark:text-white">
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  p-4">
+                  <p className="text-white">
                     {profileAdmin?.profile?.contactInfo || "No contact information added yet"}
                   </p>
                 </div>
@@ -448,7 +448,7 @@ const AdminProfile = () => {
                 <button
                   type="submit"
                   disabled={updateProfileMutation.isPending}
-                  className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
+                  className="inline-flex items-center px-4 py-2 bg-green-600 text-white  hover:bg-green-700 disabled:opacity-50 transition-colors"
                 >
                   <FaSave className="mr-2" />
                   {updateProfileMutation.isPending ? "Saving..." : "Save Changes"}
@@ -456,7 +456,7 @@ const AdminProfile = () => {
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white  hover:bg-gray-700 transition-colors"
                 >
                   <FaTimes className="mr-2" />
                   Cancel
@@ -467,15 +467,15 @@ const AdminProfile = () => {
         </div>
 
         {/* Password Update Section */}
-        <div className="mt-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+        <div className="mt-8 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-3">
               <FaLock className="text-2xl text-red-600 dark:text-red-400" />
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h2 className="text-2xl font-bold text-white">
                   Update Password
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400">
                   Change your account password for enhanced security
                 </p>
               </div>
@@ -484,7 +484,7 @@ const AdminProfile = () => {
             {!showPasswordForm && (
               <button
                 onClick={() => setShowPasswordForm(true)}
-                className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-red-600 text-white  hover:bg-red-700 transition-colors"
               >
                 <FaLock className="mr-2" />
                 Change Password
@@ -496,7 +496,7 @@ const AdminProfile = () => {
             <form onSubmit={handlePasswordSubmit} className="space-y-6">
               {/* Current Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Current Password
                 </label>
                 <div className="relative">
@@ -505,8 +505,8 @@ const AdminProfile = () => {
                     name="currentPassword"
                     value={passwordData.currentPassword}
                     onChange={handlePasswordChange}
-                    className={`w-full px-3 py-2 pr-10 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent ${
-                      passwordErrors.currentPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    className={`w-full px-3 py-2 pr-10 border  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-red-500 focus:border-transparent ${
+                      passwordErrors.currentPassword ? 'border-red-500' : 'border-white/20 border-white/20'
                     }`}
                     placeholder="Enter your current password"
                   />
@@ -525,7 +525,7 @@ const AdminProfile = () => {
 
               {/* New Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   New Password
                 </label>
                 <div className="relative">
@@ -534,8 +534,8 @@ const AdminProfile = () => {
                     name="newPassword"
                     value={passwordData.newPassword}
                     onChange={handlePasswordChange}
-                    className={`w-full px-3 py-2 pr-10 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent ${
-                      passwordErrors.newPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    className={`w-full px-3 py-2 pr-10 border  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-red-500 focus:border-transparent ${
+                      passwordErrors.newPassword ? 'border-red-500' : 'border-white/20 border-white/20'
                     }`}
                     placeholder="Enter your new password"
                   />
@@ -550,14 +550,14 @@ const AdminProfile = () => {
                 {passwordErrors.newPassword && (
                   <p className="mt-1 text-sm text-red-600 dark:text-red-400">{passwordErrors.newPassword}</p>
                 )}
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-gray-400">
                   Password must be at least 6 characters long
                 </p>
               </div>
 
               {/* Confirm New Password */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Confirm New Password
                 </label>
                 <div className="relative">
@@ -566,8 +566,8 @@ const AdminProfile = () => {
                     name="confirmPassword"
                     value={passwordData.confirmPassword}
                     onChange={handlePasswordChange}
-                    className={`w-full px-3 py-2 pr-10 border rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent ${
-                      passwordErrors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    className={`w-full px-3 py-2 pr-10 border  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white focus:ring-2 focus:ring-red-500 focus:border-transparent ${
+                      passwordErrors.confirmPassword ? 'border-red-500' : 'border-white/20 border-white/20'
                     }`}
                     placeholder="Confirm your new password"
                   />
@@ -589,7 +589,7 @@ const AdminProfile = () => {
                 <button
                   type="submit"
                   disabled={updatePasswordMutation.isPending}
-                  className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+                  className="inline-flex items-center px-4 py-2 bg-red-600 text-white  hover:bg-red-700 disabled:opacity-50 transition-colors"
                 >
                   <FaLock className="mr-2" />
                   {updatePasswordMutation.isPending ? "Updating..." : "Update Password"}
@@ -597,7 +597,7 @@ const AdminProfile = () => {
                 <button
                   type="button"
                   onClick={handlePasswordCancel}
-                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white  hover:bg-gray-700 transition-colors"
                 >
                   <FaTimes className="mr-2" />
                   Cancel
@@ -608,15 +608,15 @@ const AdminProfile = () => {
         </div>
 
         {/* Account Actions */}
-        <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+        <div className="mt-8 bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Account Actions</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Manage your admin account settings</p>
+              <h3 className="text-lg font-semibold text-white">Account Actions</h3>
+              <p className="text-sm text-gray-400">Manage your admin account settings</p>
             </div>
             <button
               onClick={openDeleteModal}
-              className="p-3 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors duration-200"
+              className="p-3 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20  transition-colors duration-200"
               title="Delete Admin Account"
             >
               <TrashIcon className="h-6 w-6" />
@@ -627,41 +627,41 @@ const AdminProfile = () => {
         {/* Delete Account Modal */}
         {showDeleteModal && (
           <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-            <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
+            <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white">
               <div className="mt-3">
                 <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 dark:bg-red-900/30 rounded-full">
                   <ExclamationTriangleIcon className="h-6 w-6 text-red-600 dark:text-red-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white text-center mt-4">
+                <h3 className="text-lg font-medium text-white text-center mt-4">
                   Delete Admin Account
                 </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-2 mb-6">
+                <p className="text-sm text-gray-400 text-center mt-2 mb-6">
                   This action cannot be undone. Your posts will remain on the platform.
                 </p>
                 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
                       Current Password
                     </label>
                     <input
                       type="password"
                       value={deletePassword}
                       onChange={(e) => setDeletePassword(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white/5 dark:text-white"
                       placeholder="Enter your current password"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
                       Confirm Password
                     </label>
                     <input
                       type="password"
                       value={confirmDeletePassword}
                       onChange={(e) => setConfirmDeletePassword(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white/5 dark:text-white"
                       placeholder="Confirm your password"
                     />
                   </div>
@@ -676,14 +676,14 @@ const AdminProfile = () => {
                 <div className="flex justify-end space-x-3 mt-6">
                   <button
                     onClick={() => setShowDeleteModal(false)}
-                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
+                    className="px-4 py-2 bg-gray-300 text-gray-700  hover:bg-gray-400 transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleDeleteAdminAccount}
                     disabled={deleteAdminAccountMutation.isPending}
-                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="px-4 py-2 bg-red-600 text-white  hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     {deleteAdminAccountMutation.isPending ? 'Deleting...' : 'Delete Admin Account'}
                   </button>
@@ -694,7 +694,7 @@ const AdminProfile = () => {
         )}
 
         {/* Information Box */}
-        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-6">
+        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  p-6">
           <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
             💡 How This Information is Used
           </h3>

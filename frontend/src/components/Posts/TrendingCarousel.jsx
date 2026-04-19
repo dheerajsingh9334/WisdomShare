@@ -64,26 +64,26 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
 
   if (!posts || posts.length === 0) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-md p-6">
         <div className="flex items-center mb-4">
           <FaFire className="text-orange-500 text-xl mr-2" />
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h2>
+          <h2 className="text-xl font-bold text-white">{title}</h2>
         </div>
         <div className="text-center py-8">
           <FaFire className="mx-auto text-4xl text-gray-400 mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">No trending posts available</p>
+          <p className="text-gray-400">No trending posts available</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+    <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-md overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-6 border-b border-white/10 border-white/10">
         <div className="flex items-center">
           <FaFire className="text-orange-500 text-xl mr-2" />
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h2>
+          <h2 className="text-xl font-bold text-white">{title}</h2>
         </div>
         
         {/* Navigation Buttons */}
@@ -91,17 +91,17 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
           <div className="flex items-center space-x-2">
             <button
               onClick={goToPrevious}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="p-2 rounded-full bg-gray-100 bg-white/5 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               aria-label="Previous post"
             >
-              <FaChevronLeft className="text-gray-600 dark:text-gray-400" />
+              <FaChevronLeft className="text-gray-400" />
             </button>
             <button
               onClick={goToNext}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="p-2 rounded-full bg-gray-100 bg-white/5 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               aria-label="Next post"
             >
-              <FaChevronRight className="text-gray-600 dark:text-gray-400" />
+              <FaChevronRight className="text-gray-400" />
             </button>
           </div>
         )}
@@ -139,7 +139,7 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
                   </div>
 
                   {/* Reading Time */}
-                  <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm flex items-center">
+                  <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-2 py-1  text-sm flex items-center">
                     <FaClock className="mr-1 text-xs" />
                     {post.readingTime || '5'} min read
                   </div>
@@ -163,13 +163,13 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
                       to={`/posts/${post.slug || post._id}`}
                       className="block group"
                     >
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
                         {truncateText(post.title, 80)}
                       </h3>
                     </Link>
 
                     {/* Description */}
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    <p className="text-gray-400 mb-4 leading-relaxed">
                       {truncateText(post.description || post.excerpt || '', 150)}
                     </p>
 
@@ -188,11 +188,11 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
                       <div>
                         <Link 
                           to={`/user/${post.author?._id}`}
-                          className="text-sm font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                          className="text-sm font-medium text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                         >
                           {post.author?.username || 'Anonymous'}
                         </Link>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-gray-400">
                           {formatDate(post.createdAt)}
                         </p>
                       </div>
@@ -200,17 +200,17 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
                   </div>
 
                   {/* Post Stats */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10 border-white/10">
                     <div className="flex items-center space-x-4">
-                      <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <span className="flex items-center text-sm text-gray-400">
                         <FaEye className="mr-1" />
                         {post.views || 0}
                       </span>
-                      <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <span className="flex items-center text-sm text-gray-400">
                         <FaHeart className="mr-1" />
                         {post.likes || 0}
                       </span>
-                      <span className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <span className="flex items-center text-sm text-gray-400">
                         <FaComment className="mr-1" />
                         {post.commentsCount || 0}
                       </span>
@@ -218,7 +218,7 @@ const TrendingCarousel = ({ posts = [], title = "Trending Posts" }) => {
 
                     <Link
                       to={`/posts/${post.slug || post._id}`}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2  text-sm font-medium transition-colors"
                     >
                       Read More
                     </Link>

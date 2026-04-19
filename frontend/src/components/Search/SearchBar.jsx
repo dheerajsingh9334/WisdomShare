@@ -100,7 +100,7 @@ const SearchBar = ({
           placeholder={placeholder}
           value={searchTerm}
           onChange={handleInputChange}
-          className="w-full px-4 py-2 pl-10 pr-10 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+          className="w-full px-4 py-2 pl-10 pr-10 text-sm border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-green-500 bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white"
         />
         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
         {searchTerm && (
@@ -116,9 +116,9 @@ const SearchBar = ({
 
       {/* Search Results Dropdown */}
       {showResults && searchTerm.length >= 2 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  shadow-lg z-50 max-h-96 overflow-y-auto">
           {isLoading ? (
-            <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+            <div className="p-4 text-center text-gray-400">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600 mx-auto"></div>
               <p className="mt-2 text-sm">Searching...</p>
             </div>
@@ -127,14 +127,14 @@ const SearchBar = ({
               {/* Posts Results */}
               {results.posts.length > 0 && (
                 <div>
-                  <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                  <div className="px-4 py-2 bg-gray-50 bg-white/5 text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     Posts matched by meaning
                   </div>
                   {results.posts.map((post) => (
                     <button
                       key={post._id}
                       onClick={() => handleResultClick("post", post._id)}
-                      className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-100 dark:border-gray-600 last:border-b-0"
+                      className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-white/5 border-white/20 last:border-b-0"
                     >
                       <div className="flex items-center space-x-3">
                         {post.image && (
@@ -145,14 +145,14 @@ const SearchBar = ({
                                 : post.image.url
                             }
                             alt={post.title}
-                            className="w-8 h-8 rounded object-cover"
+                            className="w-8 h-8  object-cover"
                           />
                         )}
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                          <p className="text-sm font-medium text-white truncate">
                             {post.title || post.description?.substring(0, 50)}
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <p className="text-xs text-gray-400">
                             by {post.author?.username}
                           </p>
                         </div>
@@ -165,14 +165,14 @@ const SearchBar = ({
               {/* Users Results */}
               {results.users && results.users.length > 0 && (
                 <div>
-                  <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                  <div className="px-4 py-2 bg-gray-50 bg-white/5 text-xs font-semibold text-gray-400 uppercase tracking-wide">
                     Users
                   </div>
                   {results.users.map((user) => (
                     <button
                       key={user._id}
                       onClick={() => handleResultClick("user", user._id)}
-                      className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-100 dark:border-gray-600 last:border-b-0"
+                      className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-white/5 border-white/20 last:border-b-0"
                     >
                       <div className="flex items-center space-x-3">
                         {user.profilePicture ? (
@@ -183,7 +183,7 @@ const SearchBar = ({
                               user.profilePicture
                             }
                             alt={user.username}
-                            className="w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-600"
+                            className="w-8 h-8 rounded-full object-cover border border-white/10 border-white/20"
                             onError={(e) => {
                               e.target.style.display = "none";
                               e.target.nextElementSibling.style.display =
@@ -192,7 +192,7 @@ const SearchBar = ({
                           />
                         ) : null}
                         <div
-                          className={`w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-gray-200 dark:border-gray-600 ${user.profilePicture ? "hidden" : "flex"}`}
+                          className={`w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-white/10 border-white/20 ${user.profilePicture ? "hidden" : "flex"}`}
                           style={{
                             display: user.profilePicture ? "none" : "flex",
                           }}
@@ -202,10 +202,10 @@ const SearchBar = ({
                           </span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          <p className="text-sm font-medium text-white">
                             {user.username}
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <p className="text-xs text-gray-400">
                             {user.posts?.length || 0} posts
                           </p>
                         </div>
@@ -216,7 +216,7 @@ const SearchBar = ({
               )}
 
               {/* View All Results */}
-              <div className="px-4 py-2 border-t border-gray-100 dark:border-gray-600">
+              <div className="px-4 py-2 border-t border-white/5 border-white/20">
                 <button
                   onClick={() => {
                     navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
@@ -234,7 +234,7 @@ const SearchBar = ({
               </div>
             </div>
           ) : (
-            <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+            <div className="p-4 text-center text-gray-400">
               <p className="text-sm">No results found for "{searchTerm}"</p>
             </div>
           )}

@@ -68,21 +68,21 @@ const PlanFeatureGuard = ({
   const requiredPlan = getRequiredPlan();
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6 text-center">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900  border border-white/10 border-white/10 p-6 text-center">
       {/* Lock Icon */}
       <div className="mb-4">
-        <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto">
-          <FaLock className="text-2xl text-gray-500 dark:text-gray-400" />
+        <div className="w-16 h-16 bg-gray-200 bg-white/5 rounded-full flex items-center justify-center mx-auto">
+          <FaLock className="text-2xl text-gray-400" />
         </div>
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+      <h3 className="text-lg font-semibold text-white mb-2">
         Feature Locked
       </h3>
 
       {/* Description */}
-      <p className="text-gray-600 dark:text-gray-400 mb-4">
+      <p className="text-gray-400 mb-4">
         This feature requires a {requiredPlan} plan or higher.
       </p>
 
@@ -93,7 +93,7 @@ const PlanFeatureGuard = ({
             ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300'
             : planTier === PLAN_TIERS.PREMIUM
             ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
-            : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+            : 'bg-gray-100 text-gray-700 bg-white/5 dark:text-gray-300'
         }`}>
           {planTier === PLAN_TIERS.PRO ? 'PRO' : planTier === PLAN_TIERS.PREMIUM ? 'PREMIUM' : 'FREE'}
         </span>
@@ -102,7 +102,7 @@ const PlanFeatureGuard = ({
       {/* Upgrade Button */}
       <Link
         to="/pricing"
-        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium  hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
       >
         Upgrade to {requiredPlan}
       </Link>

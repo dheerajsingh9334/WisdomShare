@@ -97,10 +97,10 @@ const PostManagement = () => {
     return (
       <div className="p-4 sm:p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-6"></div>
+          <div className="h-8 bg-gray-200 bg-white/5  w-1/4 mb-6"></div>
           <div className="space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-16 bg-gray-200 dark:bg-gray-700 rounded"></div>
+              <div key={i} className="h-16 bg-gray-200 bg-white/5 "></div>
             ))}
           </div>
         </div>
@@ -123,13 +123,13 @@ const PostManagement = () => {
       <div className="mb-6">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">Post Management</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Post Management</h2>
             <p className="text-gray-600 dark:text-gray-300">Manage and moderate platform content</p>
           </div>
           <button
             onClick={() => checkCategoriesMutation.mutate()}
             disabled={checkCategoriesMutation.isPending}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center w-fit"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2  text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center w-fit"
           >
             <TagIcon className="h-4 w-4 mr-2" />
             {checkCategoriesMutation.isPending ? 'Checking...' : 'Check Categories'}
@@ -138,7 +138,7 @@ const PostManagement = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 mb-6">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-4 mb-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="relative">
             <MagnifyingGlassIcon className="h-5 w-5 absolute left-3 top-3 text-gray-400 dark:text-gray-500" />
@@ -147,7 +147,7 @@ const PostManagement = () => {
               placeholder="Search posts by title, content, or author..."
               value={filters.search}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="pl-10 pr-4 py-2 w-full border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
           
@@ -158,7 +158,7 @@ const PostManagement = () => {
               placeholder="Author username..."
               value={filters.author}
               onChange={(e) => handleFilterChange('author', e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="pl-10 pr-4 py-2 w-full border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
 
@@ -167,7 +167,7 @@ const PostManagement = () => {
             <select
               value={filters.category}
               onChange={(e) => handleFilterChange('category', e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="pl-10 pr-4 py-2 w-full border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
             >
               <option value="">All Categories</option>
               {categoriesData?.categories?.map((category) => (
@@ -181,7 +181,7 @@ const PostManagement = () => {
           <select
             value={filters.limit}
             onChange={(e) => handleFilterChange('limit', parseInt(e.target.value))}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="px-4 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
           >
             <option value={10}>10 per page</option>
             <option value={25}>25 per page</option>
@@ -191,19 +191,19 @@ const PostManagement = () => {
       </div>
 
       {/* Posts Table - Mobile Responsive */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 overflow-hidden">
         {/* Mobile Cards View */}
         <div className="block lg:hidden">
           {Array.isArray(postsData?.posts) && postsData.posts.length > 0 ? (
             postsData.posts.map((post) => (
-              <div key={post._id} className="p-4 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+              <div key={post._id} className="p-4 border-b border-white/10 border-white/10 last:border-b-0">
                 <div className="space-y-3">
                   {/* Post Content */}
                   <div>
-                    <div className="text-sm font-medium text-gray-900 dark:text-white mb-1">
+                    <div className="text-sm font-medium text-white mb-1">
                       {typeof post.title === 'string' ? post.title : 'Untitled Post'}
                     </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+                    <div className="text-sm text-gray-400 line-clamp-3">
                       {(() => {
                         const content = post.description || post.content;
                         if (typeof content === 'string') {
@@ -215,7 +215,7 @@ const PostManagement = () => {
                     {post.images && Array.isArray(post.images) && post.images.length > 0 && (
                       <div className="flex items-center mt-2">
                         <span className="text-xs text-gray-400 dark:text-gray-500 mr-2">📷</span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400">{post.images.length} image{post.images.length !== 1 ? 's' : ''}</span>
+                        <span className="text-xs text-gray-400">{post.images.length} image{post.images.length !== 1 ? 's' : ''}</span>
                       </div>
                     )}
                   </div>
@@ -234,15 +234,15 @@ const PostManagement = () => {
                           }}
                         />
                       ) : null}
-                      <span className="text-xs font-medium text-gray-700 dark:text-gray-300" style={{ display: post.author?.profilePicture ? 'none' : 'flex' }}>
+                      <span className="text-xs font-medium text-gray-300" style={{ display: post.author?.profilePicture ? 'none' : 'flex' }}>
                         {post.author?.username ? post.author.username.charAt(0).toUpperCase() : 'U'}
                       </span>
                     </div>
                     <div className="min-w-0">
-                      <div className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                      <div className="text-sm font-medium text-white truncate">
                         {post.author?.username || 'Unknown User'}
                       </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                      <div className="text-sm text-gray-400 truncate">
                         {post.author?.email || 'No email'}
                       </div>
                     </div>
@@ -266,7 +266,7 @@ const PostManagement = () => {
                   </div>
 
                   {/* Engagement */}
-                  <div className="text-sm text-gray-900 dark:text-white space-y-1">
+                  <div className="text-sm text-white space-y-1">
                     <div className="flex items-center">
                       <span className="text-blue-600 dark:text-blue-400 mr-1">💬</span>
                       <span>{Array.isArray(post.comments) ? post.comments.length : 0} comments</span>
@@ -282,7 +282,7 @@ const PostManagement = () => {
                   </div>
 
                   {/* Created Date */}
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-sm text-gray-400">
                     <div className="flex items-center">
                       <CalendarIcon className="h-4 w-4 mr-1" />
                       {post.createdAt ? new Date(post.createdAt).toLocaleDateString() : 'Unknown Date'}
@@ -296,7 +296,7 @@ const PostManagement = () => {
                   <div className="flex space-x-2 pt-2">
                     <button
                       onClick={() => window.open(`/posts/${post._id}`, '_blank')}
-                      className="inline-flex items-center px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50"
+                      className="inline-flex items-center px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300  hover:bg-blue-200 dark:hover:bg-blue-900/50"
                       title="View Post"
                     >
                       <EyeIcon className="h-3 w-3 mr-1" />
@@ -304,7 +304,7 @@ const PostManagement = () => {
                     </button>
                     <button
                       onClick={() => handleDeletePost(post._id)}
-                      className="inline-flex items-center px-3 py-1 text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/50"
+                      className="inline-flex items-center px-3 py-1 text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300  hover:bg-red-200 dark:hover:bg-red-900/50"
                       disabled={deletePostMutation.isPending}
                       title="Delete Post"
                     >
@@ -316,7 +316,7 @@ const PostManagement = () => {
               </div>
             ))
           ) : (
-            <div className="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+            <div className="px-6 py-12 text-center text-gray-400">
               <div className="flex flex-col items-center">
                 <div className="text-4xl mb-2">📝</div>
                 <p className="text-lg font-medium mb-2">No posts found</p>
@@ -329,7 +329,7 @@ const PostManagement = () => {
         {/* Desktop Table View */}
         <div className="hidden lg:block overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-700">
+            <thead className="bg-gray-50 bg-white/5">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Post Content
@@ -351,16 +351,16 @@ const PostManagement = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="bg-black/50 backdrop-blur-xl border border-white/10 text-white divide-y divide-gray-200 dark:divide-gray-700">
               {Array.isArray(postsData?.posts) && postsData.posts.length > 0 ? (
                 postsData.posts.map((post) => (
                   <tr key={post._id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                     <td className="px-6 py-4">
                       <div className="max-w-xs">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white truncate mb-1">
+                        <div className="text-sm font-medium text-white truncate mb-1">
                           {typeof post.title === 'string' ? post.title : 'Untitled Post'}
                         </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+                        <div className="text-sm text-gray-400 line-clamp-3">
                           {(() => {
                             const content = post.description || post.content;
                             if (typeof content === 'string') {
@@ -372,7 +372,7 @@ const PostManagement = () => {
                         {post.images && Array.isArray(post.images) && post.images.length > 0 && (
                           <div className="flex items-center mt-2">
                             <span className="text-xs text-gray-400 dark:text-gray-500 mr-2">📷</span>
-                            <span className="text-xs text-gray-500 dark:text-gray-400">{post.images.length} image{post.images.length !== 1 ? 's' : ''}</span>
+                            <span className="text-xs text-gray-400">{post.images.length} image{post.images.length !== 1 ? 's' : ''}</span>
                           </div>
                         )}
                       </div>
@@ -391,15 +391,15 @@ const PostManagement = () => {
                               }}
                             />
                           ) : null}
-                          <span className="text-xs font-medium text-gray-700 dark:text-gray-300" style={{ display: post.author?.profilePicture ? 'none' : 'flex' }}>
+                          <span className="text-xs font-medium text-gray-300" style={{ display: post.author?.profilePicture ? 'none' : 'flex' }}>
                             {post.author?.username ? post.author.username.charAt(0).toUpperCase() : 'U'}
                           </span>
                         </div>
                         <div className="ml-3 min-w-0">
-                          <div className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                          <div className="text-sm font-medium text-white truncate">
                             {post.author?.username || 'Unknown User'}
                           </div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                          <div className="text-sm text-gray-400 truncate">
                             {post.author?.email || 'No email'}
                           </div>
                         </div>
@@ -421,7 +421,7 @@ const PostManagement = () => {
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900 dark:text-white space-y-1">
+                      <div className="text-sm text-white space-y-1">
                         <div className="flex items-center">
                           <span className="text-blue-600 dark:text-blue-400 mr-1">💬</span>
                           <span>{Array.isArray(post.comments) ? post.comments.length : 0} comments</span>
@@ -437,7 +437,7 @@ const PostManagement = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                      <div className="flex items-center text-sm text-gray-400">
                         <CalendarIcon className="h-4 w-4 mr-1" />
                         {post.createdAt ? new Date(post.createdAt).toLocaleDateString() : 'Unknown Date'}
                       </div>
@@ -449,14 +449,14 @@ const PostManagement = () => {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => window.open(`/posts/${post._id}`, '_blank')}
-                          className="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 p-1 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                          className="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 p-1  hover:bg-blue-50 dark:hover:bg-blue-900/20"
                           title="View Post"
                         >
                           <EyeIcon className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => handleDeletePost(post._id)}
-                          className="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 p-1 rounded hover:bg-red-50 dark:hover:bg-red-900/20"
+                          className="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300 p-1  hover:bg-red-50 dark:hover:bg-red-900/20"
                           disabled={deletePostMutation.isPending}
                           title="Delete Post"
                         >
@@ -483,26 +483,26 @@ const PostManagement = () => {
 
         {/* Pagination */}
         {postsData?.pagination && (
-          <div className="bg-white dark:bg-gray-800 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white px-4 py-3 flex items-center justify-between border-t border-white/10 border-white/10 sm:px-6">
             <div className="flex-1 flex justify-between sm:hidden">
               <button
                 onClick={() => handlePageChange(postsData.pagination.currentPage - 1)}
                 disabled={!postsData.pagination.hasPrev}
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="relative inline-flex items-center px-4 py-2 border border-white/20 border-white/20 text-sm font-medium  text-gray-300 bg-black/40 backdrop-blur-md text-white bg-white/5 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Previous
               </button>
               <button
                 onClick={() => handlePageChange(postsData.pagination.currentPage + 1)}
                 disabled={!postsData.pagination.hasNext}
-                className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="ml-3 relative inline-flex items-center px-4 py-2 border border-white/20 border-white/20 text-sm font-medium  text-gray-300 bg-black/40 backdrop-blur-md text-white bg-white/5 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Next
               </button>
             </div>
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-300">
                   Showing{' '}
                   <span className="font-medium">
                     {((postsData.pagination.currentPage - 1) * filters.limit) + 1}
@@ -517,18 +517,18 @@ const PostManagement = () => {
                 </p>
               </div>
               <div>
-                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <nav className="relative z-0 inline-flex  shadow-sm -space-x-px" aria-label="Pagination">
                   <button
                     onClick={() => handlePageChange(postsData.pagination.currentPage - 1)}
                     disabled={!postsData.pagination.hasPrev}
-                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="relative inline-flex items-center px-2 py-2 -l-md border border-white/20 border-white/20 bg-black/40 backdrop-blur-md text-white bg-white/5 text-sm font-medium text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Previous
                   </button>
                   <button
                     onClick={() => handlePageChange(postsData.pagination.currentPage + 1)}
                     disabled={!postsData.pagination.hasNext}
-                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="relative inline-flex items-center px-2 py-2 -r-md border border-white/20 border-white/20 bg-black/40 backdrop-blur-md text-white bg-white/5 text-sm font-medium text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Next
                   </button>

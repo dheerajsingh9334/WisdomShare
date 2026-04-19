@@ -25,7 +25,7 @@ const PayingFreePlan = () => {
         />
       )}
       {isSuccess && (
-        <div className="p-8 bg-white rounded shadow-md w-80">
+        <div className="p-8 bg-black/40 backdrop-blur-md text-white  shadow-md w-80">
           <FaGift className="w-16 h-16 mx-auto text-green-500" />
 
           <h2 className="mt-6 text-2xl font-semibold text-center text-green-700">
@@ -36,7 +36,7 @@ const PayingFreePlan = () => {
             Proceed to activate your free plan.
           </p>
           <Link to="/dashboard/create-post">
-            <button className="mt-8 w-full py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none">
+            <button className="mt-8 w-full py-2 px-4 bg-green-500 text-white  hover:bg-green-600 focus:outline-none">
               Start Creating
             </button>
           </Link>

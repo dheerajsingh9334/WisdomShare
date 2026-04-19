@@ -139,17 +139,17 @@ const AdminMainDashboard = () => {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-2"></div>
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
+            <div className="h-8 bg-gray-200 bg-white/5  w-1/3 mb-2"></div>
+            <div className="h-4 bg-gray-200 bg-white/5  w-2/3"></div>
           </div>
         </div>
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <div className="animate-pulse">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="h-24 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+                <div key={i} className="h-24 bg-gray-200 bg-white/5 "></div>
               ))}
             </div>
           </div>
@@ -161,14 +161,14 @@ const AdminMainDashboard = () => {
   if (error) {
     return (
       <div className="space-y-6">
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <div className="text-center">
             <FaExclamationTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Error Loading Dashboard</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-4">Unable to load dashboard statistics. Please try again later.</p>
             <button
               onClick={() => refetch()}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-red-600 text-white px-4 py-2  hover:bg-red-700 transition-colors"
             >
               Retry
             </button>
@@ -181,7 +181,7 @@ const AdminMainDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-xl shadow-sm p-8 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600  shadow-sm p-8 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative z-10">
           <div className="flex items-center justify-between">
@@ -207,14 +207,14 @@ const AdminMainDashboard = () => {
         {performanceMetrics.map((metric) => {
           const Icon = metric.icon;
           return (
-            <div key={metric.name} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+            <div key={metric.name} className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{metric.name}</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{metric.value}</p>
+                  <p className="text-sm font-medium text-gray-400">{metric.name}</p>
+                  <p className="text-2xl font-bold text-white">{metric.value}</p>
                 </div>
-                <div className={`p-3 rounded-lg ${metric.trend === 'up' ? 'bg-green-100 dark:bg-green-900/20' : 'bg-red-100 dark:bg-red-900/20'}`}>
-                  <Icon className={`h-6 w-6 ${metric.color || 'text-gray-600 dark:text-gray-400'}`} />
+                <div className={`p-3  ${metric.trend === 'up' ? 'bg-green-100 dark:bg-green-900/20' : 'bg-red-100 dark:bg-red-900/20'}`}>
+                  <Icon className={`h-6 w-6 ${metric.color || 'text-gray-400'}`} />
                 </div>
               </div>
               <div className="flex items-center mt-2">
@@ -226,7 +226,7 @@ const AdminMainDashboard = () => {
                 <span className={`text-sm font-medium ${metric.trend === 'up' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                   {metric.change}
                 </span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">from last month</span>
+                <span className="text-sm text-gray-400 ml-1">from last month</span>
               </div>
             </div>
           );
@@ -234,13 +234,13 @@ const AdminMainDashboard = () => {
       </div>
 
       {/* Stats */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm">
         <AdminStats stats={dashboardData?.stats} isLoading={isLoading} />
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Quick Actions</h2>
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+        <h2 className="text-xl font-bold text-white mb-6">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {quickActions.map((action) => {
             const Icon = action.icon;
@@ -248,10 +248,10 @@ const AdminMainDashboard = () => {
               <a
                 key={action.title}
                 href={action.href}
-                className={`group p-6 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 bg-gradient-to-r ${action.gradient} text-white`}
+                className={`group p-6 border border-white/10 border-white/10  hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 bg-gradient-to-r ${action.gradient} text-white`}
               >
                 <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-lg bg-white/20 mr-4 group-hover:scale-110 transition-transform">
+                  <div className="p-3  bg-white/20 mr-4 group-hover:scale-110 transition-transform">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-semibold text-lg">
@@ -270,31 +270,31 @@ const AdminMainDashboard = () => {
       {/* System Status & Activity Feed */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* System Status */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">System Status</h2>
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+          <h2 className="text-xl font-bold text-white mb-4">System Status</h2>
           <div className="space-y-4">
-            <div className="flex items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+            <div className="flex items-center p-4 bg-green-50 dark:bg-green-900/20 ">
               <FaCheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mr-3" />
               <div>
                 <p className="font-medium text-green-900 dark:text-green-100">System Online</p>
                 <p className="text-sm text-green-600 dark:text-green-400">All services operational</p>
               </div>
             </div>
-            <div className="flex items-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <div className="flex items-center p-4 bg-blue-50 dark:bg-blue-900/20 ">
               <FaUsers className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-3" />
               <div>
                 <p className="font-medium text-blue-900 dark:text-blue-100">Active Users</p>
                 <p className="text-sm text-blue-600 dark:text-blue-400">{dashboardData?.stats?.totalUsers || 0} registered</p>
               </div>
             </div>
-            <div className="flex items-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+            <div className="flex items-center p-4 bg-purple-50 dark:bg-purple-900/20 ">
               <FaFileAlt className="h-5 w-5 text-purple-600 dark:text-purple-400 mr-3" />
               <div>
                 <p className="font-medium text-purple-900 dark:text-purple-100">Content</p>
                 <p className="text-sm text-purple-600 dark:text-purple-400">{dashboardData?.stats?.totalPosts || 0} posts</p>
               </div>
             </div>
-            <div className="flex items-center p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+            <div className="flex items-center p-4 bg-orange-50 dark:bg-orange-900/20 ">
               <FaComments className="h-5 w-5 text-orange-600 dark:text-orange-400 mr-3" />
               <div>
                 <p className="font-medium text-orange-900 dark:text-orange-100">Comments</p>
@@ -305,17 +305,17 @@ const AdminMainDashboard = () => {
         </div>
 
         {/* Activity Feed */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Recent Activity</h2>
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+          <h2 className="text-xl font-bold text-white mb-4">Recent Activity</h2>
           {activityLoading ? (
             <div className="space-y-4 max-h-96 overflow-y-auto">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="animate-pulse">
                   <div className="flex items-start space-x-3 p-3">
-                    <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+                    <div className="w-8 h-8 bg-gray-200 bg-white/5 "></div>
                     <div className="flex-1">
-                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
-                      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+                      <div className="h-4 bg-gray-200 bg-white/5  w-3/4 mb-2"></div>
+                      <div className="h-3 bg-gray-200 bg-white/5  w-1/2"></div>
                     </div>
                   </div>
                 </div>
@@ -356,13 +356,13 @@ const AdminMainDashboard = () => {
                 })();
                 
                 return (
-                  <div key={activity.id} className="flex items-start space-x-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                    <div className={`p-2 rounded-lg bg-gray-100 dark:bg-gray-700 ${activity.color}`}>
+                  <div key={activity.id} className="flex items-start space-x-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-700  transition-colors">
+                    <div className={`p-2  bg-gray-100 bg-white/5 ${activity.color}`}>
                       <IconComponent className="h-4 w-4" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-gray-900 dark:text-white">{activity.message}</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{timeAgo}</p>
+                      <p className="text-sm text-white">{activity.message}</p>
+                      <p className="text-xs text-gray-400 mt-1">{timeAgo}</p>
                     </div>
                   </div>
                 );
@@ -371,10 +371,10 @@ const AdminMainDashboard = () => {
           ) : (
             <div className="text-center py-8">
               <FaUsers className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 dark:text-gray-400">No recent activity</p>
+              <p className="text-gray-400">No recent activity</p>
             </div>
           )}
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="mt-4 pt-4 border-t border-white/10 border-white/10">
             <button className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
               View all activity →
             </button>

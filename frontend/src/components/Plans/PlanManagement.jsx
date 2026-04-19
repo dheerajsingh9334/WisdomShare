@@ -52,11 +52,11 @@ const PlanManagement = () => {
 
   if (plansLoading || usageLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 sm:py-12">
+      <div className="min-h-screen bg-black text-white py-8 sm:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-gray-400">
               Loading plans...
             </p>
           </div>
@@ -157,17 +157,17 @@ const PlanManagement = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 sm:py-12">
+    <div className="min-h-screen bg-black text-white py-8 sm:py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h1
-            className={`${r.text.h1} font-serif text-gray-900 dark:text-white mb-4 sm:mb-6`}
+            className={`${r.text.h1} font-serif text-white mb-4 sm:mb-6`}
           >
             Plan Management
           </h1>
           <p
-            className={`${r.text.bodyLarge} text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-2`}
+            className={`${r.text.bodyLarge} text-gray-400 max-w-2xl mx-auto px-2`}
           >
             Manage your subscription and explore upgrade options to unlock more
             features.
@@ -191,10 +191,10 @@ const PlanManagement = () => {
         {/* Current Plan Status */}
         {usage && (
           <div className="max-w-4xl mx-auto mb-12 sm:mb-16">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8">
+            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8">
               <div className="text-center mb-4 sm:mb-6">
                 <h2
-                  className={`${r.text.h2} text-gray-900 dark:text-white mb-2`}
+                  className={`${r.text.h2} text-white mb-2`}
                 >
                   Current Plan Status
                 </h2>
@@ -205,7 +205,7 @@ const PlanManagement = () => {
                   >
                     {currentPlanBadge?.text}
                   </span>
-                  <span className="text-gray-600 dark:text-gray-400">
+                  <span className="text-gray-400">
                     {currentPlan?.planName || "Free Plan"}
                   </span>
                 </div>
@@ -214,13 +214,13 @@ const PlanManagement = () => {
               {/* Usage Progress */}
               {!usage.posts.unlimited && (
                 <div className="mb-4 sm:mb-6">
-                  <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
                     <span>Post Usage</span>
                     <span>
                       {usage.posts.current}/{usage.posts.limit}
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                  <div className="w-full bg-gray-200 bg-white/5 rounded-full h-3">
                     <div
                       className={`h-3 rounded-full transition-all duration-300 ${
                         usage.posts.current >= usage.posts.limit
@@ -246,19 +246,19 @@ const PlanManagement = () => {
               )}
 
               {/* Posts */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-4 sm:p-6 shadow-sm border border-white/10 border-white/10">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className={`${r.text.h4} text-gray-900 dark:text-white`}>
+                  <h3 className={`${r.text.h4} text-white`}>
                     Posts
                   </h3>
                   <span
-                    className={`${r.text.bodySmall} text-gray-500 dark:text-gray-400`}
+                    className={`${r.text.bodySmall} text-gray-400`}
                   >
                     {usage.posts.current} /{" "}
                     {usage.posts.unlimited ? "∞" : usage.posts.limit}
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div className="w-full bg-gray-200 bg-white/5 rounded-full h-2">
                   <div
                     className={`h-2 rounded-full transition-all duration-300 ${
                       usage.posts.unlimited
@@ -277,7 +277,7 @@ const PlanManagement = () => {
                   ></div>
                 </div>
                 <p
-                  className={`${r.text.bodySmall} text-gray-600 dark:text-gray-400 mt-2`}
+                  className={`${r.text.bodySmall} text-gray-400 mt-2`}
                 >
                   {usage.posts.unlimited
                     ? "Unlimited posts available"
@@ -320,9 +320,9 @@ const PlanManagement = () => {
 
         {/* Billing History */}
         <div className="max-w-4xl mx-auto mb-12 sm:mb-16">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8">
             <h2
-              className={`${r.text.h2} text-gray-900 dark:text-white text-center mb-6 sm:mb-8`}
+              className={`${r.text.h2} text-white text-center mb-6 sm:mb-8`}
             >
               Billing History
             </h2>
@@ -330,20 +330,20 @@ const PlanManagement = () => {
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-gray-200 dark:border-gray-700">
-                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-gray-900 dark:text-white font-semibold">
+                    <tr className="border-b border-white/10 border-white/10">
+                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-white font-semibold">
                         Date
                       </th>
-                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-gray-900 dark:text-white font-semibold">
+                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-white font-semibold">
                         Amount
                       </th>
-                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-gray-900 dark:text-white font-semibold">
+                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-white font-semibold">
                         Plan
                       </th>
-                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-gray-900 dark:text-white font-semibold">
+                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-white font-semibold">
                         Status
                       </th>
-                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-gray-900 dark:text-white font-semibold">
+                      <th className="text-left py-3 sm:py-4 px-3 sm:px-6 text-white font-semibold">
                         Invoice
                       </th>
                     </tr>
@@ -352,18 +352,18 @@ const PlanManagement = () => {
                     {billingHistory.map((item) => (
                       <tr
                         key={item.id}
-                        className="border-b border-gray-200 dark:border-gray-700"
+                        className="border-b border-white/10 border-white/10"
                       >
-                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-600 dark:text-gray-400">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-400">
                           <div className="flex items-center">
                             <FaCalendarAlt className="mr-2 text-blue-500" />
                             {item.date}
                           </div>
                         </td>
-                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-900 dark:text-white font-semibold">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-white font-semibold">
                           {item.amount}
                         </td>
-                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-600 dark:text-gray-400">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-400">
                           {item.plan}
                         </td>
                         <td className="py-3 sm:py-4 px-3 sm:px-6">
@@ -371,7 +371,7 @@ const PlanManagement = () => {
                             {item.status}
                           </span>
                         </td>
-                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-600 dark:text-gray-400">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-gray-400">
                           {item.invoice}
                         </td>
                       </tr>
@@ -382,7 +382,7 @@ const PlanManagement = () => {
             ) : (
               <div className="text-center py-8">
                 <FaHistory className="text-4xl text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400">
                   No billing history available
                 </p>
               </div>
@@ -393,29 +393,29 @@ const PlanManagement = () => {
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-12 sm:mb-16">
           {/* Free Plan */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8 relative">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8 relative">
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
                 <FaGift className="text-2xl sm:text-3xl text-blue-500 mr-3" />
-                <h3 className={`${r.text.h3} text-gray-900 dark:text-white`}>
+                <h3 className={`${r.text.h3} text-white`}>
                   Free
                 </h3>
               </div>
               <div className="mb-4 sm:mb-6">
                 <span
-                  className={`${r.text.h1} font-bold text-gray-900 dark:text-white`}
+                  className={`${r.text.h1} font-bold text-white`}
                 >
                   $0
                 </span>
                 <span
-                  className={`${r.text.body} text-gray-600 dark:text-gray-400`}
+                  className={`${r.text.body} text-gray-400`}
                 >
                   /month
                 </span>
               </div>
               <div className="mb-4 sm:mb-6">
                 <span
-                  className={`inline-flex items-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 ${r.text.bodySmall} text-gray-700 dark:text-gray-300`}
+                  className={`inline-flex items-center px-3 py-1 rounded-full bg-gray-100 bg-white/5 ${r.text.bodySmall} text-gray-300`}
                 >
                   Limit: 1 post/day
                 </span>
@@ -429,7 +429,7 @@ const PlanManagement = () => {
             </div>
             <div className="mt-6 sm:mt-8">
               <h4
-                className={`font-semibold text-gray-900 dark:text-white mb-4 flex items-center ${r.text.h4}`}
+                className={`font-semibold text-white mb-4 flex items-center ${r.text.h4}`}
               >
                 <FaCheck className="text-green-500 mr-2" />
                 What's included:
@@ -438,7 +438,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     1 post per day
                   </span>
@@ -446,7 +446,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     View posts
                   </span>
@@ -454,7 +454,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     Single category selection
                   </span>
@@ -462,7 +462,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     Up to 1,500 characters per post
                   </span>
@@ -470,7 +470,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     AI Blog Writer (up to 300 words)
                   </span>
@@ -480,7 +480,7 @@ const PlanManagement = () => {
           </div>
 
           {/* Premium Plan */}
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8 relative transform scale-105">
+          <div className="bg-gradient-to-br from-green-500 to-green-600  shadow-xl p-4 sm:p-6 lg:p-8 relative transform scale-105">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">
                 MOST POPULAR
@@ -504,7 +504,7 @@ const PlanManagement = () => {
               </div>
               <Link
                 to={`/checkout/${premiumPlan?._id || "premium"}`}
-                className={`w-full inline-flex items-center justify-center px-6 py-3 bg-white text-green-600 rounded-lg text-sm font-semibold hover:bg-gray-50 transition duration-200`}
+                className={`w-full inline-flex items-center justify-center px-6 py-3 bg-black/40 backdrop-blur-md text-white text-green-600  text-sm font-semibold hover:bg-gray-50 transition duration-200`}
               >
                 Start Premium
               </Link>
@@ -562,7 +562,7 @@ const PlanManagement = () => {
           </div>
 
           {/* Pro Plan */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8 relative">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8 relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span className="bg-indigo-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
                 PRO
@@ -571,18 +571,18 @@ const PlanManagement = () => {
             <div className="text-center">
               <div className="flex items-center justify-center mb-4">
                 <FaCrown className="text-2xl sm:text-3xl text-yellow-500 mr-3" />
-                <h3 className={`${r.text.h3} text-gray-900 dark:text-white`}>
+                <h3 className={`${r.text.h3} text-white`}>
                   Pro
                 </h3>
               </div>
               <div className="mb-4 sm:mb-6">
                 <span
-                  className={`${r.text.h1} font-bold text-gray-900 dark:text-white`}
+                  className={`${r.text.h1} font-bold text-white`}
                 >
                   $99.99
                 </span>
                 <span
-                  className={`${r.text.body} text-gray-600 dark:text-gray-400`}
+                  className={`${r.text.body} text-gray-400`}
                 >
                   /month
                 </span>
@@ -603,7 +603,7 @@ const PlanManagement = () => {
             </div>
             <div className="mt-6 sm:mt-8">
               <h4
-                className={`font-semibold text-gray-900 dark:text-white mb-4 flex items-center ${r.text.h4}`}
+                className={`font-semibold text-white mb-4 flex items-center ${r.text.h4}`}
               >
                 <FaCheck className="text-indigo-500 mr-2" />
                 What's included:
@@ -611,12 +611,12 @@ const PlanManagement = () => {
               <ul className="space-y-3">
                 {/* <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
-                  <span className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}>Up to 300 posts</span>
+                  <span className={`text-gray-400 ${r.text.bodySmall}`}>Up to 300 posts</span>
                 </li> */}
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     5 posts per day
                   </span>
@@ -624,7 +624,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     View, Comment & Like posts
                   </span>
@@ -632,7 +632,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     Multiple categories selection
                   </span>
@@ -640,7 +640,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     Up to 10,000 characters per post
                   </span>
@@ -648,7 +648,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     Scheduled Posts
                   </span>
@@ -656,7 +656,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     Advanced analytics
                   </span>
@@ -664,7 +664,7 @@ const PlanManagement = () => {
                 <li className="flex items-center">
                   <FaCheck className="w-4 h-4 text-indigo-500 mr-3 flex-shrink-0" />
                   <span
-                    className={`text-gray-600 dark:text-gray-400 ${r.text.bodySmall}`}
+                    className={`text-gray-400 ${r.text.bodySmall}`}
                   >
                     AI Writer + Refine (up to 1,500 words)
                   </span>
@@ -677,32 +677,32 @@ const PlanManagement = () => {
         {/* Additional Features */}
         <div className="max-w-7xl mx-auto mb-12 sm:mb-16">
           <div className={`${r.layout.grid3} gap-6 sm:gap-8`}>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8 text-center">
+            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8 text-center">
               <FaShieldAlt className="text-3xl sm:text-4xl text-blue-500 mx-auto mb-4" />
-              <h3 className={`${r.text.h4} text-gray-900 dark:text-white mb-2`}>
+              <h3 className={`${r.text.h4} text-white mb-2`}>
                 Secure Payments
               </h3>
-              <p className={`${r.text.body} text-gray-600 dark:text-gray-400`}>
+              <p className={`${r.text.body} text-gray-400`}>
                 All payments are processed securely through Stripe with
                 industry-standard encryption.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8 text-center">
+            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8 text-center">
               <FaSync className="text-3xl sm:text-4xl text-green-500 mx-auto mb-4" />
-              <h3 className={`${r.text.h4} text-gray-900 dark:text-white mb-2`}>
+              <h3 className={`${r.text.h4} text-white mb-2`}>
                 Flexible Plans
               </h3>
-              <p className={`${r.text.body} text-gray-600 dark:text-gray-400`}>
+              <p className={`${r.text.body} text-gray-400`}>
                 Upgrade or downgrade your plan at any time. Changes take effect
                 immediately.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 lg:p-8 text-center">
+            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8 text-center">
               <FaQuestionCircle className="text-3xl sm:text-4xl text-purple-500 mx-auto mb-4" />
-              <h3 className={`${r.text.h4} text-gray-900 dark:text-white mb-2`}>
+              <h3 className={`${r.text.h4} text-white mb-2`}>
                 24/7 Support
               </h3>
-              <p className={`${r.text.body} text-gray-600 dark:text-gray-400`}>
+              <p className={`${r.text.body} text-gray-400`}>
                 Get help whenever you need it with our comprehensive support
                 system.
               </p>
@@ -713,7 +713,7 @@ const PlanManagement = () => {
         {/* Quick Actions */}
         <div className="text-center">
           <h2
-            className={`${r.text.h2} text-gray-900 dark:text-white mb-6 sm:mb-8`}
+            className={`${r.text.h2} text-white mb-6 sm:mb-8`}
           >
             Quick Actions
           </h2>

@@ -76,10 +76,10 @@ const SavedPosts = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading saved posts...</p>
+          <p className="text-gray-400">Loading saved posts...</p>
         </div>
       </div>
     );
@@ -87,14 +87,14 @@ const SavedPosts = () => {
 
   if (savedPosts.length === 0) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">📚</div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">No saved posts yet</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">Start saving posts to see them here!</p>
+          <h2 className="text-2xl font-bold text-white mb-2">No saved posts yet</h2>
+          <p className="text-gray-400 mb-6">Start saving posts to see them here!</p>
           <Link 
             to="/posts" 
-            className="inline-flex items-center px-6 py-3 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-green-500 text-white font-medium  hover:bg-green-600 transition-colors"
           >
             Browse Posts
           </Link>
@@ -104,14 +104,14 @@ const SavedPosts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-8">
+    <div className="min-h-screen bg-black text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Saved Posts
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="text-lg text-gray-400">
             {savedPosts.length} saved {savedPosts.length === 1 ? 'post' : 'posts'}
           </p>
         </div>
@@ -119,7 +119,7 @@ const SavedPosts = () => {
         {/* Saved Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {savedPosts.map((post) => (
-            <article key={post._id} className="group bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
+            <article key={post._id} className="group bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden">
               {/* Post Image */}
               <div className="relative overflow-hidden">
                 {post.image ? (
@@ -162,18 +162,18 @@ const SavedPosts = () => {
 
                 {/* Title */}
                 <Link to={`/posts/${post._id}`}>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors line-clamp-2 leading-tight">
+                  <h3 className="text-xl font-bold text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors line-clamp-2 leading-tight">
                     {post.title}
                   </h3>
                 </Link>
 
                 {/* Excerpt */}
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-3">
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
                   {truncateText(post.content, 120)}
                 </p>
 
                 {/* Author & Meta */}
-                <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
+                <div className="flex items-center justify-between pt-3 border-t border-white/5 border-white/10">
                   <div className="flex items-center space-x-3">
                     <Link to={`/user/${post.author?._id}`} className="flex-shrink-0">
                       {post.author?.profilePicture ? (
@@ -193,11 +193,11 @@ const SavedPosts = () => {
                     <div>
                       <Link 
                         to={`/user/${post.author?._id}`}
-                        className="text-sm font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="text-sm font-medium text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         {post.author?.name || post.author?.username || 'Anonymous'}
                       </Link>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-gray-400">
                         {new Date(post.createdAt).toLocaleDateString('en-US', { 
                           month: 'short', 
                           day: 'numeric',
@@ -214,7 +214,7 @@ const SavedPosts = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400 pt-2">
+                <div className="flex items-center space-x-4 text-xs text-gray-400 pt-2">
                   <span className="flex items-center space-x-1">
                     <FaEye className="h-3 w-3" />
                     <span>{post.views || 0}</span>

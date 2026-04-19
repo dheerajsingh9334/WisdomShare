@@ -48,8 +48,8 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Comment Form */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-4 sm:p-6 shadow-sm border border-white/5 border-white/10">
+        <h3 className="text-lg font-semibold text-white mb-4">
           Comments ({comments.length})
         </h3>
 
@@ -63,7 +63,7 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
                 <textarea
                   {...formik.getFieldProps("content")}
                   rows="3"
-                  className="w-full border border-gray-300 dark:border-gray-600 p-3 rounded-lg dark:bg-gray-700 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full border border-white/20 border-white/20 p-3  bg-white/5 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Share your thoughts..."
                 />
                 {formik.touched.content && formik.errors.content && (
@@ -73,7 +73,7 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
                 <FaComment className="h-4 w-4" />
                 <span>Share your thoughts with the community</span>
               </div>
@@ -82,7 +82,7 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
                 <button
                   type="submit"
                   disabled={createCommentMutation.isPending}
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium  hover:bg-blue-700 disabled:opacity-50 transition-colors"
                 >
                   {createCommentMutation.isPending ? "Posting..." : "Post Comment"}
                 </button>
@@ -93,7 +93,7 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
                       setIsAddingComment(false);
                       formik.resetForm();
                     }}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-500 text-white text-sm font-medium  hover:bg-gray-600 transition-colors"
                   >
                     <FaTimes className="h-3 w-3" />
                     Cancel
@@ -105,12 +105,12 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
         ) : (
           <div className="text-center py-6">
             <div className="text-gray-400 text-4xl mb-2">💬</div>
-            <p className="text-gray-500 dark:text-gray-400 mb-4">
+            <p className="text-gray-400 mb-4">
               Please log in to leave a comment
             </p>
             <Link
               to="/login"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium  hover:bg-blue-700 transition-colors"
             >
               Log In
             </Link>
@@ -132,9 +132,9 @@ const CommentList = ({ comments = [], currentUserId, postId, onCommentUpdate }) 
             />
           ))
         ) : (
-          <div className="text-center py-8 bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+          <div className="text-center py-8 bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/5 border-white/10">
             <div className="text-gray-400 text-4xl mb-2">💬</div>
-            <p className="text-gray-500 dark:text-gray-400 italic">
+            <p className="text-gray-400 italic">
               No comments yet. Be the first to comment!
             </p>
           </div>

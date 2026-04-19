@@ -147,16 +147,16 @@ const UploadProfilePic = () => {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Update Profile Picture
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-400">
             Upload a new profile picture to personalize your account
           </p>
         </div>
 
         {/* Upload Form */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-xl p-8 border border-white/5 border-white/10">
           {/* Alert Messages */}
           {isLoading && <AlertMessage type="loading" message="Uploading your image..." />}
           {isSuccess && <AlertMessage type="success" message="Profile picture updated successfully!" />}
@@ -170,7 +170,7 @@ const UploadProfilePic = () => {
                   <img
                     src={imagePreview}
                     alt="Profile Preview"
-                    className="w-48 h-48 object-cover rounded-full border-4 border-white dark:border-gray-700 shadow-lg"
+                    className="w-48 h-48 object-cover rounded-full border-4 border-white border-white/10 shadow-lg"
                   />
                   <button
                     type="button"
@@ -181,7 +181,7 @@ const UploadProfilePic = () => {
                     <FaTrash className="h-4 w-4" />
                   </button>
                 </div>
-                <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                <p className="mt-4 text-sm text-gray-400">
                   Preview of your new profile picture
                 </p>
               </div>
@@ -190,20 +190,20 @@ const UploadProfilePic = () => {
             {/* Upload Area */}
             {!imagePreview && (
               <div
-                className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${
+                className={`border-2 border-dashed  p-8 text-center transition-all duration-200 ${
                   isDragOver
                     ? "border-purple-400 bg-purple-50 dark:bg-purple-900/20"
-                    : "border-gray-300 dark:border-gray-600 hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                    : "border-white/20 border-white/20 hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20"
                 }`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
               >
                 <FaCloudUploadAlt className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   Upload Profile Picture
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-gray-400 mb-4">
                   Drag and drop your image here, or click to browse
                 </p>
                 
@@ -212,7 +212,7 @@ const UploadProfilePic = () => {
                   <button
                     type="button"
                     onClick={openFileDialog}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white  transition-colors duration-200"
                   >
                     <FaImage className="h-4 w-4" />
                     Choose File
@@ -220,14 +220,14 @@ const UploadProfilePic = () => {
                   {/* <button
                     type="button"
                     onClick={openCamera}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white  transition-colors duration-200"
                   >
                     <FaCamera className="h-4 w-4" />
                     Take Photo
                   </button> */}
                 </div>
                 
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
+                <p className="text-xs text-gray-400 mt-4">
                   Supported formats: JPG, PNG, WebP (Max 5MB)
                 </p>
               </div>
@@ -254,7 +254,7 @@ const UploadProfilePic = () => {
 
             {/* Error Messages */}
             {imageError && (
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800  p-3">
                 <p className="text-sm text-red-600 dark:text-red-400 flex items-center">
                   <span className="mr-2">⚠</span>
                   {imageError}
@@ -262,7 +262,7 @@ const UploadProfilePic = () => {
               </div>
             )}
             {formik.touched.image && formik.errors.image && (
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800  p-3">
                 <p className="text-sm text-red-600 dark:text-red-400 flex items-center">
                   <span className="mr-2">⚠</span>
                   {formik.errors.image}
@@ -273,11 +273,11 @@ const UploadProfilePic = () => {
             {/* Upload Progress */}
             {uploadProgress > 0 && (
               <div className="space-y-2">
-                <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex justify-between text-sm text-gray-400">
                   <span>Uploading...</span>
                   <span>{uploadProgress}%</span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div className="w-full bg-gray-200 bg-white/5 rounded-full h-2">
                   <div
                     className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${uploadProgress}%` }}
@@ -292,7 +292,7 @@ const UploadProfilePic = () => {
                 <button
                   type="submit"
                   disabled={isLoading || mutation.isPending}
-                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-6  transition-all duration-200 transform hover:scale-[1.02] focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isLoading || mutation.isPending ? (
                     <div className="flex items-center justify-center">
@@ -306,7 +306,7 @@ const UploadProfilePic = () => {
                 <button
                   type="button"
                   onClick={removeImage}
-                  className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                  className="px-6 py-3 border border-white/20 border-white/20 text-gray-300  hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
                 >
                   Cancel
                 </button>
@@ -316,7 +316,7 @@ const UploadProfilePic = () => {
         </div>
 
         {/* Tips Section */}
-        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+        <div className="mt-8 bg-blue-50 dark:bg-blue-900/20  p-6 border border-blue-200 dark:border-blue-800">
           <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
             💡 Tips for the best profile picture
           </h3>

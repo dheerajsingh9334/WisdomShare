@@ -19,18 +19,18 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center">
+        <div className="min-h-screen bg-black text-white flex items-center justify-center">
           <div className="text-center max-w-md mx-auto p-6">
             <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">
               Something went wrong
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-gray-400 mb-4">
               The application encountered an error. Please refresh the page to
               try again.
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="px-6 py-2 bg-blue-600 text-white  hover:bg-blue-700"
             >
               Refresh Page
             </button>
@@ -39,7 +39,7 @@ class ErrorBoundary extends React.Component {
                 <summary className="cursor-pointer text-sm text-gray-500">
                   Error Details
                 </summary>
-                <pre className="mt-2 text-xs text-red-600 bg-red-50 p-2 rounded overflow-auto">
+                <pre className="mt-2 text-xs text-red-600 bg-red-50 p-2  overflow-auto">
                   {this.state.error?.toString()}
                 </pre>
               </details>

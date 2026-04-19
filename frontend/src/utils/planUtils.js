@@ -167,7 +167,7 @@ export const getPlanBadge = (userPlan) => {
   switch (tier) {
     case PLAN_TIERS.FREE:
       return { 
-        color: 'bg-gray-100 text-gray-800', 
+        color: 'bg-gray-100 text-gray-100', 
         text: 'Free Plan',
         icon: '📦'
       };
@@ -185,7 +185,7 @@ export const getPlanBadge = (userPlan) => {
       };
     default:
       return { 
-        color: 'bg-gray-100 text-gray-800', 
+        color: 'bg-gray-100 text-gray-100', 
         text: 'Free Plan',
         icon: '📦'
       };

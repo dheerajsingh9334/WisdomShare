@@ -14,11 +14,11 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="min-h-screen bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">Checking plan access...</p>
+            <p className="mt-4 text-gray-400">Checking plan access...</p>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
 
   if (error || !usageData?.usage) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div className="min-h-screen bg-black text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center text-red-600 dark:text-red-400">
             <p>Error loading plan information. Please try again.</p>
@@ -58,9 +58,9 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+    <div className="min-h-screen bg-black text-white py-12">
       <div className="container mx-auto px-4 max-w-2xl">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 text-center">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-8 text-center">
           {/* Warning Icon */}
           <div className="mb-6">
             <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto">
@@ -69,7 +69,7 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
           </div>
 
           {/* Title */}
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-3xl font-bold text-white mb-4">
             Plan Limit Reached
           </h1>
 
@@ -83,12 +83,12 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
                   ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300'
                   : plan.tier === 'premium'
                   ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
-                  : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                  : 'bg-gray-100 text-gray-700 bg-white/5 dark:text-gray-300'
               }`}>
                 {plan.tier === 'pro' ? 'PRO' : plan.tier === 'premium' ? 'PREMIUM' : 'FREE'}
               </span>
             </div>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-400">
               Current Plan: {plan.planName || 'Free Plan'}
             </p>
           </div>
@@ -96,11 +96,11 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
           {/* Usage Progress */}
           {!posts.unlimited && (
             <div className="mb-6">
-              <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+              <div className="flex items-center justify-between text-sm text-gray-400 mb-2">
                 <span>Post Usage</span>
                 <span>{posts.current}/{posts.limit}</span>
               </div>
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div className="w-full bg-gray-200 bg-white/5 rounded-full h-3">
                 <div 
                   className="h-3 rounded-full bg-red-500 transition-all duration-300"
                   style={{ width: '100%' }}
@@ -115,18 +115,18 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
           {/* Upgrade Options */}
           {upgradeRequired && (
             <div className="mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-xl font-semibold text-white mb-4">
                 Upgrade Your Plan
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {/* Premium Plan */}
-                <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-4 text-white">
+                <div className="bg-gradient-to-br from-green-500 to-green-600  p-4 text-white">
                   <h3 className="font-semibold mb-2">Premium</h3>
                   <p className="text-sm text-green-100 mb-2">Unlimited posts</p>
                   <p className="text-lg font-bold">$29/month</p>
                 </div>
                 {/* Pro Plan */}
-                <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-4 text-white">
+                <div className="bg-gradient-to-br from-indigo-500 to-indigo-600  p-4 text-white">
                   <h3 className="font-semibold mb-2">Pro</h3>
                   <p className="text-sm text-indigo-100 mb-2">Everything unlimited</p>
                   <p className="text-lg font-bold">$99/month</p>
@@ -139,21 +139,21 @@ const PlanAccessGuard = ({ children, feature = "create_post" }) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/dashboard/plan-management"
-              className="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              className="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white  hover:bg-green-700 transition-colors font-medium"
             >
               <FaCrown className="mr-2" />
               Manage Plan
             </Link>
             <Link
               to="/dashboard"
-              className="inline-flex items-center justify-center px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gray-600 text-white  hover:bg-gray-700 transition-colors font-medium"
             >
               Back to Dashboard
             </Link>
           </div>
 
           {/* Additional Info */}
-          <div className="mt-6 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-6 text-sm text-gray-400">
             <p>Need help? Contact our support team for assistance.</p>
           </div>
         </div>

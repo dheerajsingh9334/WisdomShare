@@ -205,20 +205,20 @@ const ChatPage = () => {
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <aside className="lg:col-span-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-hidden">
-          <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <aside className="lg:col-span-1  border border-white/10 border-white/10 bg-black/50 backdrop-blur-xl border border-white/10 text-white overflow-hidden">
+          <div className="px-4 py-3 border-b border-white/10 border-white/10">
+            <h2 className="text-lg font-semibold text-white">
               Conversations
             </h2>
           </div>
 
           <div className="max-h-[70vh] overflow-y-auto">
             {isLoadingConversations ? (
-              <p className="p-4 text-sm text-gray-500 dark:text-gray-400">
+              <p className="p-4 text-sm text-gray-400">
                 Loading conversations...
               </p>
             ) : normalizedConversations.length === 0 ? (
-              <p className="p-4 text-sm text-gray-500 dark:text-gray-400">
+              <p className="p-4 text-sm text-gray-400">
                 No conversations yet.
               </p>
             ) : (
@@ -228,7 +228,7 @@ const ChatPage = () => {
                 return (
                   <button
                     key={conversation.roomId}
-                    className={`w-full text-left px-4 py-3 border-b border-gray-100 dark:border-gray-700 transition-colors ${
+                    className={`w-full text-left px-4 py-3 border-b border-white/5 border-white/10 transition-colors ${
                       isActive
                         ? "bg-blue-50 dark:bg-blue-900/30"
                         : "hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -237,10 +237,10 @@ const ChatPage = () => {
                       dispatch(setSelectedConversation(conversation))
                     }
                   >
-                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
+                    <p className="text-sm font-semibold text-white truncate">
                       {conversation.peer?.username || "Unknown User"}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate mt-1">
+                    <p className="text-xs text-gray-400 truncate mt-1">
                       {conversation.latestMessage || "No messages yet"}
                     </p>
                   </button>
@@ -250,24 +250,24 @@ const ChatPage = () => {
           </div>
         </aside>
 
-        <section className="lg:col-span-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-hidden flex flex-col min-h-[70vh]">
-          <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+        <section className="lg:col-span-2  border border-white/10 border-white/10 bg-black/50 backdrop-blur-xl border border-white/10 text-white overflow-hidden flex flex-col min-h-[70vh]">
+          <div className="px-4 py-3 border-b border-white/10 border-white/10">
+            <h3 className="text-lg font-semibold text-white">
               {selectedConversation?.peer?.username || "Select a conversation"}
             </h3>
           </div>
 
-          <div className="flex-1 p-4 space-y-3 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+          <div className="flex-1 p-4 space-y-3 overflow-y-auto bg-black text-white">
             {!activeRoomId ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-400">
                 Select a conversation from the left.
               </p>
             ) : isLoadingMessages ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-400">
                 Loading messages...
               </p>
             ) : messages.length === 0 ? (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-400">
                 No messages yet. Start the conversation.
               </p>
             ) : (
@@ -279,10 +279,10 @@ const ChatPage = () => {
                     className={`flex ${mine ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
+                      className={`max-w-[80%] px-3 py-2  text-sm ${
                         mine
                           ? "bg-blue-600 text-white"
-                          : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700"
+                          : "bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white border border-white/10 border-white/10"
                       }`}
                     >
                       <p>{msg.message}</p>
@@ -298,7 +298,7 @@ const ChatPage = () => {
             )}
           </div>
 
-          <div className="p-3 border-t border-gray-200 dark:border-gray-700">
+          <div className="p-3 border-t border-white/10 border-white/10">
             {sendMessageMutation.isError && (
               <p className="mb-2 text-xs text-red-500">
                 {sendMessageMutation.error?.response?.data?.message ||
@@ -315,7 +315,7 @@ const ChatPage = () => {
                   if (e.key === "Enter") handleSend();
                 }}
                 placeholder="Type a message"
-                className="flex-1 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100"
+                className="flex-1  border border-white/20 border-white/20 bg-black/50 backdrop-blur-xl border border-white/10 text-white px-3 py-2 text-sm text-white"
                 disabled={!activeRoomId}
               />
               <button
@@ -325,7 +325,7 @@ const ChatPage = () => {
                   !localMessage.trim() ||
                   sendMessageMutation.isPending
                 }
-                className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2  bg-blue-600 text-white text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Send
               </button>

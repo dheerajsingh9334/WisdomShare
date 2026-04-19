@@ -30,7 +30,7 @@ const FeatureGate = ({
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-4">
-        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-none h-6 w-6 border-b-2 border-white"></div>
       </div>
     );
   }
@@ -48,45 +48,31 @@ const FeatureGate = ({
   }
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center">
-      <div className="mb-4">
-        {feature === 'api_access' || feature === 'white_label_solution' ? (
-          <FaGem className="h-12 w-12 text-purple-500 mx-auto" />
-        ) : (
-          <FaCrown className="h-12 w-12 text-yellow-500 mx-auto" />
-        )}
+    <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-8 text-center rounded-none relative overflow-hidden group">
+      <div className="absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="mb-6 relative z-10">
+        <FaLock className="h-12 w-12 text-white/20 mx-auto" />
       </div>
       
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+      <h3 className="text-xl font-bold text-white mb-3 tracking-tight uppercase relative z-10">
         {getFeatureTitle(feature)} 
       </h3>
       
-      <p className="text-gray-600 dark:text-gray-300 mb-4">
+      <p className="text-gray-400 mb-8 max-w-sm mx-auto leading-relaxed relative z-10">
         {getFeatureDescription(feature, userPlan)}
       </p>
 
       {showUpgrade && (
-        <div className="space-y-2">
-          {getRequiredPlan(feature) === PLAN_TIERS.PREMIUM ? (
-            <Link
-              to={redirectTo}
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-colors font-medium"
-            >
-              <FaCrown className="mr-2" />
-              Upgrade to Premium
-            </Link>
-          ) : (
-            <Link
-              to={redirectTo}
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors font-medium"
-            >
-              <FaGem className="mr-2" />
-              Upgrade to Pro
-            </Link>
-          )}
+        <div className="space-y-4 relative z-10">
+          <Link
+            to={redirectTo}
+            className="inline-flex items-center px-8 py-3 bg-white text-black hover:bg-gray-200 transition-all font-bold uppercase tracking-widest text-xs rounded-none"
+          >
+            Upgrade to Unlock
+          </Link>
           
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Unlock this feature and many more
+          <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em]">
+            Elevate your wisdom share experience
           </p>
         </div>
       )}
@@ -101,21 +87,21 @@ export const PlanBadge = ({ plan, className = "" }) => {
   const getBadgeStyle = (planTier) => {
     switch (planTier) {
       case PLAN_TIERS.PRO:
-        return "bg-gradient-to-r from-purple-600 to-pink-600 text-white";
+        return "bg-white text-black border-white";
       case PLAN_TIERS.PREMIUM:
-        return "bg-gradient-to-r from-blue-600 to-purple-600 text-white";
+        return "bg-white/20 text-white border-white/20";
       case PLAN_TIERS.FREE:
       default:
-        return "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300";
+        return "bg-white/5 text-gray-400 border-white/10";
     }
   };
 
   const getIcon = (planTier) => {
     switch (planTier) {
       case PLAN_TIERS.PRO:
-        return <FaGem className="mr-1" />;
+        return <FaGem className="mr-1.5 h-3 w-3" />;
       case PLAN_TIERS.PREMIUM:
-        return <FaCrown className="mr-1" />;
+        return <FaCrown className="mr-1.5 h-3 w-3" />;
       case PLAN_TIERS.FREE:
       default:
         return null;
@@ -123,7 +109,7 @@ export const PlanBadge = ({ plan, className = "" }) => {
   };
 
   return (
-    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getBadgeStyle(plan)} ${className}`}>
+    <span className={`inline-flex items-center px-3 py-1 border rounded-none text-[10px] font-bold uppercase tracking-wider ${getBadgeStyle(plan)} ${className}`}>
       {getIcon(plan)}
       {plan?.charAt(0)?.toUpperCase() + plan?.slice(1) || 'Free'}
     </span>
@@ -135,15 +121,18 @@ export const PlanBadge = ({ plan, className = "" }) => {
  */
 export const FeatureLock = ({ size = "sm" }) => {
   const sizeClasses = {
-    sm: "h-4 w-4",
-    md: "h-6 w-6", 
-    lg: "h-8 w-8"
+    sm: "h-3 w-3",
+    md: "h-5 w-5", 
+    lg: "h-7 w-7"
   };
 
   return (
-    <FaLock className={`text-gray-400 dark:text-gray-500 ${sizeClasses[size]}`} />
+    <div className="inline-flex items-center justify-center p-1 bg-white/5 border border-white/10 rounded-none">
+      <FaLock className={`text-white/60 ${sizeClasses[size]}`} />
+    </div>
   );
 };
+ Riverside
 
 // Helper functions
 const getFeatureTitle = (feature) => {

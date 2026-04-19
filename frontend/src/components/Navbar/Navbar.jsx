@@ -92,7 +92,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo with Slogan */}
@@ -101,10 +101,10 @@ const Navbar = () => {
             className="flex flex-col"
             onClick={closeMobileMenu}
           >
-            <div className="text-xl sm:text-2xl font-serif font-bold text-gray-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200">
+            <div className="text-xl sm:text-2xl font-serif font-bold text-white hover:text-green-600 dark:hover:text-green-400 transition-colors duration-200">
               WisdomShare
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+            <div className="text-xs text-gray-400 font-medium">
               Share Knowledge, Inspire Growth
             </div>
           </Link>
@@ -121,7 +121,7 @@ const Navbar = () => {
                 {/* Write Button */}
                 <Link
                   to="/dashboard/create-post"
-                  className="flex items-center px-3 py-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                  className="flex items-center px-3 py-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                 >
                   <FaPen className="mr-2 w-4 h-4" />
                   <span>Write</span>
@@ -130,7 +130,7 @@ const Navbar = () => {
                 {/* Notifications */}
                 <Link
                   to="/dashboard/notifications"
-                  className="relative p-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                  className="relative p-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200"
                   title="Notifications"
                 >
                   <FaBell className="w-4 h-4" />
@@ -147,7 +147,7 @@ const Navbar = () => {
                 {/* Dark Mode Toggle */}
                 <button
                   onClick={toggleDarkMode}
-                  className="p-2 rounded-lg text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
+                  className="p-2  text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
                   aria-label="Toggle dark mode"
                   title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 >
@@ -157,7 +157,7 @@ const Navbar = () => {
                 {/* Profile Dropdown */}
                 <div className="relative" ref={profileDropdownRef}>
                   <button
-                    className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                    className="w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden border-2 border-white/10 border-white/20 hover:border-green-500 dark:hover:border-green-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
                     onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
                     title="Profile menu"
                   >
@@ -169,21 +169,21 @@ const Navbar = () => {
                   </button>
 
                   {profileDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50">
-                      <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">{userAuth.username}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">{userAuth.email}</p>
+                    <div className="absolute right-0 mt-2 w-48 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50">
+                      <div className="px-4 py-2 border-b border-white/10 border-white/10">
+                        <p className="text-sm font-medium text-white">{userAuth.username}</p>
+                        <p className="text-xs text-gray-400">{userAuth.email}</p>
                       </div>
                       <Link
                         to="/dashboard"
-                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setProfileDropdownOpen(false)}
                       >
                         Dashboard
                       </Link>
                       <Link
                         to="/dashboard/profile"
-                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setProfileDropdownOpen(false)}
                       >
                         Profile
@@ -203,7 +203,7 @@ const Navbar = () => {
                 {/* Dark Mode Toggle for non-authenticated users */}
                 <button
                   onClick={toggleDarkMode}
-                  className="p-2 rounded-lg text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
+                  className="p-2  text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
                   aria-label="Toggle dark mode"
                   title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 >
@@ -212,13 +212,13 @@ const Navbar = () => {
                 
                 <Link
                   to="/login"
-                  className="px-3 py-2 text-sm text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                  className="px-3 py-2 text-sm text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="px-3 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 font-medium"
+                  className="px-3 py-2 text-sm bg-green-600 text-white  hover:bg-green-700 transition-all duration-200 font-medium"
                 >
                   Sign Up
                 </Link>
@@ -233,7 +233,7 @@ const Navbar = () => {
               <button
                 ref={searchRef}
                 onClick={toggleSearch}
-                className={`p-2 rounded-lg transition-all duration-200 ${
+                className={`p-2  transition-all duration-200 ${
                   searchOpen 
                     ? 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30' 
                     : 'text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -248,7 +248,7 @@ const Navbar = () => {
             {userAuth && (
               <Link
                 to="/dashboard/notifications"
-                className="relative p-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+                className="relative p-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200"
                 title="Notifications"
                 onClick={closeMobileMenu}
               >
@@ -264,7 +264,7 @@ const Navbar = () => {
             {/* Mobile Dark Mode - For all users */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
+              className="p-2  text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200"
               aria-label="Toggle dark mode"
               title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
@@ -274,7 +274,7 @@ const Navbar = () => {
             {/* Mobile Menu - For all users */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200"
+              className="p-2 text-gray-600 hover:text-green-600 dark:text-gray-300 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
@@ -284,7 +284,7 @@ const Navbar = () => {
 
         {/* Enhanced Mobile Search Bar - Full width below navbar */}
         {searchOpen && userAuth && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <div className="md:hidden py-4 border-t border-white/10 border-white/10 bg-black text-white">
             <div className="relative">
               <SearchBar 
                 placeholder="Search posts, users, or content..." 
@@ -294,7 +294,7 @@ const Navbar = () => {
               <div className="mt-3 text-center">
                 <button
                   onClick={() => setSearchOpen(false)}
-                  className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                  className="text-sm text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
                 >
                   Close search
                 </button>
@@ -307,30 +307,30 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <div 
             ref={mobileMenuRef}
-            className="md:hidden absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg"
+            className="md:hidden absolute top-full left-0 right-0 bg-black text-white border-t border-white/10 border-white/10 shadow-lg"
           >
             <div className="px-4 py-4 space-y-4">
               {userAuth ? (
                 <>
                   {/* User Info */}
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="flex items-center space-x-3 p-3 bg-gray-50 bg-black/60 backdrop-blur-xl border border-white/10 ">
                     <Avatar 
                       user={userAuth} 
                       size="md" 
                       className="w-12 h-12"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                      <p className="text-sm font-medium text-white truncate">
                         {userAuth.username}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                      <p className="text-xs text-gray-400 truncate">
                         {userAuth.email}
                       </p>
                     </div>
                   </div>
 
                   {/* Mobile Plan Status */}
-                  <div className="px-3 py-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="px-3 py-2 bg-gray-50 bg-black/60 backdrop-blur-xl border border-white/10 ">
                     <UserPlanStatus />
                   </div>
 
@@ -338,14 +338,14 @@ const Navbar = () => {
                   <div className="space-y-1">
                     <Link
                       to="/dashboard"
-                      className="flex items-center px-3 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                      className="flex items-center px-3 py-3 text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                       onClick={closeMobileMenu}
                     >
                       Dashboard
                     </Link>
                     <Link
                       to="/dashboard/create-post"
-                      className="flex items-center px-3 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                      className="flex items-center px-3 py-3 text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                       onClick={closeMobileMenu}
                     >
                       <FaPen className="mr-3 w-4 h-4" />
@@ -353,14 +353,14 @@ const Navbar = () => {
                     </Link>
                     <Link
                       to="/dashboard/profile"
-                      className="flex items-center px-3 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                      className="flex items-center px-3 py-3 text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                       onClick={closeMobileMenu}
                     >
                       Profile
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="flex items-center w-full px-3 py-3 text-left text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                      className="flex items-center w-full px-3 py-3 text-left text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                     >
                       Logout
                     </button>
@@ -372,14 +372,14 @@ const Navbar = () => {
                   <div className="space-y-3">
                     <Link
                       to="/login"
-                      className="flex items-center justify-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all duration-200 font-medium"
+                      className="flex items-center justify-center px-4 py-3 text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800  transition-all duration-200 font-medium"
                       onClick={closeMobileMenu}
                     >
                       Login
                     </Link>
                     <Link
                       to="/register"
-                      className="flex items-center justify-center px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 font-medium"
+                      className="flex items-center justify-center px-4 py-3 bg-green-600 text-white  hover:bg-green-700 transition-all duration-200 font-medium"
                       onClick={closeMobileMenu}
                     >
                       Sign Up

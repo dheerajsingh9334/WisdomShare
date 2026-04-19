@@ -100,7 +100,7 @@ export function GlassmorphismListenAppBlock() {
                 {highlights.map((highlight) => (
                   <div
                     key={highlight.title}
-                    className="group h-full rounded-3xl border border-border/40 bg-background/60 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-border"
+                    className="group h-full  border border-border/40 bg-background/60 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-border"
                   >
                     <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-border/40 bg-foreground/10 text-foreground/80">
                       <Headphones className="h-4 w-4" />
@@ -118,17 +118,17 @@ export function GlassmorphismListenAppBlock() {
 
             <div className="space-y-6">
               {isLoading ? (
-                <div className="flex h-64 items-center justify-center rounded-3xl border border-border/40 bg-background/70 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
+                <div className="flex h-64 items-center justify-center  border border-border/40 bg-background/70 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
                    <Loader2 className="h-8 w-8 animate-spin text-foreground/50" />
                 </div>
               ) : displayPosts.length === 0 ? (
-                <div className="flex h-64 items-center justify-center rounded-3xl border border-border/40 bg-background/70 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
+                <div className="flex h-64 items-center justify-center  border border-border/40 bg-background/70 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
                    <p className="text-foreground/60">No posts available right now.</p>
                 </div>
               ) : (
-                <div className="rounded-3xl border border-border/40 bg-background/70 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
+                <div className=" border border-border/40 bg-background/70 p-6 shadow-[0_25px_80px_rgba(15,23,42,0.35)] backdrop-blur-2xl">
                   <div className="flex items-start gap-4">
-                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-2xl border border-border/40 bg-foreground/10">
+                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden  border border-border/40 bg-foreground/10">
                       <img src={activeImage} alt={activeTrack.title} className="h-full w-full object-cover" />
                     </div>
                     <div className="flex-1 space-y-4 min-w-0">
@@ -234,7 +234,7 @@ export function GlassmorphismListenAppBlock() {
                     </div>
                   </div>
 
-                  <div className="mt-8 overflow-hidden rounded-3xl border border-border/40 bg-background/80 shadow-[0_20px_60px_rgba(15,23,42,0.35)] backdrop-blur">
+                  <div className="mt-8 overflow-hidden  border border-border/40 bg-background/80 shadow-[0_20px_60px_rgba(15,23,42,0.35)] backdrop-blur">
                     <img 
                       src={activeImage} 
                       alt="Current Track Visualizer"
@@ -260,7 +260,7 @@ export function GlassmorphismListenAppBlock() {
                            setIsPlaying(true);
                         }}
                         aria-pressed={isActive}
-                        className={`group flex w-full items-center gap-4 rounded-3xl border border-border/40 bg-background/60 p-5 text-left backdrop-blur-xl transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 ${
+                        className={`group flex w-full items-center gap-4  border border-border/40 bg-background/60 p-5 text-left backdrop-blur-xl transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/50 ${
                           isActive
                             ? "border-foreground/40 bg-foreground/[0.08] shadow-[0_20px_60px_rgba(15,23,42,0.35)]"
                             : "hover:-translate-y-1 hover:border-border/60"

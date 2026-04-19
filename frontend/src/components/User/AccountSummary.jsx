@@ -49,58 +49,58 @@ const AccountSummaryDashboard = () => {
   return (
     <div className={`${r.spacing.containerSmall} space-y-4 sm:space-y-6`}>
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <h1 className={`${r.text.h1} font-bold text-gray-900 dark:text-white`}>
+        <h1 className={`${r.text.h1} font-bold text-white`}>
           Welcome back, {data?.user?.username}! 👋
         </h1>
       </div>
 
       {/* Quick Actions Grid */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-3 sm:p-4 md:p-6 border border-gray-200 dark:border-gray-700">
-        <h3 className={`${r.text.h4} font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4`}>
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow p-3 sm:p-4 md:p-6 border border-white/10 border-white/10">
+        <h3 className={`${r.text.h4} font-semibold text-white mb-3 sm:mb-4`}>
           Quick Actions
         </h3>
         <div className={`${r.layout.grid3} gap-3 sm:gap-4`}>
-          <Link to="/dashboard/create-post" className="p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
+          <Link to="/dashboard/create-post" className="p-3 sm:p-4  border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
             <div className="flex items-start justify-between mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl">✍️</span>
             </div>
-            <h4 className={`font-semibold text-gray-900 dark:text-white mb-1 ${r.text.bodySmall}`}>
+            <h4 className={`font-semibold text-white mb-1 ${r.text.bodySmall}`}>
               Create Post
             </h4>
-            <p className={`${r.text.bodySmall} text-gray-600 dark:text-gray-400 mb-2 sm:mb-3`}>
+            <p className={`${r.text.bodySmall} text-gray-400 mb-2 sm:mb-3`}>
               Share your thoughts with the community
             </p>
-            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm rounded-lg transition duration-200">
+            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm  transition duration-200">
               Create
             </div>
           </Link>
 
-          <Link to="/dashboard/analytics" className="p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
+          <Link to="/dashboard/analytics" className="p-3 sm:p-4  border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
             <div className="flex items-start justify-between mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl">📊</span>
             </div>
-            <h4 className={`font-semibold text-gray-900 dark:text-white mb-1 ${r.text.bodySmall}`}>
+            <h4 className={`font-semibold text-white mb-1 ${r.text.bodySmall}`}>
               Analytics
             </h4>
-            <p className={`${r.text.bodySmall} text-gray-600 dark:text-gray-400 mb-2 sm:mb-3`}>
+            <p className={`${r.text.bodySmall} text-gray-400 mb-2 sm:mb-3`}>
               View your content performance
             </p>
-            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm rounded-lg transition duration-200">
+            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm  transition duration-200">
               View
             </div>
           </Link>
 
-          <Link to="/dashboard/posts" className="p-3 sm:p-4 rounded-lg border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
+          <Link to="/dashboard/posts" className="p-3 sm:p-4  border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
             <div className="flex items-start justify-between mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl">📝</span>
             </div>
-            <h4 className={`font-semibold text-gray-900 dark:text-white mb-1 ${r.text.bodySmall}`}>
+            <h4 className={`font-semibold text-white mb-1 ${r.text.bodySmall}`}>
               My Posts
             </h4>
-            <p className={`${r.text.bodySmall} text-gray-600 dark:text-gray-400 mb-2 sm:mb-3`}>
+            <p className={`${r.text.bodySmall} text-gray-400 mb-2 sm:mb-3`}>
               Manage your published content
             </p>
-            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm rounded-lg transition duration-200">
+            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm  transition duration-200">
               Manage
             </div>
           </Link>
@@ -110,7 +110,7 @@ const AccountSummaryDashboard = () => {
       {/* Stats Grid */}
       <div className={`${r.layout.grid4} gap-3 sm:gap-4`}>
         {stats.map((stat, index) => (
-          <div key={index} className={`${stat.bgColor} text-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow duration-200`}>
+          <div key={index} className={`${stat.bgColor} text-white  shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow duration-200`}>
             <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="text-xl sm:text-2xl">{stat.icon}</div>
               <div>

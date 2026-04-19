@@ -30,8 +30,8 @@ const AddEmailComponent = () => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-semibold text-center text-gray-700 bg-white dark:bg-gray-900 dark:text-white">
+      <div className="bg-black/40 backdrop-blur-md text-white p-8  shadow-md w-full max-w-sm">
+        <h2 className="text-2xl font-semibold text-center text-gray-700 bg-black text-white dark:text-white">
           Add Your Email
         </h2>
         {/* Show messages */}
@@ -56,7 +56,7 @@ const AddEmailComponent = () => {
             type="email"
             id="email"
             {...formik.getFieldProps("email")}
-            className="w-full px-3 py-2 mt-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 bg-white dark:bg-gray-900 dark:text-white"
+            className="w-full px-3 py-2 mt-2 border  focus:outline-none focus:ring focus:border-blue-300 bg-black text-white dark:text-white"
           />
           {formik.touched.email && formik.errors.email && (
             <div className="text-red-500 text-sm mt-1">
@@ -65,7 +65,7 @@ const AddEmailComponent = () => {
           )}
           <button
             type="submit"
-            className="w-full px-3 py-2 mt-4 text-white bg-blue-600 rounded-md focus:bg-blue-700 focus:outline-none bg-white dark:bg-gray-900 dark:text-white"
+            className="w-full px-3 py-2 mt-4 text-white bg-blue-600  focus:bg-blue-700 focus:outline-none bg-black text-white dark:text-white"
           >
             Add Email
           </button>

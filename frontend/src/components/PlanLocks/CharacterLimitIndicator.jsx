@@ -13,7 +13,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
   const getStatusColor = () => {
     if (status.isOverLimit) return 'text-red-600 dark:text-red-400';
     if (status.isNearLimit) return 'text-orange-600 dark:text-orange-400';
-    return 'text-gray-600 dark:text-gray-400';
+    return 'text-gray-400';
   };
 
   const getBarColor = () => {
@@ -25,13 +25,13 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
   const getBackgroundColor = () => {
     if (status.isOverLimit) return 'bg-red-100 dark:bg-red-900/20';
     if (status.isNearLimit) return 'bg-orange-100 dark:bg-orange-900/20';
-    return 'bg-gray-100 dark:bg-gray-800';
+    return 'bg-white/5 text-white';
   };
 
   return (
     <div className={`${className}`}>
       {/* Character Count Display */}
-      <div className={`flex items-center justify-between p-3 rounded-lg ${getBackgroundColor()}`}>
+      <div className={`flex items-center justify-between p-3  ${getBackgroundColor()}`}>
         <div className="flex items-center space-x-2">
           {status.isOverLimit && <FaTimes className="text-red-500" />}
           {status.isNearLimit && !status.isOverLimit && <FaExclamationTriangle className="text-orange-500" />}
@@ -48,7 +48,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
             </span>
             <Link
               to="/dashboard/billing"
-              className="flex items-center space-x-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors"
+              className="flex items-center space-x-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1  text-xs font-medium transition-colors"
             >
               <FaArrowUp className="text-xs" />
               <span>Upgrade</span>
@@ -59,7 +59,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
 
       {/* Progress Bar */}
       <div className="mt-2">
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+        <div className="w-full bg-gray-200 bg-white/5 rounded-full h-2">
           <div
             className={`h-2 rounded-full transition-all duration-300 ${getBarColor()}`}
             style={{ width: `${Math.min(status.percentage, 100)}%` }}
@@ -69,7 +69,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
 
       {/* Over Limit Warning */}
       {status.isOverLimit && (
-        <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+        <div className="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 ">
           <div className="flex items-start space-x-2">
             <FaTimes className="text-red-500 mt-0.5 flex-shrink-0" />
             <div>
@@ -88,7 +88,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
                 >
                   View Upgrade Options →
                 </Link>
-                <span className="text-gray-600 dark:text-gray-400">
+                <span className="text-gray-400">
                   {userPlan === PLAN_TIERS.FREE ? 'Premium: 5,000 chars' : 'Pro: 10,000 chars'}
                 </span>
               </div>
@@ -99,7 +99,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
 
       {/* Near Limit Warning */}
       {status.isNearLimit && !status.isOverLimit && (
-        <div className="mt-3 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
+        <div className="mt-3 p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 ">
           <div className="flex items-start space-x-2">
             <FaExclamationTriangle className="text-orange-500 mt-0.5 flex-shrink-0" />
             <div>
@@ -123,7 +123,7 @@ const CharacterLimitIndicator = ({ userPlan, content = '', className = '' }) => 
 
       {/* Plan Benefits */}
       {!status.isOverLimit && status.percentage < 50 && (
-        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
+        <div className="mt-2 text-xs text-gray-400 text-center">
           {userPlan === PLAN_TIERS.FREE && (
             <span>Upgrade to Premium for 5,000 characters or Pro for 10,000 characters</span>
           )}

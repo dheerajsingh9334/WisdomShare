@@ -67,8 +67,8 @@ const TrendingPosts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-10">
+    <div className="min-h-screen bg-black text-white px-2">
+      <div className="bg-black/60 backdrop-blur-xl border-b border-white/10 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -90,7 +90,7 @@ const TrendingPosts = () => {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {data?.posts?.length > 0 && (
           <div className="mb-8 text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
+            <div className="inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-none">
               <span className="text-sm text-gray-600 dark:text-gray-300">
                 Showing <span className="font-semibold text-blue-600">{data.posts.length}</span> trending posts
               </span>
@@ -103,15 +103,15 @@ const TrendingPosts = () => {
             const imageUrl = typeof post.image === "string" ? post.image : post.image?.url || "";
             const isSaved = profileData?.user?.savedPosts?.some((id) => id?.toString() === post._id?.toString());
             return (
-              <article key={post._id} className="group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600">
+              <article key={post._id} className="group bg-white/5 backdrop-blur-xl border border-white/10 overflow-hidden hover:scale-[1.02] transition-all duration-300 hover:border-white/30 rounded-none">
                 {/* Trending badge */}
                 <div className="relative">
                   {index < 3 && (
                     <div className="absolute top-3 left-3 z-10">
-                      <div className={`px-3 py-1 rounded-full text-xs font-bold text-white ${
-                        index === 0 ? 'bg-yellow-500' : 
-                        index === 1 ? 'bg-gray-400' : 
-                        'bg-orange-500'
+                      <div className={`px-3 py-1 text-xs font-bold text-white ${
+                        index === 0 ? 'bg-yellow-600' : 
+                        index === 1 ? 'bg-gray-600' : 
+                        'bg-orange-600'
                       }`}>
                         #{index + 1} Trending
                       </div>
@@ -131,10 +131,10 @@ const TrendingPosts = () => {
                         <button
                           onClick={() => handleSave(post._id, isSaved)}
                           disabled={savePostMutation.isPending || unsavePostMutation.isPending}
-                          className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all duration-200 ${
+                          className={`absolute top-3 right-3 p-2 rounded-none backdrop-blur-md transition-all duration-200 ${
                             isSaved 
                               ? 'bg-blue-600 text-white shadow-lg' 
-                              : 'bg-white/90 text-gray-700 hover:text-blue-600 hover:bg-white shadow-md'
+                              : 'bg-white/90 text-gray-700 hover:text-blue-600 hover:bg-black/40 backdrop-blur-md text-white shadow-md'
                           }`}
                           title={isSaved ? 'Unsave post' : 'Save post'}
                         >
@@ -152,7 +152,7 @@ const TrendingPosts = () => {
                       <Avatar user={post.author} size="sm" />
                     </Link>
                     <div className="flex-1 min-w-0">
-                      <Link to={`/user/${post.author?._id}`} className="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 transition-colors truncate block">
+                      <Link to={`/user/${post.author?._id}`} className="text-sm font-semibold text-white hover:text-blue-600 transition-colors truncate block">
                         {post.author?.username || 'Anonymous'}
                       </Link>
                       <div className="text-xs text-gray-500 flex items-center">
@@ -168,7 +168,7 @@ const TrendingPosts = () => {
 
                   {/* Title */}
                   <Link to={`/posts/${post._id}`}>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
+                    <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
                       {post.title || 'Untitled'}
                     </h3>
                   </Link>
@@ -176,14 +176,14 @@ const TrendingPosts = () => {
                   {/* Category */}
                   {post.category?.categoryName && (
                     <div className="mb-4">
-                      <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-200 text-xs font-semibold rounded-full border border-blue-200/50 dark:border-blue-700/50">
+                      <span className="inline-flex items-center px-3 py-1 bg-white/10 text-white text-xs font-semibold rounded-none border border-white/10">
                         {post.category.categoryName}
                       </span>
                     </div>
                   )}
 
                   {/* Stats */}
-                  <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 pt-3 border-t border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center justify-between text-sm text-gray-400 pt-3 border-t border-white/5 border-white/10">
                     <div className="flex items-center space-x-4">
                       <span className="flex items-center gap-1 hover:text-blue-600 transition-colors">
                         <FaEye className="text-blue-500" /> 
@@ -217,8 +217,8 @@ const TrendingPosts = () => {
         {(!data?.posts || data.posts.length === 0) && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">📈</div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No trending posts yet</h3>
-            <p className="text-gray-600 dark:text-gray-400">Check back later for the latest trending content!</p>
+            <h3 className="text-xl font-semibold text-white mb-2">No trending posts yet</h3>
+            <p className="text-gray-400">Check back later for the latest trending content!</p>
           </div>
         )}
       </div>

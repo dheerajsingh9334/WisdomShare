@@ -81,7 +81,7 @@ const UserProfile = () => {
 
   if (isLoading)
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-300">Loading profile...</p>
@@ -91,7 +91,7 @@ const UserProfile = () => {
 
   if (isError)
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <p className="text-red-500">{error.message}</p>
       </div>
     );
@@ -102,15 +102,15 @@ const UserProfile = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 border-white/10">
         <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div className="flex items-center gap-6">
               <Avatar user={user} size="xl" />
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-3xl font-bold text-white">
                   {user?.username}
                 </h1>
                 <p className="text-gray-600 dark:text-gray-300">
@@ -167,7 +167,7 @@ const UserProfile = () => {
                     to={`/user/${userId}/followers`}
                     className="hover:underline"
                   >
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-white">
                       {user?.followers?.length || 0}
                     </span>{" "}
                     followers
@@ -176,13 +176,13 @@ const UserProfile = () => {
                     to={`/user/${userId}/following`}
                     className="hover:underline"
                   >
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-white">
                       {user?.following?.length || 0}
                     </span>{" "}
                     following
                   </Link>
                   <span>
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-white">
                       {user?.posts?.length || 0}
                     </span>{" "}
                     posts
@@ -192,21 +192,21 @@ const UserProfile = () => {
                 <div className="flex flex-wrap items-center gap-3 mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                   <span className="inline-flex items-center gap-1">
                     <FaHeart className="text-rose-500" />
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-white">
                       {profileStats.totalLikes}
                     </span>{" "}
                     likes
                   </span>
                   <span className="inline-flex items-center gap-1">
                     <FaComment className="text-green-600" />
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-white">
                       {profileStats.totalComments}
                     </span>{" "}
                     comments
                   </span>
                   <span className="inline-flex items-center gap-1">
                     <FaEye className="text-blue-600" />
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="font-semibold text-white">
                       {profileStats.totalViews}
                     </span>{" "}
                     views
@@ -219,7 +219,7 @@ const UserProfile = () => {
               {/* Dark Mode Toggle - Always visible */}
               <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="p-2  hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 title="Toggle dark mode"
               >
                 {isDarkMode ? (
@@ -241,13 +241,13 @@ const UserProfile = () => {
                   />
                   <Link
                     to={`/user/${userId}/followers`}
-                    className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    className="px-4 py-2  border border-white/20 border-white/20 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
                   >
                     Followers
                   </Link>
                   <Link
                     to={`/chat?userId=${user?._id}&username=${encodeURIComponent(user?.username || "User")}`}
-                    className="px-4 py-2 rounded-lg border border-blue-300 bg-blue-50 text-blue-700 text-sm hover:bg-blue-100 dark:border-blue-500/50 dark:bg-blue-900/30 dark:text-blue-200 dark:hover:bg-blue-900/50 inline-flex items-center gap-2"
+                    className="px-4 py-2  border border-blue-300 bg-blue-50 text-blue-700 text-sm hover:bg-blue-100 dark:border-blue-500/50 dark:bg-blue-900/30 dark:text-blue-200 dark:hover:bg-blue-900/50 inline-flex items-center gap-2"
                   >
                     <FaPaperPlane className="h-3.5 w-3.5" />
                     Chat
@@ -274,9 +274,9 @@ const UserProfile = () => {
                 <Link
                   key={post._id}
                   to={`/posts/${post._id}`}
-                  className="group block bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all"
+                  className="group block bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10 overflow-hidden  shadow-sm hover:shadow-md transition-all"
                 >
-                  <div className="relative aspect-square bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                  <div className="relative aspect-square bg-gray-100 bg-black overflow-hidden">
                     {imageUrl ? (
                       <img
                         src={imageUrl}
@@ -302,10 +302,10 @@ const UserProfile = () => {
                   </div>
 
                   <div className="p-3">
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-1">
+                    <h3 className="text-sm font-semibold text-white line-clamp-1">
                       {post.title || "Untitled Post"}
                     </h3>
-                    <div className="mt-2 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                    <div className="mt-2 flex items-center justify-between text-xs text-gray-400">
                       <span className="inline-flex items-center gap-1">
                         <FaHeart /> {post.likes?.length || 0}
                       </span>
@@ -316,7 +316,7 @@ const UserProfile = () => {
                         <FaEye /> {post.viewsCount || post.viewers?.length || 0}
                       </span>
                     </div>
-                    <p className="mt-2 text-[11px] text-gray-500 dark:text-gray-400">
+                    <p className="mt-2 text-[11px] text-gray-400">
                       {post.createdAt
                         ? new Date(post.createdAt).toLocaleDateString()
                         : ""}

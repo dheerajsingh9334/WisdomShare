@@ -20,7 +20,7 @@ const EmailVerificationPrompt = ({ message = "Please verify your email to perfor
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-xl max-w-md w-full p-6">
         <div className="text-center">
           {/* Icon */}
           <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 dark:bg-yellow-900/30 mb-4">
@@ -28,7 +28,7 @@ const EmailVerificationPrompt = ({ message = "Please verify your email to perfor
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+          <h3 className="text-lg font-medium text-white mb-2">
             Email Verification Required
           </h3>
 
@@ -42,7 +42,7 @@ const EmailVerificationPrompt = ({ message = "Please verify your email to perfor
             <button
               onClick={handleResendEmail}
               disabled={resendMutation.isPending}
-              className="w-full inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+              className="w-full inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
             >
               <FaEnvelope className="mr-2" />
               {resendMutation.isPending ? 'Sending...' : 'Resend Verification Email'}
@@ -51,7 +51,7 @@ const EmailVerificationPrompt = ({ message = "Please verify your email to perfor
             {onClose && (
               <button
                 onClick={onClose}
-                className="w-full inline-flex items-center justify-center px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm font-medium"
+                className="w-full inline-flex items-center justify-center px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200  hover:bg-gray-400 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm font-medium"
               >
                 Close
               </button>
@@ -59,7 +59,7 @@ const EmailVerificationPrompt = ({ message = "Please verify your email to perfor
           </div>
 
           {/* Additional Info */}
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
+          <p className="text-xs text-gray-400 mt-4">
             Check your spam folder if you don&apos;t see the email within a few minutes.
           </p>
         </div>

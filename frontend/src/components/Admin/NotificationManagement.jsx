@@ -235,7 +235,7 @@ const NotificationManagement = () => {
   return (
     <div className="p-2 sm:p-3 md:p-4 lg:p-6">
       <div className="mb-4 sm:mb-6">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">Notification Management</h2>
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">Notification Management</h2>
         <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Send notifications to individual users or broadcast to all users</p>
         <div className="mt-2 flex flex-wrap gap-2 text-xs sm:text-sm">
           <a href="/notifications" target="_blank" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">View User Notifications</a>
@@ -244,19 +244,19 @@ const NotificationManagement = () => {
         </div>
 
         {/* Direct Message */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow overflow-hidden">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow overflow-hidden">
           <div className="flex items-start mb-3 sm:mb-4">
-            <div className="p-2 sm:p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0">
+            <div className="p-2 sm:p-3 bg-purple-100 dark:bg-purple-900/30  flex-shrink-0">
               <PaperAirplaneIcon className="h-4 w-4 sm:h-5 sm:w-6 text-purple-600 dark:text-purple-400" />
             </div>
             <div className="ml-2 sm:ml-3 lg:ml-4 min-w-0 flex-1">
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1">Direct Message</h3>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Send personal message to specific user</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1">Direct Message</h3>
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">Send personal message to specific user</p>
             </div>
           </div>
           <button
             onClick={() => setShowDirectMessageModal(true)}
-            className="w-full bg-purple-600 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-purple-700 flex items-center justify-center text-xs sm:text-sm lg:text-base transition-colors"
+            className="w-full bg-purple-600 text-white px-3 sm:px-4 py-2 sm:py-2.5  hover:bg-purple-700 flex items-center justify-center text-xs sm:text-sm lg:text-base transition-colors"
           >
             <PaperAirplaneIcon className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1.5 sm:mr-2 flex-shrink-0" />
             <span className="truncate">Send Direct Message</span>
@@ -267,19 +267,19 @@ const NotificationManagement = () => {
       {/* Notification Options */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
         {/* Individual Notification */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow overflow-hidden">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow overflow-hidden">
           <div className="flex items-start mb-3 sm:mb-4">
-            <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0">
+            <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/30  flex-shrink-0">
               <BellIcon className="h-4 w-4 sm:h-5 sm:w-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div className="ml-2 sm:ml-3 lg:ml-4 min-w-0 flex-1">
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1">Individual Notification</h3>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Send notification to a specific user</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1">Individual Notification</h3>
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">Send notification to a specific user</p>
             </div>
           </div>
           <button
             onClick={() => setShowIndividualModal(true)}
-            className="w-full bg-blue-600 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 flex items-center justify-center text-xs sm:text-sm lg:text-base transition-colors"
+            className="w-full bg-blue-600 text-white px-3 sm:px-4 py-2 sm:py-2.5  hover:bg-blue-700 flex items-center justify-center text-xs sm:text-sm lg:text-base transition-colors"
           >
             <PaperAirplaneIcon className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1.5 sm:mr-2 flex-shrink-0" />
             <span className="truncate">Send Individual Notification</span>
@@ -287,19 +287,19 @@ const NotificationManagement = () => {
         </div>
 
         {/* Broadcast Notification */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow overflow-hidden">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow overflow-hidden">
           <div className="flex items-start mb-3 sm:mb-4">
-            <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900/30 rounded-lg flex-shrink-0">
+            <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900/30  flex-shrink-0">
               <BellIcon className="h-4 w-4 sm:h-5 sm:w-6 text-green-600 dark:text-green-400" />
             </div>
             <div className="ml-2 sm:ml-3 lg:ml-4 min-w-0 flex-1">
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1">Broadcast Notification</h3>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Send notification to all users</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1">Broadcast Notification</h3>
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">Send notification to all users</p>
             </div>
           </div>
           <button
             onClick={() => setShowBroadcastModal(true)}
-            className="w-full bg-green-600 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-green-700 flex items-center justify-center text-xs sm:text-sm lg:text-base transition-colors"
+            className="w-full bg-green-600 text-white px-3 sm:px-4 py-2 sm:py-2.5  hover:bg-green-700 flex items-center justify-center text-xs sm:text-sm lg:text-base transition-colors"
           >
             <PaperAirplaneIcon className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1.5 sm:mr-2 flex-shrink-0" />
             <span className="truncate">Send Broadcast Notification</span>
@@ -308,7 +308,7 @@ const NotificationManagement = () => {
       </div>
 
       {/* Notification Guidelines */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 sm:p-4 lg:p-6 overflow-hidden">
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  p-3 sm:p-4 lg:p-6 overflow-hidden">
         <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2 sm:mb-3">Notification Guidelines</h3>
         <div className="space-y-1.5 sm:space-y-2">
           <div className="text-xs sm:text-sm text-blue-800 dark:text-blue-200 break-words">
@@ -332,16 +332,16 @@ const NotificationManagement = () => {
       {/* Individual Notification Modal */}
       {showIndividualModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 p-2 sm:p-4">
-          <div className="relative top-4 sm:top-10 lg:top-20 mx-auto p-3 sm:p-4 lg:p-5 border w-full max-w-xs sm:max-w-sm lg:max-w-md shadow-lg rounded-md bg-white dark:bg-gray-800 overflow-hidden">
+          <div className="relative top-4 sm:top-10 lg:top-20 mx-auto p-3 sm:p-4 lg:p-5 border w-full max-w-xs sm:max-w-sm lg:max-w-md shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white overflow-hidden">
             <div className="mt-3">
-              <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-3 sm:mb-4">Send Individual Notification</h3>
+              <h3 className="text-base sm:text-lg font-medium text-white mb-3 sm:mb-4">Send Individual Notification</h3>
               <div className="space-y-2.5 sm:space-y-3 lg:space-y-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Select User</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Select User</label>
                   <select
                     value={formData.userId}
                     onChange={(e) => setFormData({...formData, userId: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                   >
                     <option value="">Select a user...</option>
                     {usersData?.users?.map((user) => (
@@ -352,32 +352,32 @@ const NotificationManagement = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Title</label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({...formData, title: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     placeholder="Notification title"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Message</label>
                   <textarea
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm resize-none"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm resize-none"
                     rows="3"
                     placeholder="Notification message"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300">Type</label>
                     <select
                       value={formData.type}
                       onChange={(e) => setFormData({...formData, type: e.target.value})}
-                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     >
                       {notificationTypes.map((type) => (
                         <option key={type.value} value={type.value}>
@@ -387,11 +387,11 @@ const NotificationManagement = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Priority</label>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300">Priority</label>
                     <select
                       value={formData.priority}
                       onChange={(e) => setFormData({...formData, priority: e.target.value})}
-                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     >
                       {priorityLevels.map((level) => (
                         <option key={level.value} value={level.value}>
@@ -405,14 +405,14 @@ const NotificationManagement = () => {
               <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 mt-4 sm:mt-6">
                 <button
                   onClick={() => setShowIndividualModal(false)}
-                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 border border-white/20 border-white/20  hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleSendIndividualNotification}
                   disabled={!formData.userId.trim() || !formData.title.trim() || !formData.message.trim()}
-                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50"
                 >
                   Send Notification
                 </button>
@@ -425,38 +425,38 @@ const NotificationManagement = () => {
       {/* Broadcast Notification Modal */}
       {showBroadcastModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 p-2 sm:p-4">
-          <div className="relative top-4 sm:top-10 lg:top-20 mx-auto p-3 sm:p-4 lg:p-5 border w-full max-w-xs sm:max-w-sm lg:max-w-md shadow-lg rounded-md bg-white dark:bg-gray-800 overflow-hidden">
+          <div className="relative top-4 sm:top-10 lg:top-20 mx-auto p-3 sm:p-4 lg:p-5 border w-full max-w-xs sm:max-w-sm lg:max-w-md shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white overflow-hidden">
             <div className="mt-3">
-              <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-3 sm:mb-4">Send Broadcast Notification</h3>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">This will send a notification to all regular users.</p>
+              <h3 className="text-base sm:text-lg font-medium text-white mb-3 sm:mb-4">Send Broadcast Notification</h3>
+              <p className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">This will send a notification to all regular users.</p>
               <div className="space-y-2.5 sm:space-y-3 lg:space-y-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Title</label>
                   <input
                     type="text"
                     value={broadcastData.title}
                     onChange={(e) => setBroadcastData({...broadcastData, title: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     placeholder="Notification title"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Message</label>
                   <textarea
                     value={broadcastData.message}
                     onChange={(e) => setBroadcastData({...broadcastData, message: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm resize-none"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm resize-none"
                     rows="3"
                     placeholder="Notification message"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300">Type</label>
                     <select
                       value={broadcastData.type}
                       onChange={(e) => setBroadcastData({...broadcastData, type: e.target.value})}
-                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     >
                       {notificationTypes.map((type) => (
                         <option key={type.value} value={type.value}>
@@ -466,11 +466,11 @@ const NotificationManagement = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Priority</label>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300">Priority</label>
                     <select
                       value={broadcastData.priority}
                       onChange={(e) => setBroadcastData({...broadcastData, priority: e.target.value})}
-                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     >
                       {priorityLevels.map((level) => (
                         <option key={level.value} value={level.value}>
@@ -484,14 +484,14 @@ const NotificationManagement = () => {
               <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 mt-4 sm:mt-6">
                 <button
                   onClick={() => setShowBroadcastModal(false)}
-                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 border border-white/20 border-white/20  hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleSendBroadcastNotification}
                   disabled={!broadcastData.title.trim() || !broadcastData.message.trim()}
-                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm bg-green-600 text-white  hover:bg-green-700 disabled:opacity-50"
                 >
                   Send Broadcast
                 </button>
@@ -504,17 +504,17 @@ const NotificationManagement = () => {
       {/* Direct Message Modal */}
       {showDirectMessageModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 p-2 sm:p-4">
-          <div className="relative top-4 sm:top-10 lg:top-20 mx-auto p-3 sm:p-4 lg:p-5 border w-full max-w-xs sm:max-w-sm lg:max-w-md shadow-lg rounded-md bg-white dark:bg-gray-800 overflow-hidden">
+          <div className="relative top-4 sm:top-10 lg:top-20 mx-auto p-3 sm:p-4 lg:p-5 border w-full max-w-xs sm:max-w-sm lg:max-w-md shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white overflow-hidden">
             <div className="mt-3">
-              <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-3 sm:mb-4">Send Direct Message</h3>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">Send a personal message to a specific user.</p>
+              <h3 className="text-base sm:text-lg font-medium text-white mb-3 sm:mb-4">Send Direct Message</h3>
+              <p className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4">Send a personal message to a specific user.</p>
               <div className="space-y-2.5 sm:space-y-3 lg:space-y-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Select User</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Select User</label>
                   <select
                     value={directMessageData.userId}
                     onChange={(e) => setDirectMessageData({...directMessageData, userId: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                   >
                     <option value="">Select a user...</option>
                     {usersData?.users?.map((user) => (
@@ -525,22 +525,22 @@ const NotificationManagement = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300">Message</label>
                   <textarea
                     value={directMessageData.message}
                     onChange={(e) => setDirectMessageData({...directMessageData, message: e.target.value})}
-                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm resize-none"
+                    className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm resize-none"
                     rows="4"
                     placeholder="Your personal message to the user..."
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Message Type</label>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300">Message Type</label>
                     <select
                       value={directMessageData.messageType}
                       onChange={(e) => setDirectMessageData({...directMessageData, messageType: e.target.value})}
-                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     >
                       <option value="personal">Personal Message</option>
                       <option value="support">Support Response</option>
@@ -550,11 +550,11 @@ const NotificationManagement = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Priority</label>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300">Priority</label>
                     <select
                       value={directMessageData.priority}
                       onChange={(e) => setDirectMessageData({...directMessageData, priority: e.target.value})}
-                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-xs sm:text-sm"
+                      className="mt-1 w-full px-2 sm:px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white text-xs sm:text-sm"
                     >
                       {priorityLevels.map((level) => (
                         <option key={level.value} value={level.value}>
@@ -568,14 +568,14 @@ const NotificationManagement = () => {
               <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 mt-4 sm:mt-6">
                 <button
                   onClick={() => setShowDirectMessageModal(false)}
-                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 border border-white/20 border-white/20  hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleSendDirectMessage}
                   disabled={!directMessageData.userId.trim() || !directMessageData.message.trim()}
-                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50"
+                  className="w-full sm:w-auto px-3 sm:px-4 py-2 text-xs sm:text-sm bg-purple-600 text-white  hover:bg-purple-700 disabled:opacity-50"
                 >
                   Send Direct Message
                 </button>

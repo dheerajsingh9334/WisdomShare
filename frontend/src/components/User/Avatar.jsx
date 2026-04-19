@@ -106,7 +106,7 @@ const Avatar = ({
         <img
           src={profilePicture}
           alt={user?.username || "User"}
-          className={`${config.avatar} rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm ${imageLoading ? 'animate-pulse bg-gray-200' : ''}`}
+          className={`${config.avatar} rounded-full object-cover border-2 border-white border-white/10 shadow-sm ${imageLoading ? 'animate-pulse bg-gray-200' : ''}`}
           onError={() => {
             setImageError(true);
             setImageLoading(false);
@@ -121,7 +121,7 @@ const Avatar = ({
         <img
           src={defaultProfilePic}
           alt="Default Profile"
-          className={`${config.avatar} rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm ${imageLoading ? 'animate-pulse bg-gray-200' : ''}`}
+          className={`${config.avatar} rounded-full object-cover border-2 border-white border-white/10 shadow-sm ${imageLoading ? 'animate-pulse bg-gray-200' : ''}`}
           onError={() => {
             setImageError(true);
             setImageLoading(false);
@@ -134,7 +134,7 @@ const Avatar = ({
       ) : (
         // Show initials as fallback
         <div 
-          className={`${config.avatar} rounded-full bg-gradient-to-r ${getGradientClass()} flex items-center justify-center text-white font-semibold ${config.text} border-2 border-white dark:border-gray-700 shadow-sm`}
+          className={`${config.avatar} rounded-full bg-gradient-to-r ${getGradientClass()} flex items-center justify-center text-white font-semibold ${config.text} border-2 border-white border-white/10 shadow-sm`}
         >
           {getInitials()}
         </div>
@@ -149,7 +149,7 @@ const Avatar = ({
       
       {/* Online status indicator */}
       {showOnlineStatus && (
-        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-white dark:border-gray-700 rounded-full"></div>
+        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 border-2 border-white border-white/10 rounded-full"></div>
       )}
     </div>
   );
@@ -160,11 +160,11 @@ const Avatar = ({
       
       {showName && user?.username && (
         <div className="min-w-0 flex-1">
-          <p className={`${config.name} font-medium text-gray-900 dark:text-white truncate`}>
+          <p className={`${config.name} font-medium text-white truncate`}>
             {user.username}
           </p>
           {user.email && (
-            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+            <p className="text-xs text-gray-400 truncate">
               {user.email}
             </p>
           )}

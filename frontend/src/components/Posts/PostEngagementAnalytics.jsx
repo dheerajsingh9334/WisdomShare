@@ -98,29 +98,29 @@ const PostEngagementAnalytics = ({
   if (!hasAnalyticsAccess) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-xl max-w-md w-full mx-4 p-6">
           <div className="text-center">
             <FaChartLine className="mx-auto text-5xl text-purple-500 mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-white mb-4">
               Advanced Analytics
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Get detailed insights about your post engagement, reader demographics, and performance metrics.
             </p>
             <div className="grid grid-cols-2 gap-3 mb-6">
-              <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg">
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-3 ">
                 <FaUserFriends className="text-purple-500 mb-2" />
                 <p className="text-sm font-medium text-purple-800 dark:text-purple-200">Reader Demographics</p>
               </div>
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 ">
                 <FaTrendingUp className="text-blue-500 mb-2" />
                 <p className="text-sm font-medium text-blue-800 dark:text-blue-200">Engagement Trends</p>
               </div>
-              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 ">
                 <FaGlobe className="text-green-500 mb-2" />
                 <p className="text-sm font-medium text-green-800 dark:text-green-200">Geographic Insights</p>
               </div>
-              <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-3 ">
                 <FaMobile className="text-orange-500 mb-2" />
                 <p className="text-sm font-medium text-orange-800 dark:text-orange-200">Device Analytics</p>
               </div>
@@ -128,11 +128,11 @@ const PostEngagementAnalytics = ({
             <div className="flex space-x-3">
               <button
                 onClick={onClose}
-                className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="flex-1 px-4 py-2 border border-white/20 border-white/20 text-gray-300  hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 Close
               </button>
-              <button className="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium">
+              <button className="flex-1 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2  font-medium">
                 Upgrade to Pro
               </button>
             </div>
@@ -197,12 +197,12 @@ const PostEngagementAnalytics = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-6 border-b border-white/10 border-white/10">
           <div className="flex items-center space-x-3">
             <FaChartLine className="text-2xl text-purple-500" />
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-bold text-white">
               Post Analytics
             </h2>
             <FaCrown className="text-yellow-500" title="Pro Feature" />
@@ -216,7 +216,7 @@ const PostEngagementAnalytics = ({
             <select
               value={timeRange}
               onChange={(e) => setTimeRange(e.target.value)}
-              className="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-1 text-sm"
+              className="border border-white/20 border-white/20  px-3 py-1 text-sm"
             >
               <option value="24h">Last 24 hours</option>
               <option value="7d">Last 7 days</option>
@@ -233,7 +233,7 @@ const PostEngagementAnalytics = ({
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-gray-200 dark:border-gray-700">
+        <div className="flex border-b border-white/10 border-white/10">
           {[
             { id: 'overview', label: 'Overview', icon: FaChartLine },
             { id: 'timeline', label: 'Timeline', icon: FaClock },
@@ -246,7 +246,7 @@ const PostEngagementAnalytics = ({
               className={`flex items-center space-x-2 px-6 py-3 text-sm font-medium transition-colors ${
                 activeTab === tab.id
                   ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50 dark:bg-purple-900/20'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
+                  : 'text-gray-400 hover:text-white dark:hover:text-gray-200'
               }`}
             >
               <tab.icon />
@@ -261,7 +261,7 @@ const PostEngagementAnalytics = ({
             <div className="space-y-6">
               {/* Key Metrics */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 ">
                   <div className="flex items-center justify-between">
                     <FaEye className="text-blue-500 text-xl" />
                     <span className="text-2xl font-bold text-blue-700 dark:text-blue-300">
@@ -274,7 +274,7 @@ const PostEngagementAnalytics = ({
                   </p>
                 </div>
                 
-                <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+                <div className="bg-red-50 dark:bg-red-900/20 p-4 ">
                   <div className="flex items-center justify-between">
                     <FaHeart className="text-red-500 text-xl" />
                     <span className="text-2xl font-bold text-red-700 dark:text-red-300">
@@ -287,7 +287,7 @@ const PostEngagementAnalytics = ({
                   </p>
                 </div>
 
-                <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                <div className="bg-green-50 dark:bg-green-900/20 p-4 ">
                   <div className="flex items-center justify-between">
                     <FaComment className="text-green-500 text-xl" />
                     <span className="text-2xl font-bold text-green-700 dark:text-green-300">
@@ -300,7 +300,7 @@ const PostEngagementAnalytics = ({
                   </p>
                 </div>
 
-                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                <div className="bg-purple-50 dark:bg-purple-900/20 p-4 ">
                   <div className="flex items-center justify-between">
                     <FaShare className="text-purple-500 text-xl" />
                     <span className="text-2xl font-bold text-purple-700 dark:text-purple-300">
@@ -316,32 +316,32 @@ const PostEngagementAnalytics = ({
 
               {/* Additional Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Engagement Rate</h3>
-                  <div className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+                <div className="bg-gray-50 bg-white/5 p-4 ">
+                  <h3 className="font-semibold text-white mb-2">Engagement Rate</h3>
+                  <div className="text-2xl font-bold text-gray-300">
                     {analyticsData.overview.engagementRate}%
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-400">
                     Above average performance
                   </p>
                 </div>
 
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Avg. Read Time</h3>
-                  <div className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+                <div className="bg-gray-50 bg-white/5 p-4 ">
+                  <h3 className="font-semibold text-white mb-2">Avg. Read Time</h3>
+                  <div className="text-2xl font-bold text-gray-300">
                     {analyticsData.overview.averageReadTime}
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-400">
                     High engagement content
                   </p>
                 </div>
 
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Return Visitors</h3>
-                  <div className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+                <div className="bg-gray-50 bg-white/5 p-4 ">
+                  <h3 className="font-semibold text-white mb-2">Return Visitors</h3>
+                  <div className="text-2xl font-bold text-gray-300">
                     {analyticsData.overview.returnVisitorRate}%
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-400">
                     Good retention rate
                   </p>
                 </div>
@@ -351,8 +351,8 @@ const PostEngagementAnalytics = ({
 
           {activeTab === 'timeline' && (
             <div className="space-y-6">
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                <h3 className="text-lg font-semibold text-white mb-4">
                   Views & Engagement Over Time
                 </h3>
                 <div className="h-64">
@@ -361,18 +361,18 @@ const PostEngagementAnalytics = ({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Peak Hours</h4>
+                <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                  <h4 className="font-semibold text-white mb-3">Peak Hours</h4>
                   <div className="space-y-2">
                     {analyticsData.timeline.hourly
                       .sort((a, b) => b.views - a.views)
                       .slice(0, 5)
                       .map((hour) => (
                         <div key={hour.hour} className="flex justify-between items-center">
-                          <span className="text-gray-600 dark:text-gray-400">
+                          <span className="text-gray-400">
                             {hour.hour}:00 - {hour.hour + 1}:00
                           </span>
-                          <span className="font-medium text-gray-900 dark:text-white">
+                          <span className="font-medium text-white">
                             {hour.views} views
                           </span>
                         </div>
@@ -380,12 +380,12 @@ const PostEngagementAnalytics = ({
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Daily Performance</h4>
+                <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                  <h4 className="font-semibold text-white mb-3">Daily Performance</h4>
                   <div className="space-y-2">
                     {analyticsData.timeline.daily.map((day) => (
                       <div key={day.day} className="flex justify-between items-center">
-                        <span className="text-gray-600 dark:text-gray-400">{day.day}</span>
+                        <span className="text-gray-400">{day.day}</span>
                         <div className="flex space-x-2 text-sm">
                           <span className="text-blue-600">{day.views}v</span>
                           <span className="text-red-600">{day.likes}l</span>
@@ -402,22 +402,22 @@ const PostEngagementAnalytics = ({
           {activeTab === 'demographics' && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                  <h3 className="text-lg font-semibold text-white mb-4">
                     Age Distribution
                   </h3>
                   <div className="space-y-3">
                     {analyticsData.demographics.ageGroups.map((group) => (
                       <div key={group.range} className="flex items-center justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">{group.range}</span>
+                        <span className="text-gray-400">{group.range}</span>
                         <div className="flex items-center space-x-2">
-                          <div className="w-24 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                          <div className="w-24 bg-gray-200 bg-white/5 rounded-full h-2">
                             <div
                               className="bg-blue-500 h-2 rounded-full"
                               style={{ width: `${group.percentage}%` }}
                             />
                           </div>
-                          <span className="text-sm font-medium text-gray-900 dark:text-white w-12">
+                          <span className="text-sm font-medium text-white w-12">
                             {group.percentage}%
                           </span>
                         </div>
@@ -426,8 +426,8 @@ const PostEngagementAnalytics = ({
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                  <h3 className="text-lg font-semibold text-white mb-4">
                     Top Countries
                   </h3>
                   <div className="space-y-3">
@@ -436,10 +436,10 @@ const PostEngagementAnalytics = ({
                         <div className="flex items-center space-x-2">
                           <span className="text-sm text-gray-500">#{index + 1}</span>
                           <FaMapMarkerAlt className="text-gray-400" />
-                          <span className="text-gray-600 dark:text-gray-400">{country.name}</span>
+                          <span className="text-gray-400">{country.name}</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm text-gray-900 dark:text-white">
+                          <span className="text-sm text-white">
                             {country.count}
                           </span>
                           <span className="text-xs text-gray-500">
@@ -457,8 +457,8 @@ const PostEngagementAnalytics = ({
           {activeTab === 'devices' && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                  <h3 className="text-lg font-semibold text-white mb-4">
                     Device Types
                   </h3>
                   <div className="h-64 flex items-center justify-center">
@@ -466,22 +466,22 @@ const PostEngagementAnalytics = ({
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white p-4  border border-white/10 border-white/10">
+                  <h3 className="text-lg font-semibold text-white mb-4">
                     Browser Distribution
                   </h3>
                   <div className="space-y-3">
                     {analyticsData.devices.browsers.map((browser) => (
                       <div key={browser.name} className="flex items-center justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">{browser.name}</span>
+                        <span className="text-gray-400">{browser.name}</span>
                         <div className="flex items-center space-x-2">
-                          <div className="w-24 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                          <div className="w-24 bg-gray-200 bg-white/5 rounded-full h-2">
                             <div
                               className="bg-green-500 h-2 rounded-full"
                               style={{ width: `${browser.percentage}%` }}
                             />
                           </div>
-                          <span className="text-sm font-medium text-gray-900 dark:text-white w-12">
+                          <span className="text-sm font-medium text-white w-12">
                             {browser.percentage}%
                           </span>
                         </div>
@@ -495,19 +495,19 @@ const PostEngagementAnalytics = ({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-          <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+        <div className="flex items-center justify-between p-6 border-t border-white/10 border-white/10 bg-black text-white">
+          <div className="flex items-center space-x-2 text-sm text-gray-400">
             <FaCalendarAlt />
             <span>Data updated in real-time</span>
           </div>
           <div className="flex space-x-3">
-            <button className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
+            <button className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-400 hover:text-white dark:hover:text-gray-200">
               <FaDownload />
               <span>Export Data</span>
             </button>
             <button
               onClick={onClose}
-              className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium"
+              className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white  text-sm font-medium"
             >
               Close
             </button>

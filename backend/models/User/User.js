@@ -70,6 +70,7 @@ const userSchema = new mongoose.Schema(
     },
     payments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Payment" }],
     hasSelectedPlan: { type: Boolean, default: false },
+    planExpirationDate: { type: Date, default: null },
     lastLogin: { type: Date, default: Date.now },
 
     // User relationships

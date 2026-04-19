@@ -158,7 +158,7 @@ const UserManagement = () => {
         return 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200';
       case 'free':
       default:
-        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200';
+        return 'bg-gray-100 bg-white/5 text-gray-200';
     }
   };
 
@@ -166,10 +166,10 @@ const UserManagement = () => {
     return (
       <div className="p-4 sm:p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-6"></div>
+          <div className="h-8 bg-gray-200 bg-white/5  w-1/4 mb-6"></div>
           <div className="space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-16 bg-gray-200 dark:bg-gray-700 rounded"></div>
+              <div key={i} className="h-16 bg-gray-200 bg-white/5 "></div>
             ))}
           </div>
         </div>
@@ -197,7 +197,7 @@ const UserManagement = () => {
   return (
     <div className="p-4 sm:p-6">
       <div className="mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">User Management</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">User Management</h2>
         <p className="text-gray-600 dark:text-gray-300">Manage users, roles, and account status</p>
         <div className="mt-2 flex flex-wrap gap-2 text-sm">
           <a href="/users" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">View Public Profiles</a>
@@ -207,14 +207,14 @@ const UserManagement = () => {
       </div>
 
       {/* Admin Email Configuration */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4 mb-6">
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  p-4 mb-6">
         <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">📧 Admin Notification Settings</h3>
         <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
           Admin notification emails will be sent to all admin users when users are banned.
         </p>
         
         {/* Admin Profile Link */}
-        <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg">
+        <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 ">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <p className="text-sm text-yellow-800 dark:text-yellow-200 font-medium mb-1">
@@ -226,7 +226,7 @@ const UserManagement = () => {
             </div>
             <a 
               href="/admin/profile" 
-              className="px-3 py-1 bg-yellow-600 text-white text-xs rounded-lg hover:bg-yellow-700 transition-colors w-fit"
+              className="px-3 py-1 bg-yellow-600 text-white text-xs  hover:bg-yellow-700 transition-colors w-fit"
             >
               Set Contact Info
             </a>
@@ -239,7 +239,7 @@ const UserManagement = () => {
           {adminUsersData?.adminUsers ? (
             <div className="space-y-2">
               {adminUsersData.adminUsers.map((admin) => (
-                <div key={admin._id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-white dark:bg-gray-800 border border-blue-200 dark:border-blue-700 rounded-lg gap-3">
+                <div key={admin._id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-blue-200 dark:border-blue-700  gap-3">
                   <div className="flex items-center space-x-3">
                     <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
                       <span className="text-blue-600 dark:text-blue-300 font-semibold text-sm">
@@ -258,7 +258,7 @@ const UserManagement = () => {
                           </span>
                         )}
                       </div>
-                      <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="mt-1 text-xs text-gray-400">
                         <span className="font-medium">Role:</span> {admin.role}
                         {admin.createdAt && (
                           <span className="ml-2">
@@ -286,14 +286,14 @@ const UserManagement = () => {
               ))}
             </div>
           ) : (
-            <div className="p-3 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg">
+            <div className="p-3 bg-gray-100 bg-white/5 border border-white/10 border-white/20 ">
               <p className="text-gray-600 dark:text-gray-300 text-sm">Loading admin users...</p>
             </div>
           )}
         </div>
         
         {/* Feature Status */}
-        <div className="mt-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg">
+        <div className="mt-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 ">
           <div className="flex items-center text-green-800 dark:text-green-200">
             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -303,7 +303,7 @@ const UserManagement = () => {
           <p className="text-xs text-green-600 dark:text-green-400 mt-1">
             ✅ Admin email notifications are enabled and will be sent automatically to all admin users when users are banned.
           </p>
-          <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded">
+          <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 ">
             <p className="text-xs text-blue-700 dark:text-blue-300">
               💡 <strong>Admin Contact Info:</strong> When you send broadcast notifications, users will see your contact details 
               (username, email, role) so they can reach out if needed.
@@ -313,7 +313,7 @@ const UserManagement = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 mb-6">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-4 mb-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="relative">
             <MagnifyingGlassIcon className="h-5 w-5 absolute left-3 top-3 text-gray-400 dark:text-gray-500" />
@@ -322,14 +322,14 @@ const UserManagement = () => {
               placeholder="Search users..."
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="pl-10 pr-4 py-2 w-full border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
           
           <select
             value={filters.role}
             onChange={(e) => handleFilterChange('role', e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="px-4 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
           >
             <option value="">All Roles</option>
             <option value="user">User</option>
@@ -340,7 +340,7 @@ const UserManagement = () => {
           <select
             value={filters.isBanned}
             onChange={(e) => handleFilterChange('isBanned', e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="px-4 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
           >
             <option value="">All Status</option>
             <option value="false">Active</option>
@@ -350,7 +350,7 @@ const UserManagement = () => {
           <select
             value={filters.limit}
             onChange={(e) => handleFilterChange('limit', parseInt(e.target.value))}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            className="px-4 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
           >
             <option value={10}>10 per page</option>
             <option value={25}>25 per page</option>
@@ -360,11 +360,11 @@ const UserManagement = () => {
       </div>
 
       {/* Users Table - Mobile Responsive */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 overflow-hidden">
         {/* Mobile Cards View */}
         <div className="block lg:hidden">
           {usersData?.users?.map((user) => (
-            <div key={user._id} className="p-4 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+            <div key={user._id} className="p-4 border-b border-white/10 border-white/10 last:border-b-0">
               <div className="flex items-start space-x-3 mb-3">
                 <div className="h-12 w-12 rounded-full bg-gray-300 dark:bg-gray-600 overflow-hidden flex items-center justify-center flex-shrink-0">
                   {(() => {
@@ -379,23 +379,23 @@ const UserManagement = () => {
                       );
                     }
                     return (
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      <span className="text-sm font-medium text-gray-300">
                         {user.username.charAt(0).toUpperCase()}
                       </span>
                     );
                   })()}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-gray-900 dark:text-white mb-1">{user.username}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">{user.email}</div>
+                  <div className="text-sm font-medium text-white mb-1">{user.username}</div>
+                  <div className="text-sm text-gray-400 mb-2">{user.email}</div>
                   
                   {/* Role Selection */}
                   <div className="mb-2">
-                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Role:</label>
+                    <label className="block text-xs font-medium text-gray-300 mb-1">Role:</label>
                     <select
                       value={user.role}
                       onChange={(e) => updateRoleMutation.mutate({ userId: user._id, role: e.target.value })}
-                      className="text-sm border border-gray-300 dark:border-gray-600 rounded px-2 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white w-full"
+                      className="text-sm border border-white/20 border-white/20  px-2 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white w-full"
                     >
                       <option value="user">User</option>
                       <option value="moderator">Moderator</option>
@@ -405,7 +405,7 @@ const UserManagement = () => {
 
                   {/* Plan Info */}
                   <div className="mb-2">
-                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Plan:</label>
+                    <label className="block text-xs font-medium text-gray-300 mb-1">Plan:</label>
                     <div className="flex items-center space-x-2">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getPlanBadgeColor(user)}`}>
                         <StarIcon className="h-3 w-3 mr-1" />
@@ -426,7 +426,7 @@ const UserManagement = () => {
 
                   {/* Status */}
                   <div className="mb-3">
-                    <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Status:</label>
+                    <label className="block text-xs font-medium text-gray-300 mb-1">Status:</label>
                     {user.isBanned ? (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200">
                         <ExclamationTriangleIcon className="h-4 w-4 mr-1" />
@@ -442,7 +442,7 @@ const UserManagement = () => {
 
                   {/* Joined Date */}
                   <div className="mb-3">
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                    <span className="text-xs text-gray-400">
                       Joined: {new Date(user.createdAt).toLocaleDateString()}
                     </span>
                   </div>
@@ -453,7 +453,7 @@ const UserManagement = () => {
                       href={`/user/${user._id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50"
+                      className="inline-flex items-center px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300  hover:bg-blue-200 dark:hover:bg-blue-900/50"
                       title="View public profile"
                     >
                       <EyeIcon className="h-3 w-3 mr-1" />
@@ -463,7 +463,7 @@ const UserManagement = () => {
                     {user.isBanned ? (
                       <button
                         onClick={() => unbanUserMutation.mutate(user._id)}
-                        className="inline-flex items-center px-2 py-1 text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50"
+                        className="inline-flex items-center px-2 py-1 text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300  hover:bg-green-200 dark:hover:bg-green-900/50"
                       >
                         Unban
                       </button>
@@ -473,7 +473,7 @@ const UserManagement = () => {
                           setSelectedUser(user);
                           setShowBanModal(true);
                         }}
-                        className="inline-flex items-center px-2 py-1 text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/50"
+                        className="inline-flex items-center px-2 py-1 text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300  hover:bg-red-200 dark:hover:bg-red-900/50"
                       >
                         Ban
                       </button>
@@ -481,7 +481,7 @@ const UserManagement = () => {
                     
                     <button
                       onClick={() => handleDeleteUser(user._id)}
-                      className="inline-flex items-center px-2 py-1 text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/50"
+                      className="inline-flex items-center px-2 py-1 text-xs bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300  hover:bg-red-200 dark:hover:bg-red-900/50"
                     >
                       <TrashIcon className="h-3 w-3 mr-1" />
                       Delete
@@ -496,7 +496,7 @@ const UserManagement = () => {
         {/* Desktop Table View */}
         <div className="hidden lg:block overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-700">
+            <thead className="bg-gray-50 bg-white/5">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   User
@@ -518,7 +518,7 @@ const UserManagement = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="bg-black/50 backdrop-blur-xl border border-white/10 text-white divide-y divide-gray-200 dark:divide-gray-700">
               {usersData?.users?.map((user) => (
                 <tr key={user._id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -536,15 +536,15 @@ const UserManagement = () => {
                             );
                           }
                           return (
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <span className="text-sm font-medium text-gray-300">
                               {user.username.charAt(0).toUpperCase()}
                             </span>
                           );
                         })()}
                       </div>
                       <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{user.username}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{user.email}</div>
+                        <div className="text-sm font-medium text-white">{user.username}</div>
+                        <div className="text-sm text-gray-400">{user.email}</div>
                       </div>
                     </div>
                   </td>
@@ -552,7 +552,7 @@ const UserManagement = () => {
                     <select
                       value={user.role}
                       onChange={(e) => updateRoleMutation.mutate({ userId: user._id, role: e.target.value })}
-                      className="text-sm border border-gray-300 dark:border-gray-600 rounded px-2 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="text-sm border border-white/20 border-white/20  px-2 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
                     >
                       <option value="user">User</option>
                       <option value="moderator">Moderator</option>
@@ -590,7 +590,7 @@ const UserManagement = () => {
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                     {new Date(user.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -640,26 +640,26 @@ const UserManagement = () => {
 
         {/* Pagination */}
         {usersData?.pagination && (
-          <div className="bg-white dark:bg-gray-800 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white px-4 py-3 flex items-center justify-between border-t border-white/10 border-white/10 sm:px-6">
             <div className="flex-1 flex justify-between sm:hidden">
               <button
                 onClick={() => handlePageChange(usersData.pagination.currentPage - 1)}
                 disabled={!usersData.pagination.hasPrev}
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
+                className="relative inline-flex items-center px-4 py-2 border border-white/20 border-white/20 text-sm font-medium  text-gray-300 bg-black/40 backdrop-blur-md text-white bg-white/5 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
               >
                 Previous
               </button>
               <button
                 onClick={() => handlePageChange(usersData.pagination.currentPage + 1)}
                 disabled={!usersData.pagination.hasNext}
-                className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
+                className="ml-3 relative inline-flex items-center px-4 py-2 border border-white/20 border-white/20 text-sm font-medium  text-gray-300 bg-black/40 backdrop-blur-md text-white bg-white/5 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
               >
                 Next
               </button>
             </div>
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-300">
                   Showing{' '}
                   <span className="font-medium">
                     {((usersData.pagination.currentPage - 1) * filters.limit) + 1}
@@ -674,18 +674,18 @@ const UserManagement = () => {
                 </p>
               </div>
               <div>
-                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                <nav className="relative z-0 inline-flex  shadow-sm -space-x-px">
                   <button
                     onClick={() => handlePageChange(usersData.pagination.currentPage - 1)}
                     disabled={!usersData.pagination.hasPrev}
-                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
+                    className="relative inline-flex items-center px-2 py-2 -l-md border border-white/20 border-white/20 bg-black/40 backdrop-blur-md text-white bg-white/5 text-sm font-medium text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
                   >
                     Previous
                   </button>
                   <button
                     onClick={() => handlePageChange(usersData.pagination.currentPage + 1)}
                     disabled={!usersData.pagination.hasNext}
-                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
+                    className="relative inline-flex items-center px-2 py-2 -r-md border border-white/20 border-white/20 bg-black/40 backdrop-blur-md text-white bg-white/5 text-sm font-medium text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50"
                   >
                     Next
                   </button>
@@ -699,14 +699,14 @@ const UserManagement = () => {
       {/* Ban User Modal */}
       {showBanModal && selectedUser && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-md shadow-lg rounded-md bg-white dark:bg-gray-800">
+          <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-md shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white">
             <div className="mt-3">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-medium text-white mb-4">
                 🚨 Ban User: {selectedUser.username}
               </h3>
               
               {/* Warning Info */}
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-3 mb-4">
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700  p-3 mb-4">
                 <div className="flex items-center text-red-800 dark:text-red-200">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
@@ -720,24 +720,24 @@ const UserManagement = () => {
               
               {/* Ban Reason */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   📝 Ban Reason <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   value={banReason}
                   onChange={(e) => setBanReason(e.target.value)}
                   placeholder="Enter a clear reason for banning this user. This will be shown to the user and other admins..."
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full p-3 border border-white/20 border-white/20  focus:ring-2 focus:ring-red-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
                   rows="4"
                   required
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-xs text-gray-400 mt-1">
                   The user will see this reason and your contact information in their notification.
                 </p>
               </div>
               
               {/* What Happens Next */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-4">
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  p-3 mb-4">
                 <p className="text-sm text-blue-800 dark:text-blue-200 font-medium mb-2">
                   What happens next:
                 </p>
@@ -756,14 +756,14 @@ const UserManagement = () => {
                     setBanReason('');
                     setSelectedUser(null);
                   }}
-                  className="px-4 py-2 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 bg-white dark:bg-gray-800"
+                  className="px-4 py-2 text-gray-400 border border-white/20 border-white/20  hover:bg-gray-50 dark:hover:bg-gray-700 bg-black/50 backdrop-blur-xl border border-white/10 text-white"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleBanUser}
                   disabled={!banReason.trim()}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
+                  className="px-4 py-2 bg-red-600 text-white  hover:bg-red-700 disabled:opacity-50"
                 >
                   🚫 Ban User
                 </button>
@@ -776,19 +776,19 @@ const UserManagement = () => {
       {/* Change Plan Modal */}
       {showPlanModal && selectedUser && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-md shadow-lg rounded-md bg-white dark:bg-gray-800">
+          <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-md shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white">
             <div className="mt-3">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-medium text-white mb-4">
                 Change Plan for: {selectedUser.username}
               </h3>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Current Plan: {getPlanDisplayName(selectedUser)}
                 </label>
                 <select
                   value={selectedPlanId}
                   onChange={(e) => setSelectedPlanId(e.target.value)}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                  className="w-full p-3 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
                 >
                   <option value="">Free Plan (Default)</option>
                   {plansData?.plans?.map((plan) => (
@@ -805,14 +805,14 @@ const UserManagement = () => {
                     setSelectedPlanId('');
                     setSelectedUser(null);
                   }}
-                  className="px-4 py-2 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 bg-white dark:bg-gray-800"
+                  className="px-4 py-2 text-gray-400 border border-white/20 border-white/20  hover:bg-gray-50 dark:hover:bg-gray-700 bg-black/50 backdrop-blur-xl border border-white/10 text-white"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAssignPlan}
                   disabled={assignPlanMutation.isLoading}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                  className="px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50"
                 >
                   {assignPlanMutation.isLoading ? 'Updating...' : 'Update Plan'}
                 </button>

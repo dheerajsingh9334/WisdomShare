@@ -37,7 +37,7 @@ const Dashboard = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-none h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -158,22 +158,7 @@ const Dashboard = () => {
   ];
 
   const getColorClasses = (color, hasAccess) => {
-    const baseOpacity = hasAccess ? '' : 'opacity-50';
-    const colors = {
-      blue: `bg-blue-500 text-white ${baseOpacity}`,
-      green: `bg-green-500 text-white ${baseOpacity}`,
-      purple: `bg-purple-500 text-white ${baseOpacity}`,
-      orange: `bg-orange-500 text-white ${baseOpacity}`,
-      indigo: `bg-indigo-500 text-white ${baseOpacity}`,
-      pink: `bg-pink-500 text-white ${baseOpacity}`,
-      yellow: `bg-yellow-500 text-white ${baseOpacity}`,
-      gray: `bg-gray-500 text-white ${baseOpacity}`,
-      teal: `bg-teal-500 text-white ${baseOpacity}`,
-      red: `bg-red-500 text-white ${baseOpacity}`,
-      emerald: `bg-emerald-500 text-white ${baseOpacity}`,
-      violet: `bg-violet-500 text-white ${baseOpacity}`
-    };
-    return colors[color] || `bg-gray-500 text-white ${baseOpacity}`;
+    return 'bg-white/10 text-white'; // Monochromatic
   };
 
   return (
@@ -189,7 +174,7 @@ const Dashboard = () => {
       <div className="mb-6 sm:mb-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">Dashboard</h1>
             <p className="text-gray-600 dark:text-gray-300 mt-1 text-sm sm:text-base">
               Welcome back! Here&apos;s what you can do with your account.
             </p>
@@ -199,7 +184,7 @@ const Dashboard = () => {
             {userPlan === PLAN_TIERS.FREE && (
               <Link
                 to="/pricing"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-colors font-medium text-sm sm:text-base"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 sm:px-4 py-2 rounded-none hover:from-blue-700 hover:to-purple-700 transition-colors font-medium text-sm sm:text-base"
               >
                 Upgrade Plan
               </Link>
@@ -208,41 +193,38 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Plan Usage Summary - Responsive */}
+      {/* Plan Usage Summary - Monochromatic */}
       {usageData?.usage && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 sm:p-6 mb-6 sm:mb-8">
-          <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">Plan Usage</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                {usageData.usage.postsCount || 0}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Posts Created
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl mb-8 overflow-hidden">
+          <div className="p-8 text-center hover:bg-white/5 transition-all">
+            <div className="text-3xl font-bold text-white mb-1">
+              {usageData.usage.postsCount || 0}
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                {usageData.usage.plan?.tier || 'Free'}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Current Plan
-              </div>
+            <div className="text-xs font-medium text-gray-400 tracking-widest uppercase text-white/60">
+              Posts Created
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                {usageData.usage.plan?.features?.length || 0}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                Features Available
-              </div>
+          </div>
+          <div className="p-8 text-center hover:bg-white/5 transition-all">
+            <div className="text-3xl font-bold text-white mb-1">
+              {usageData.usage.plan?.tier || 'Free'}
+            </div>
+            <div className="text-xs font-medium text-gray-400 tracking-widest uppercase text-white/60">
+              Current Plan
+            </div>
+          </div>
+          <div className="p-8 text-center hover:bg-white/5 transition-all">
+            <div className="text-3xl font-bold text-white mb-1">
+              {usageData.usage.plan?.features?.length || 0}
+            </div>
+            <div className="text-xs font-medium text-gray-400 tracking-widest uppercase text-white/60">
+              Features Enabled
             </div>
           </div>
         </div>
       )}
 
-      {/* Dashboard Grid - Enhanced responsive layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+      {/* Dashboard Grid - Divide Grid Style */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl overflow-hidden">
         {dashboardItems.map((item, index) => {
           const hasAccess = !item.feature || hasFeatureAccess(item.feature, userPlan);
           const IconComponent = item.icon;
@@ -252,98 +234,87 @@ const Dashboard = () => {
               <Link
                 key={index}
                 to={item.link}
-                className="group relative bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden"
+                className="group p-8 hover:bg-white/[0.02] transition-all relative overflow-hidden"
               >
-                <div className="p-4 sm:p-6">
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center mb-3 sm:mb-4 ${getColorClasses(item.color, true)}`}>
-                    <IconComponent className="h-5 w-5 sm:h-6 sm:w-6" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
-                    {item.description}
-                  </p>
+                <div className="w-12 h-12 rounded-none bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <IconComponent className="h-6 w-6 text-white/80" />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-50 dark:to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.description}
+                </p>
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-white/10 to-white/20 group-hover:w-full transition-all duration-300" />
               </Link>
             );
           }
 
           return (
-            <FeatureGate
-              key={index}
-              feature={item.feature}
-              showUpgrade={false}
-              fallback={
-                <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600">
-                  <div className="p-6">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${getColorClasses(item.color, false)}`}>
-                      <IconComponent className="h-6 w-6" />
-                    </div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {item.title}
-                      </h3>
-                      <FeatureLock size="sm" />
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                      {item.description}
-                    </p>
-                    <Link
-                      to="/pricing"
-                      className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                    >
-                      {item.feature === 'api_access' || item.feature === 'white_label_solution' || item.feature === 'team_collaboration' ? (
-                        <>
-                          <FaGem className="mr-1" />
-                          Upgrade to Pro
-                        </>
-                      ) : (
-                        <>
-                          <FaCrown className="mr-1" />
-                          Upgrade to Premium
-                        </>
-                      )}
-                    </Link>
-                  </div>
+            <div key={index} className="p-8 bg-black/20 opacity-60 relative group cursor-not-allowed">
+              <div className="flex items-center justify-between mb-4">
+                <div className={`w-12 h-12 rounded-none flex items-center justify-center ${getColorClasses(item.color, false)}`}>
+                  <IconComponent className="h-6 w-6" />
                 </div>
-              }
-            >
-              {/* This won't render since hasAccess is false */}
-            </FeatureGate>
+                <FeatureLock size="sm" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                {item.title}
+              </h3>
+              <p className="text-gray-500 text-sm mb-4">
+                {item.description}
+              </p>
+              <Link
+                to="/pricing"
+                className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 font-medium tracking-wider uppercase"
+              >
+                {item.feature === 'api_access' || item.feature === 'white_label_solution' || item.feature === 'team_collaboration' ? (
+                  <>Upgrade to Pro</>
+                ) : (
+                  <>Upgrade to Premium</>
+                )}
+              </Link>
+            </div>
           );
         })}
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Actions - Monochromatic */}
       <div className="mt-12">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-wider">Quick Actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-x divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl overflow-hidden">
           <Link
             to="/create-post"
-            className="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex flex-col items-center justify-center p-12 hover:bg-white/5 transition-all text-white/70 hover:text-white font-medium group"
           >
-            <FaFileAlt className="mr-2" />
-            Create New Post
+            <FaFileAlt className="text-4xl mb-4 group-hover:scale-110 transition-transform text-white/80" />
+            <span className="text-lg font-semibold">Create Post</span>
+            <span className="text-xs text-gray-500 mt-2 text-center max-w-[150px]">Share your thoughts with the community</span>
+            <div className="mt-4 px-6 py-1 border border-white/20 text-xs font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">Create</div>
           </Link>
           
-          <FeatureGate feature="unlimited_posts" showUpgrade={false}>
-            <Link
-              to="/upload-profile-photo"
-              className="flex items-center justify-center p-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-            >
-              <FaUpload className="mr-2" />
-              Upload Profile Photo
-            </Link>
-          </FeatureGate>
+          <div className="group cursor-pointer">
+            <FeatureGate feature="unlimited_posts" showUpgrade={false}>
+              <Link
+                to="/dashboard/analytics"
+                className="flex flex-col items-center justify-center p-12 hover:bg-white/5 transition-all text-white/70 hover:text-white font-medium group"
+              >
+                <FaChartLine className="text-4xl mb-4 group-hover:scale-110 transition-transform text-white/80" />
+                <span className="text-lg font-semibold">Analytics</span>
+                <span className="text-xs text-gray-500 mt-2 text-center max-w-[150px]">View your content performance</span>
+                <div className="mt-4 px-6 py-1 border border-white/20 text-xs font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">View</div>
+              </Link>
+            </FeatureGate>
+          </div>
 
           <Link
-            to="/settings"
-            className="flex items-center justify-center p-4 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            to="/dashboard/posts"
+            className="flex flex-col items-center justify-center p-12 hover:bg-white/5 transition-all text-white/70 hover:text-white font-medium group"
           >
-            <FaCog className="mr-2" />
-            Settings
+            <FaCog className="text-4xl mb-4 group-hover:scale-110 transition-transform text-white/80" />
+            <span className="text-lg font-semibold">My Posts</span>
+            <span className="text-xs text-gray-500 mt-2 text-center max-w-[150px]">Manage your published content</span>
+            <div className="mt-4 px-6 py-1 border border-white/20 text-xs font-bold uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">Manage</div>
           </Link>
         </div>
       </div>

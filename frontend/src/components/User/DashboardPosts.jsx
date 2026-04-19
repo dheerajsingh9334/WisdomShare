@@ -189,7 +189,7 @@ const DashboardPosts = () => {
       case "published":
         return <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Published</span>;
       case "draft":
-        return <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Draft</span>;
+        return <span className="px-2 py-1 bg-gray-100 text-gray-100 text-xs rounded-full">Draft</span>;
       case "scheduled":
         return (
           <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full flex items-center gap-1">
@@ -198,7 +198,7 @@ const DashboardPosts = () => {
           </span>
         );
       default:
-        return <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">{status}</span>;
+        return <span className="px-2 py-1 bg-gray-100 text-gray-100 text-xs rounded-full">{status}</span>;
     }
   };
 
@@ -224,17 +224,17 @@ const DashboardPosts = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-black text-white">
       {/* Header - Responsive layout */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 border-white/10">
         <div className="max-w-none mx-auto px-3 sm:px-4 md:px-6 lg:px-4 xl:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">My Posts</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">My Posts</h1>
             <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">Manage your published posts, drafts, and scheduled content</p>
           </div>
           <Link
             to="/dashboard/create-post"
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base shrink-0"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-green-600 text-white  hover:bg-green-700 transition-colors text-sm sm:text-base shrink-0"
           >
             <FaPlus className="w-4 h-4" /> New Post
           </Link>
@@ -278,7 +278,7 @@ const DashboardPosts = () => {
 
         {/* Tabs - Responsive design */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          <div className="flex space-x-1 bg-gray-100 dark:bg-gray-700 rounded-lg p-1 flex-1">
+          <div className="flex space-x-1 bg-gray-100 bg-white/5  p-1 flex-1">
             {[
               { id: "published", label: "Published", count: publishedPosts?.totalPosts || 0 },
               { id: "drafts", label: "Drafts", count: draftsData?.totalDrafts || 0 },
@@ -291,10 +291,10 @@ const DashboardPosts = () => {
                   setPage(1);
                   setSelectedTags([]); // Clear tag filter when switching tabs
                 }}
-                className={`flex-1 py-2 px-2 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-colors ${
+                className={`flex-1 py-2 px-2 sm:px-4  text-xs sm:text-sm font-medium transition-colors ${
                   activeTab === tab.id
-                    ? "bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-sm"
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                    ? "bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white shadow-sm"
+                    : "text-gray-400 hover:text-white dark:hover:text-white"
                 }`}
               >
                 <span className="hidden sm:inline">{tab.label}</span>
@@ -310,7 +310,7 @@ const DashboardPosts = () => {
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-3">
               <FaFilter className="text-gray-500" />
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by tags:</span>
+              <span className="text-sm font-medium text-gray-300">Filter by tags:</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {availableTags.map((tag) => (
@@ -320,7 +320,7 @@ const DashboardPosts = () => {
                   className={`px-3 py-1 text-sm rounded-full transition-colors ${
                     selectedTags.includes(tag)
                       ? "bg-blue-600 text-white"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                      : "bg-gray-100 bg-white/5 text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`}
                 >
                   #{tag}
@@ -336,7 +336,7 @@ const DashboardPosts = () => {
               )}
             </div>
             {selectedTags.length > 0 && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-sm text-gray-400 mt-2">
                 Showing posts tagged with <span className="font-medium">#{selectedTags.join(", ")}</span> ({filteredPosts.length} posts)
               </p>
             )}
@@ -347,20 +347,20 @@ const DashboardPosts = () => {
         {isLoading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600 dark:text-gray-400">Loading posts...</p>
+            <p className="text-gray-400">Loading posts...</p>
           </div>
         ) : filteredPosts.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-gray-400 text-6xl mb-4">
               {selectedTags.length > 0 ? "🏷️" : activeTab === "published" ? "📝" : activeTab === "drafts" ? "📄" : "📅"}
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-xl font-semibold text-white mb-2">
               {selectedTags.length > 0 
                 ? `No posts found with tags #${selectedTags.join(", ")}`
                 : `No ${activeTab} posts yet`
               }
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-gray-400 mb-6">
               {selectedTags.length > 0 
                 ? "Try selecting a different tag or clear the filter to see all posts."
                 : activeTab === "published" 
@@ -373,7 +373,7 @@ const DashboardPosts = () => {
             {!selectedTags.length > 0 && (
               <Link
                 to="/dashboard/create-post"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors"
               >
                 Create New Post
               </Link>
@@ -381,7 +381,7 @@ const DashboardPosts = () => {
             {selectedTags.length > 0 && (
               <button
                 onClick={clearTagFilter}
-                className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-gray-600 text-white  hover:bg-gray-700 transition-colors"
               >
                 Clear Filter
               </button>
@@ -392,7 +392,7 @@ const DashboardPosts = () => {
             {filteredPosts.map((post) => (
               <div
                 key={post._id}
-                className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 hover:shadow-md transition-shadow"
+                className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-4 sm:p-6 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -402,7 +402,7 @@ const DashboardPosts = () => {
                         <img 
                           src={typeof post.image === 'string' ? post.image : post.image.url || post.image.path || post.image} 
                           alt={post.title || "Post image"}
-                          className="w-full h-32 sm:h-36 md:h-40 lg:h-48 object-cover rounded-lg"
+                          className="w-full h-32 sm:h-36 md:h-40 lg:h-48 object-cover "
                           onError={(e) => {
                             e.target.style.display = 'none';
                           }}
@@ -411,17 +411,17 @@ const DashboardPosts = () => {
                     )}
                     
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      <h3 className="text-lg font-semibold text-white">
                         {post.title || "Untitled Post"}
                       </h3>
                       {getStatusBadge(post.status)}
                     </div>
                     
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                    <p className="text-gray-400 text-sm mb-3 line-clamp-2">
                       {stripHtmlTags(post.description)}
                     </p>
                     
-                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
                       <span>{post.category?.categoryName}</span>
                       <span>•</span>
                       <span>{new Date(post.createdAt).toLocaleDateString()}</span>
@@ -445,7 +445,7 @@ const DashboardPosts = () => {
                             className={`px-2 py-1 text-xs rounded-full cursor-pointer transition-colors ${
                               selectedTags.includes(tag)
                                 ? "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
-                                : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                                : "bg-gray-100 bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
                             }`}
                             onClick={() => setSelectedTags(selectedTags.includes(tag) ? selectedTags.filter(t => t !== tag) : [...selectedTags, tag])}
                             title={`Click to filter by #${tag}`}
@@ -454,7 +454,7 @@ const DashboardPosts = () => {
                           </span>
                         ))}
                         {post.tags.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-gray-100 bg-white/5 text-gray-600 dark:text-gray-300 text-xs rounded-full">
                             +{post.tags.length - 3} more
                           </span>
                         )}
@@ -468,7 +468,7 @@ const DashboardPosts = () => {
                     {/* View Post */}
                     <Link
                       to={`/posts/${post._id}`}
-                      className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
+                      className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30  transition-colors"
                       title="View post"
                     >
                       <FaEye className="w-4 h-4" />
@@ -477,7 +477,7 @@ const DashboardPosts = () => {
                     {/* Edit Post */}
                     <Link
                       to={`/edit-post/${post._id}`}
-                      className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-lg transition-colors"
+                      className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 dark:hover:bg-green-900/30  transition-colors"
                       title="Edit post"
                     >
                       <FaEdit className="w-4 h-4" />
@@ -496,7 +496,7 @@ const DashboardPosts = () => {
                           handleStatusUpdate(post._id, "published");
                         }}
                         disabled={updateStatusMutation.isPending}
-                        className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-lg transition-colors"
+                        className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 dark:hover:bg-green-900/30  transition-colors"
                         title="Publish post"
                       >
                         <FaCheck className="w-4 h-4" />
@@ -507,7 +507,7 @@ const DashboardPosts = () => {
                       <button
                         onClick={() => handleStatusUpdate(post._id, "draft")}
                         disabled={updateStatusMutation.isPending}
-                        className="p-2 text-gray-400 hover:text-yellow-600 hover:bg-yellow-50 dark:hover:bg-yellow-900/30 rounded-lg transition-colors"
+                        className="p-2 text-gray-400 hover:text-yellow-600 hover:bg-yellow-50 dark:hover:bg-yellow-900/30  transition-colors"
                         title="Move to drafts"
                       >
                         <FaTimes className="w-4 h-4" />
@@ -518,7 +518,7 @@ const DashboardPosts = () => {
                     <button
                       onClick={() => handleDeletePost(post._id)}
                       disabled={deletePostMutation.isPending}
-                      className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+                      className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30  transition-colors"
                       title="Delete post"
                     >
                       <FaTrash className="w-4 h-4" />
@@ -537,7 +537,7 @@ const DashboardPosts = () => {
             <button
               disabled={page === 1}
               onClick={() => setPage(page - 1)}
-              className="flex items-center gap-2 px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               ← Previous
             </button>
@@ -547,10 +547,10 @@ const DashboardPosts = () => {
                 <button
                   key={pageNum}
                   onClick={() => setPage(pageNum)}
-                  className={`w-10 h-10 rounded-lg font-medium transition-colors ${
+                  className={`w-10 h-10  font-medium transition-colors ${
                     pageNum === page
                       ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      : 'text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
                 >
                   {pageNum}
@@ -561,7 +561,7 @@ const DashboardPosts = () => {
             <button
               disabled={page * 10 >= totalPosts}
               onClick={() => setPage(page + 1)}
-              className="flex items-center gap-2 px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Next →
             </button>

@@ -1345,10 +1345,10 @@ const postController = {
   searchAll: asyncHandler(async (req, res) => {
     const { q: searchQuery, type = "all", page = 1, limit = 20 } = req.query;
 
-    if (!searchQuery || searchQuery.trim().length < 2) {
+    if (!searchQuery || searchQuery.trim().length < 1) {
       return res.status(400).json({
         status: "error",
-        message: "Search query must be at least 2 characters long",
+        message: "Search query must not be empty",
       });
     }
 
@@ -1371,31 +1371,40 @@ const postController = {
         perPage: parsedLimit,
       };
 
-      // Search posts if type is 'all' or 'posts'
-      if (type === "all" || type === "posts") {
+      // Search posts if type is 'all', 'posts', or 'tag'
+      if (type === "all" || type === "posts" || type === "tag") {
         const postFilter = {
           isBlocked: { $ne: true },
           status: "published",
           "options.visibility": { $ne: "private" },
         };
 
-        // Prefer text index for performance; regex fallback for short/partial strings.
-        if (normalizedQuery.length >= 3) {
-          postFilter.$text = { $search: normalizedQuery };
+        if (type === "tag") {
+          postFilter.tags = { $in: [normalizedQuery.toLowerCase()] };
         } else {
-          postFilter.$or = [
-            { title: searchRegex },
-            { description: searchRegex },
-          ];
+          // Prefer text index for performance; regex fallback for short/partial strings.
+          if (normalizedQuery.length >= 3) {
+            postFilter.$text = { $search: normalizedQuery };
+          } else {
+            postFilter.$or = [
+              { title: searchRegex },
+              { description: searchRegex },
+              { tags: { $in: [normalizedQuery.toLowerCase()] } },
+            ];
+          }
         }
 
         const projection = {
           title: 1,
+          description: 1,
           excerpt: 1,
           image: 1,
           author: 1,
           category: 1,
           viewsCount: 1,
+          viewers: 1,
+          likes: 1,
+          tags: 1,
           contentLength: 1,
           createdAt: 1,
         };
@@ -1412,31 +1421,35 @@ const postController = {
           .limit(parsedLimit);
 
         postQuery = postFilter.$text
-          ? postQuery.sort({ score: { $meta: "textScore" }, createdAt: -1 })
-          : postQuery.sort({ createdAt: -1 });
+          ? postQuery.sort({ score: { $meta: "textScore" }, publishedAt: -1 })
+          : postQuery.sort({ publishedAt: -1, createdAt: -1 });
 
         const posts = await postQuery;
-
         const totalPosts = await Post.countDocuments(postFilter);
 
         results.posts = posts;
         results.totalPosts = totalPosts;
+        console.log(`🔍 Search Found ${posts.length} posts for query: "${normalizedQuery}"`);
       }
 
       // Search users if type is 'all' or 'users'
       if (type === "all" || type === "users") {
-        const users = await User.find({
-          $or: [{ username: searchRegex }, { email: searchRegex }],
-        })
-          .select("username profilePicture followers following posts")
+        const userFilter = {
+          $or: [
+            { username: searchRegex }, 
+            { email: searchRegex },
+            { bio: searchRegex }
+          ],
+        };
+
+        const users = await User.find(userFilter)
+          .select("username profilePicture bio followers following posts")
           .lean()
           .sort({ username: 1 })
           .skip(skip)
           .limit(parsedLimit);
 
-        const totalUsers = await User.countDocuments({
-          $or: [{ username: searchRegex }, { email: searchRegex }],
-        });
+        const totalUsers = await User.countDocuments(userFilter);
 
         results.users = users;
         results.totalUsers = totalUsers;

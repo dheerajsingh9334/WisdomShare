@@ -94,7 +94,7 @@ const PaymentSuccess = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
-      <div className="p-8 bg-white rounded-lg shadow-xl max-w-md w-full">
+      <div className="p-8 bg-black/40 backdrop-blur-md text-white  shadow-xl max-w-md w-full">
         {paymentLoading ? (
           <div className="flex flex-col items-center space-y-4">
             <FaSpinner className="animate-spin text-4xl text-green-500" />
@@ -109,7 +109,7 @@ const PaymentSuccess = () => {
             <p className="text-red-500 text-center">{paymentError.message}</p>
             <Link
               to="/dashboard"
-              className="w-full flex items-center justify-center py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none"
+              className="w-full flex items-center justify-center py-2 px-4 bg-gray-500 text-white  hover:bg-gray-600 focus:outline-none"
             >
               Go to Dashboard
             </Link>
@@ -117,11 +117,11 @@ const PaymentSuccess = () => {
         ) : paymentSuccess ? (
           <div className="flex flex-col items-center space-y-6">
             <FaCheckCircle className="text-6xl text-green-500" />
-            <h1 className="text-3xl font-bold text-gray-900">Payment Successful!</h1>
+            <h1 className="text-3xl font-bold text-white">Payment Successful!</h1>
             
             {/* Plan Access Info */}
             {userPlan && (
-              <div className={`w-full p-4 rounded-lg border ${getPlanColor(planTier)}`}>
+              <div className={`w-full p-4  border ${getPlanColor(planTier)}`}>
                 <div className="flex items-center justify-center space-x-2 mb-2">
                   {getPlanIcon(planTier)}
                   <h2 className="text-xl font-semibold">
@@ -147,7 +147,7 @@ const PaymentSuccess = () => {
             {/* Feature Highlights */}
             {planInfo && planInfo.features && (
               <div className="w-full">
-                <h3 className="font-semibold text-gray-900 mb-2">Your new features include:</h3>
+                <h3 className="font-semibold text-white mb-2">Your new features include:</h3>
                 <ul className="text-sm text-gray-600 space-y-1">
                   {Object.entries(planInfo.features)
                     .filter(([, value]) => value === true)
@@ -170,14 +170,14 @@ const PaymentSuccess = () => {
             <div className="w-full space-y-3">
               <Link
                 to="/dashboard/create-post"
-                className="w-full flex items-center justify-center py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none font-semibold transition-colors"
+                className="w-full flex items-center justify-center py-3 px-4 bg-green-600 text-white  hover:bg-green-700 focus:outline-none font-semibold transition-colors"
               >
                 Start Creating Content
               </Link>
               
               <Link
                 to="/dashboard"
-                className="w-full flex items-center justify-center py-2 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none transition-colors"
+                className="w-full flex items-center justify-center py-2 px-4 border border-white/20 text-gray-700  hover:bg-gray-50 focus:outline-none transition-colors"
               >
                 Go to Dashboard
               </Link>

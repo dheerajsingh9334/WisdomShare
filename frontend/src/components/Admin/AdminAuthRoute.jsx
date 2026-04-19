@@ -48,7 +48,7 @@ const AdminAuthRoute = ({ children }) => {
   if (isLoading && !isAdminAuthenticated) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-md">
+        <div className="bg-black/40 backdrop-blur-md text-white p-8  shadow-md">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto"></div>
           <p className="text-gray-600 mt-4 text-center">Verifying admin access...</p>
         </div>

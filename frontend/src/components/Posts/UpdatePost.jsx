@@ -236,8 +236,8 @@ const UpdatePost = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-black text-white transition-colors duration-300 min-h-screen">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-8">
         <h1 className="text-3xl font-serif font-bold mb-8 text-center">
           Edit Your Story
         </h1>
@@ -264,7 +264,7 @@ const UpdatePost = () => {
               name="title"
               placeholder="Title"
               {...formik.getFieldProps("title")}
-              className="w-full text-4xl font-serif font-bold border-none focus:outline-none focus:ring-0 p-0 bg-white dark:bg-gray-900 dark:text-white"
+              className="w-full text-4xl font-serif font-bold border-none focus:outline-none focus:ring-0 p-0 bg-black text-white dark:text-white"
             />
             {formik.touched.title && formik.errors.title && (
               <p className="text-sm text-red-600 mt-1">{formik.errors.title}</p>
@@ -273,7 +273,7 @@ const UpdatePost = () => {
 
           {/* Featured Image */}
           <div className="space-y-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label className="block text-sm font-medium text-gray-300">
               Featured Image
             </label>
 
@@ -282,12 +282,12 @@ const UpdatePost = () => {
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="w-full h-64 object-cover rounded-lg"
+                  className="w-full h-64 object-cover "
                 />
                 <button
                   type="button"
                   onClick={removeImage}
-                  className="absolute top-2 right-2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="absolute top-2 right-2 bg-black/50 backdrop-blur-xl border border-white/10 text-white p-2 rounded-full shadow-lg border border-white/10 border-white/20 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   <FaTimesCircle className="text-red-500 text-xl" />
                 </button>
@@ -297,11 +297,11 @@ const UpdatePost = () => {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current.click()}
-                  className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+                  className="flex flex-col items-center justify-center w-full h-32 border-2 border-white/20 border-white/20 border-dashed  cursor-pointer bg-gray-50 hover:bg-white/5 text-white dark:hover:bg-gray-700 transition-colors"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg
-                      className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                      className="w-8 h-8 mb-4 text-gray-400"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 20 16"
@@ -314,10 +314,10 @@ const UpdatePost = () => {
                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                       />
                     </svg>
-                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <p className="mb-2 text-sm text-gray-400">
                       <span className="font-semibold">Click to upload</span> or drag and drop
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">JPEG, PNG, WebP (Max 5MB)</p>
+                    <p className="text-xs text-gray-400">JPEG, PNG, WebP (Max 5MB)</p>
                   </div>
                 </button>
               </div>
@@ -340,7 +340,7 @@ const UpdatePost = () => {
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Category
             </label>
             <Select
@@ -408,7 +408,7 @@ const UpdatePost = () => {
 
           {/* Status */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Status
             </label>
             <Select
@@ -473,14 +473,14 @@ const UpdatePost = () => {
           {/* Scheduled For (only if status is scheduled) */}
           {formik.values.status === "scheduled" && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Scheduled For
               </label>
               <input
                 type="datetime-local"
                 name="scheduledFor"
                 {...formik.getFieldProps("scheduledFor")}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/5 dark:text-white"
               />
               {formik.touched.scheduledFor && formik.errors.scheduledFor && (
                 <p className="text-sm text-red-600 dark:text-red-400 mt-1">
@@ -492,7 +492,7 @@ const UpdatePost = () => {
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Tags (optional)
             </label>
             <div className="space-y-2">
@@ -537,7 +537,7 @@ const UpdatePost = () => {
                       }
                     }
                   }}
-                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                  className="flex-1 px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
                 />
                 <button
                   type="button"
@@ -552,12 +552,12 @@ const UpdatePost = () => {
                     }
                   }}
                   disabled={!formik.values.tagInput?.trim()}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   Add
                 </button>
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-gray-400">
                 Press Enter or click Add to add tags. Maximum 20 characters per tag.
               </p>
             </div>
@@ -568,10 +568,10 @@ const UpdatePost = () => {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Your Story
             </label>
-            <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
+            <div className="border border-white/20 border-white/20  overflow-hidden">
               <ReactQuill
                 theme="snow"
                 value={formik.values.description}

@@ -67,16 +67,16 @@ const AdminAuthRegister = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
+      <div className="w-full max-w-md bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-xl border border-white/10 border-white/10 p-8">
         <div className="text-center mb-8">
           <div className="mx-auto w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
             <FaShieldAlt className="text-2xl text-red-600 dark:text-red-400" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Registration</h1>
+          <h1 className="text-3xl font-bold text-white">Admin Registration</h1>
           <p className="text-gray-600 dark:text-gray-300">Create admin account</p>
           
           {/* Admin Registration Info */}
-          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg">
+          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 ">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-blue-900 dark:text-blue-100">
                 <FaInfoCircle className="inline mr-1" />
@@ -116,7 +116,7 @@ const AdminAuthRegister = () => {
             <input
               type="text"
               {...formik.getFieldProps("username")}
-              className="w-full rounded-lg p-3 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-red-500"
+              className="w-full  p-3 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-red-500"
               placeholder="Enter admin username"
             />
             {formik.touched.username && formik.errors.username && (
@@ -129,7 +129,7 @@ const AdminAuthRegister = () => {
             <input
               type="email"
               {...formik.getFieldProps("email")}
-              className="w-full rounded-lg p-3 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-red-500"
+              className="w-full  p-3 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-red-500"
               placeholder="Enter admin email"
             />
             {formik.touched.email && formik.errors.email && (
@@ -143,7 +143,7 @@ const AdminAuthRegister = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 {...formik.getFieldProps("password")}
-                className="w-full rounded-lg p-3 pr-10 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-red-500"
+                className="w-full  p-3 pr-10 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-red-500"
                 placeholder="Enter password"
               />
               <button
@@ -166,7 +166,7 @@ const AdminAuthRegister = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 {...formik.getFieldProps("confirmPassword")}
-                className="w-full rounded-lg p-3 pr-10 outline-none border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-red-500"
+                className="w-full  p-3 pr-10 outline-none border border-white/20 border-white/20 bg-black text-white dark:text-white focus:ring-2 focus:ring-red-500"
                 placeholder="Confirm password"
               />
               <button
@@ -188,7 +188,7 @@ const AdminAuthRegister = () => {
           <button
             type="submit"
             disabled={adminRegisterMutation.isPending}
-            className="w-full h-12 inline-flex items-center justify-center text-white font-semibold rounded-lg bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-500"
+            className="w-full h-12 inline-flex items-center justify-center text-white font-semibold  bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-500"
           >
             <FaUserPlus className="mr-2" />
             {adminRegisterMutation.isPending ? "Creating Account..." : "Create Admin Account"}
@@ -201,7 +201,7 @@ const AdminAuthRegister = () => {
                 Sign in
               </Link>
             </p>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-400">
               <Link to="/login" className="hover:underline">← Back to regular login</Link>
             </p>
           </div>

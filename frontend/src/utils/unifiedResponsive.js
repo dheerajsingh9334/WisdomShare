@@ -38,7 +38,7 @@ export const text = {
   bodyLarge: "text-base sm:text-lg lg:text-xl",
   
   // Caption text
-  caption: "text-xs sm:text-sm text-gray-600 dark:text-gray-400"
+  caption: "text-xs sm:text-sm text-gray-400"
 };
 
 // ===== RESPONSIVE LAYOUT =====
@@ -96,60 +96,60 @@ export const sizing = {
 export const components = {
   // Card - used in ALL components
   card: {
-    base: "bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm",
+    base: "bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 shadow-sm",
     padding: spacing.containerSmall,
     hover: "hover:shadow-md transition-shadow"
   },
   
   // Button variants - used in ALL components
   button: {
-    primary: `${sizing.button.md} bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors`,
-    secondary: `${sizing.button.md} border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors`,
-    success: `${sizing.button.md} bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors`,
-    danger: `${sizing.button.md} bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors`,
-    outline: `${sizing.button.md} border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors`
+    primary: `${sizing.button.md} bg-blue-600 text-white  hover:bg-blue-700 transition-colors`,
+    secondary: `${sizing.button.md} border border-white/20 border-white/20 text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors`,
+    success: `${sizing.button.md} bg-green-600 text-white  hover:bg-green-700 transition-colors`,
+    danger: `${sizing.button.md} bg-red-600 text-white  hover:bg-red-700 transition-colors`,
+    outline: `${sizing.button.md} border border-white/20 border-white/20 text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors`
   },
   
   // Input variants - used in ALL components
   input: {
-    base: `w-full ${sizing.input.md} border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white`,
-    select: `w-full ${sizing.input.md} border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white`,
-    textarea: `w-full ${sizing.input.md} border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none`
+    base: `w-full ${sizing.input.md} border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white`,
+    select: `w-full ${sizing.input.md} border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white`,
+    textarea: `w-full ${sizing.input.md} border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white resize-none`
   },
   
   // Modal - used in ALL components
   modal: {
     overlay: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4",
-    container: "bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-xs sm:max-w-sm lg:max-w-md w-full max-h-[90vh] overflow-y-auto",
+    container: "bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-xl max-w-xs sm:max-w-sm lg:max-w-md w-full max-h-[90vh] overflow-y-auto",
     header: "flex items-center justify-between mb-3 sm:mb-4",
-    title: `${text.h4} text-gray-900 dark:text-white`,
+    title: `${text.h4} text-white`,
     closeButton: "text-gray-400 hover:text-gray-600 dark:hover:text-gray-300",
     closeIcon: sizing.icon.md,
     content: "p-4 sm:p-6",
     form: "space-y-3 sm:space-y-4",
-    footer: "flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6 pt-4 border-t border-gray-200 dark:border-gray-700"
+    footer: "flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 sm:mt-6 pt-4 border-t border-white/10 border-white/10"
   },
   
   // Form fields - used in ALL components
   formField: {
-    label: `block ${text.bodySmall} font-medium text-gray-700 dark:text-gray-300 mb-1`,
+    label: `block ${text.bodySmall} font-medium text-gray-300 mb-1`,
     grid: `${layout.grid2} ${spacing.gapSmall}`,
     grid3: `${layout.grid3} ${spacing.gapSmall}`,
-    checkbox: `${sizing.icon.xs} text-blue-600 focus:ring-blue-500 border-gray-300 rounded`,
-    checkboxLabel: `ml-2 ${text.bodySmall} text-gray-700 dark:text-gray-300`
+    checkbox: `${sizing.icon.xs} text-blue-600 focus:ring-blue-500 border-white/20 `,
+    checkboxLabel: `ml-2 ${text.bodySmall} text-gray-300`
   }
 };
 
 // ===== COMMON PATTERNS =====
 export const patterns = {
   // Page container - used in ALL page components
-  pageContainer: `min-h-screen bg-gray-50 dark:bg-gray-900 ${spacing.container}`,
+  pageContainer: `min-h-screen bg-black text-white ${spacing.container}`,
   
   // Content wrapper - used in ALL components
   contentWrapper: `max-w-7xl mx-auto ${spacing.container}`,
   
   // Header section - used in ALL components
-  header: `bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 ${spacing.containerLarge}`,
+  header: `bg-black/50 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 border-white/10 ${spacing.containerLarge}`,
   
   // Card grid - used in ALL components
   cardGrid: `${layout.grid3} ${spacing.gap} ${spacing.section}`,
@@ -187,7 +187,7 @@ className={r.layout.grid3 + ' ' + r.spacing.gap}
 className={r.sizing.icon.sm}
 
 // ❌ BEFORE - Long button classes everywhere
-className="px-3 sm:px-4 py-2 sm:py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
+className="px-3 sm:px-4 py-2 sm:py-2.5 bg-blue-600 text-white  hover:bg-blue-700 transition-colors text-sm sm:text-base"
 
 // ✅ AFTER - Pre-built button
 className={r.components.button.primary}

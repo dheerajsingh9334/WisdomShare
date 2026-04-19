@@ -29,12 +29,12 @@ const AccountVerification = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
+      <div className="max-w-md w-full bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg p-8 text-center">
         {verifyMutation.isPending && (
           <div>
             <FaSpinner className="animate-spin h-16 w-16 text-blue-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-2xl font-bold text-white mb-2">
               Verifying Your Account
             </h2>
             <p className="text-gray-600 dark:text-gray-300">
@@ -46,7 +46,7 @@ const AccountVerification = () => {
         {verifyMutation.isSuccess && isVerified && (
           <div>
             <FaCheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-2xl font-bold text-white mb-2">
               Email Verified Successfully!
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -55,13 +55,13 @@ const AccountVerification = () => {
             <div className="space-y-3">
               <a
                 href="/dashboard"
-                className="w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors"
               >
                 Go to Dashboard
               </a>
               <a
                 href="/create-post"
-                className="w-full inline-flex justify-center items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                className="w-full inline-flex justify-center items-center px-4 py-2 bg-green-600 text-white  hover:bg-green-700 transition-colors"
               >
                 Create Your First Post
               </a>
@@ -72,7 +72,7 @@ const AccountVerification = () => {
         {verifyMutation.isError && (
           <div>
             <FaTimesCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-2xl font-bold text-white mb-2">
               Verification Failed
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
@@ -81,13 +81,13 @@ const AccountVerification = () => {
             <div className="space-y-3">
               <a
                 href="/dashboard"
-                className="w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 transition-colors"
               >
                 Go to Dashboard
               </a>
               <a
                 href="/resend-verification"
-                className="w-full inline-flex justify-center items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                className="w-full inline-flex justify-center items-center px-4 py-2 bg-gray-600 text-white  hover:bg-gray-700 transition-colors"
               >
                 Request New Verification Email
               </a>

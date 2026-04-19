@@ -77,17 +77,17 @@ const MyFollowing = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <section className="relative py-16 md:py-24 overflow-hidden bg-black text-white min-h-screen">
       <div className="relative max-w-7xl px-4 mx-auto">
         <div className="mb-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-3">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
             Following
           </h1>
           <p className="text-gray-600 dark:text-gray-300">People you follow · {myFollowing.length}</p>
         </div>
 
         {myFollowing.length === 0 ? (
-          <div className="max-w-2xl mx-auto text-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-10">
+          <div className="max-w-2xl mx-auto text-center bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-10">
             <h2 className="text-2xl font-semibold mb-2">You are not following anyone yet</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Discover creators you like and follow them to see their latest posts.
@@ -107,7 +107,7 @@ const MyFollowing = () => {
                   return (
                     <div
                       key={user._id}
-                      className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center hover:shadow-md transition cursor-pointer"
+                      className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-6 text-center hover:shadow-md transition cursor-pointer"
                       onClick={() => navigate(`/user/${user._id}`)}
                     >
                       <Link to={`/user/${user._id}`} onClick={(e) => e.stopPropagation()}>
@@ -119,10 +119,10 @@ const MyFollowing = () => {
                           />
                         </div>
                       </Link>
-                      <h5 className="text-xl font-semibold text-gray-900 dark:text-white">
+                      <h5 className="text-xl font-semibold text-white">
                         {user.username}
                       </h5>
-                      <span className="block text-sm text-gray-500 dark:text-gray-400 mb-3">
+                      <span className="block text-sm text-gray-400 mb-3">
                         {user.email || "No email provided"}
                       </span>
 
@@ -130,7 +130,7 @@ const MyFollowing = () => {
                       <div className="mt-3 grid grid-cols-2 gap-2">
                         <Link
                           to={`/user/${user._id}`}
-                          className="px-3 py-2 text-sm font-medium rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 text-center"
+                          className="px-3 py-2 text-sm font-medium  bg-gray-100 bg-white/5 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 text-center"
                         >
                           Profile
                         </Link>
@@ -138,14 +138,14 @@ const MyFollowing = () => {
                           isFollowing ? (
                             <button
                               onClick={(e) => { e.stopPropagation(); handleUnfollow(user._id); }}
-                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-red-600 rounded hover:bg-red-700"
+                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-red-600  hover:bg-red-700"
                             >
                               <RiUserUnfollowFill /> Unfollow
                             </button>
                           ) : (
                             <button
                               onClick={(e) => { e.stopPropagation(); handleFollow(user._id); }}
-                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700"
+                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-blue-600  hover:bg-blue-700"
                             >
                               <RiUserFollowLine /> Follow
                             </button>
@@ -181,7 +181,7 @@ const MyFollowing = () => {
                           if (!postId) return;
                           if (e.key === 'Enter' || e.key === ' ') navigate(`/posts/${postId}`);
                         }}
-                        className="cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-md transition overflow-hidden"
+                        className="cursor-pointer bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  hover:shadow-md transition overflow-hidden"
                       >
                         {imageUrl && (
                           <img src={imageUrl} alt={post.title} className="w-full h-44 object-cover" />
@@ -193,7 +193,7 @@ const MyFollowing = () => {
                               <img
                                 src={post.author?.profilePicture?.url || post.author?.profilePicture?.path || post.author?.profilePicture}
                                 alt={post.author?.username || "Anonymous"}
-                                className="w-6 h-6 rounded-full object-cover border border-gray-200 dark:border-gray-600"
+                                className="w-6 h-6 rounded-full object-cover border border-white/10 border-white/20"
                                 onError={(e) => {
                                   e.target.style.display = 'none';
                                   e.target.nextElementSibling.style.display = 'flex';
@@ -201,7 +201,7 @@ const MyFollowing = () => {
                               />
                             ) : null}
                             <div 
-                              className={`w-6 h-6 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-gray-200 dark:border-gray-600 ${post.author?.profilePicture ? 'hidden' : 'flex'}`}
+                              className={`w-6 h-6 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center border border-white/10 border-white/20 ${post.author?.profilePicture ? 'hidden' : 'flex'}`}
                               style={{ display: post.author?.profilePicture ? 'none' : 'flex' }}
                             >
                               <span className="text-xs text-white font-medium">

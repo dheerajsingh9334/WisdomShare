@@ -172,18 +172,18 @@ const AIStudio = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="text-3xl font-bold text-white">
           AI Studio
         </h1>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+        <p className="text-sm text-gray-400 mt-1">
           Use direct mode for instant output or queued mode for resilient
           background processing with task polling.
         </p>
       </div>
 
       <div className="flex items-center gap-3">
-        <span className="text-sm text-gray-700 dark:text-gray-300">Mode</span>
-        <div className="inline-flex rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <span className="text-sm text-gray-300">Mode</span>
+        <div className="inline-flex  border border-white/10 border-white/10 overflow-hidden">
           {[EXECUTION_MODE.direct, EXECUTION_MODE.queued].map((option) => (
             <button
               key={option}
@@ -195,7 +195,7 @@ const AIStudio = () => {
               className={`px-3 py-1.5 text-sm capitalize ${
                 mode === option
                   ? "bg-blue-600 text-white"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"
+                  : "bg-black/50 backdrop-blur-xl border border-white/10 text-white text-gray-700 dark:text-gray-200"
               }`}
             >
               {option}
@@ -215,10 +215,10 @@ const AIStudio = () => {
           <button
             key={key}
             onClick={() => setActiveTab(key)}
-            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            className={`px-3 py-2  text-sm font-medium transition-colors ${
               activeTab === key
                 ? "bg-blue-600 text-white"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200"
+                : "bg-white/5 text-white text-gray-700 dark:text-gray-200"
             }`}
           >
             {label}
@@ -226,7 +226,7 @@ const AIStudio = () => {
         ))}
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-4">
         {activeTab === TAB_KEYS.writer && (
           <form
             className="space-y-3"
@@ -251,7 +251,7 @@ const AIStudio = () => {
                 setWriterForm((p) => ({ ...p, topic: e.target.value }))
               }
               placeholder="Blog topic"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
               required
             />
             <div className="grid md:grid-cols-3 gap-3">
@@ -261,7 +261,7 @@ const AIStudio = () => {
                   setWriterForm((p) => ({ ...p, audience: e.target.value }))
                 }
                 placeholder="Audience"
-                className="px-3 py-2 rounded-md border dark:bg-gray-900"
+                className="px-3 py-2  border bg-black"
               />
               <input
                 value={writerForm.tone}
@@ -269,7 +269,7 @@ const AIStudio = () => {
                   setWriterForm((p) => ({ ...p, tone: e.target.value }))
                 }
                 placeholder="Tone"
-                className="px-3 py-2 rounded-md border dark:bg-gray-900"
+                className="px-3 py-2  border bg-black"
               />
               <input
                 type="number"
@@ -281,7 +281,7 @@ const AIStudio = () => {
                   }))
                 }
                 placeholder="Word count"
-                className="px-3 py-2 rounded-md border dark:bg-gray-900"
+                className="px-3 py-2  border bg-black"
               />
             </div>
             <input
@@ -290,7 +290,7 @@ const AIStudio = () => {
                 setWriterForm((p) => ({ ...p, goal: e.target.value }))
               }
               placeholder="Goal"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
             />
             <input
               value={writerForm.includeSections}
@@ -301,11 +301,11 @@ const AIStudio = () => {
                 }))
               }
               placeholder="Sections (comma separated)"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white"
+              className="px-4 py-2  bg-blue-600 text-white"
               disabled={writerMutation.isPending}
             >
               {writerMutation.isPending
@@ -338,7 +338,7 @@ const AIStudio = () => {
               }
               rows={8}
               placeholder="Paste draft text"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
               required
             />
             <input
@@ -347,11 +347,11 @@ const AIStudio = () => {
                 setRefineForm((p) => ({ ...p, instructions: e.target.value }))
               }
               placeholder="Refine instructions"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white"
+              className="px-4 py-2  bg-blue-600 text-white"
               disabled={refineMutation.isPending}
             >
               {refineMutation.isPending
@@ -383,12 +383,12 @@ const AIStudio = () => {
                 setSearchForm((p) => ({ ...p, query: e.target.value }))
               }
               placeholder="Search by meaning (e.g. React performance patterns)"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
               required
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white"
+              className="px-4 py-2  bg-blue-600 text-white"
               disabled={semanticMutation.isPending}
             >
               {semanticMutation.isPending
@@ -420,7 +420,7 @@ const AIStudio = () => {
                 setChatForm((p) => ({ ...p, message: e.target.value }))
               }
               placeholder="Help me find blogs on React"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
               required
             />
             <input
@@ -429,11 +429,11 @@ const AIStudio = () => {
                 setChatForm((p) => ({ ...p, postId: e.target.value }))
               }
               placeholder="Optional postId for summarize intent"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white"
+              className="px-4 py-2  bg-blue-600 text-white"
               disabled={chatMutation.isPending}
             >
               {chatMutation.isPending
@@ -465,7 +465,7 @@ const AIStudio = () => {
                 setSummaryForm((p) => ({ ...p, postId: e.target.value }))
               }
               placeholder="Post ID (optional if text is provided)"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
             />
             <textarea
               value={summaryForm.text}
@@ -474,11 +474,11 @@ const AIStudio = () => {
               }
               rows={6}
               placeholder="Paste blog text (optional if postId is provided)"
-              className="w-full px-3 py-2 rounded-md border dark:bg-gray-900"
+              className="w-full px-3 py-2  border bg-black"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white"
+              className="px-4 py-2  bg-blue-600 text-white"
               disabled={summaryMutation.isPending}
             >
               {summaryMutation.isPending
@@ -493,24 +493,24 @@ const AIStudio = () => {
         )}
       </div>
 
-      <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+      <div className="bg-black text-white border border-white/10 border-white/10  p-4">
+        <h2 className="text-lg font-semibold text-white">
           Direct Result
         </h2>
         {!directResult ? (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+          <p className="text-sm text-gray-400 mt-2">
             No direct result yet.
           </p>
         ) : (
-          <pre className="mt-2 text-xs bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md p-3 overflow-auto max-h-80">
+          <pre className="mt-2 text-xs bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-3 overflow-auto max-h-80">
             {JSON.stringify(directResult, null, 2)}
           </pre>
         )}
       </div>
 
-      <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+      <div className="bg-black text-white border border-white/10 border-white/10  p-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-lg font-semibold text-white">
             Task Status
           </h2>
           {taskId && (
@@ -524,15 +524,15 @@ const AIStudio = () => {
         </div>
 
         {!taskId ? (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+          <p className="text-sm text-gray-400 mt-2">
             No task queued yet.
           </p>
         ) : (
           <div className="mt-3 space-y-2">
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-gray-300">
               Task: <span className="font-mono">{taskId}</span>
             </p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-gray-300">
               State: <span className="font-semibold">{taskState}</span>
               {isFetchingTask ? " (updating...)" : ""}
             </p>
@@ -542,7 +542,7 @@ const AIStudio = () => {
               </p>
             )}
             {taskResult && (
-              <pre className="mt-2 text-xs bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md p-3 overflow-auto max-h-80">
+              <pre className="mt-2 text-xs bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-3 overflow-auto max-h-80">
                 {JSON.stringify(taskResult, null, 2)}
               </pre>
             )}

@@ -56,10 +56,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
                   <PersistGate loading={
-          <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center">
+          <div className="min-h-screen bg-black text-white flex items-center justify-center">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600 dark:text-gray-400">Restoring your session...</p>
+              <p className="mt-4 text-gray-400">Restoring your session...</p>
             </div>
           </div>
         } persistor={persistor}>

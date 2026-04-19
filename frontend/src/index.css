@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans antialiased;
+  @apply bg-black text-gray-100 font-sans antialiased;
 }
 
 html {
@@ -49,8 +49,9 @@ html {
   border-radius: 0.5rem;
 }
 .prose a {
-  color: #15803d; /* green-700 */
-  text-decoration: none;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .prose a:hover {
   text-decoration: underline;
@@ -238,7 +239,7 @@ html {
   }
 
   .trending-carousel::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, #f97316, #ef4444);
+    background: #ffffff;
     border-radius: 5px;
   }
 
@@ -333,21 +334,23 @@ html {
 }
 
 /* Dark mode support for trending page style */
-.dark .posts-grid article {
-  background: rgba(31, 41, 55, 0.9);
-  border-color: rgba(75, 85, 99, 0.5);
+.dark .posts-grid article, .posts-grid article {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .dark .posts-grid article:hover {
   border-color: rgba(59, 130, 246, 0.6);
 }
 
-.dark .trending-carousel-item {
-  background: rgba(31, 41, 55, 0.9);
-  border-color: rgba(75, 85, 99, 0.5);
+.dark .trending-carousel-item, .trending-carousel-item {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
-.dark .trending-carousel-item:hover {
+.dark .trending-carousel-item:hover, .trending-carousel-item:hover {
   border-color: rgba(59, 130, 246, 0.6);
 }
 
@@ -375,7 +378,7 @@ html {
 }
 
 .trending-carousel::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #f97316, #ef4444);
+  background: #ffffff;
   border-radius: 4px;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -399,7 +402,7 @@ html {
 }
 
 .dark .trending-carousel::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #f97316, #ef4444);
+  background: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -490,7 +493,7 @@ html {
     --chart-3: oklch(0.439 0 0);
     --chart-4: oklch(0.371 0 0);
     --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
+    --radius: 0rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);

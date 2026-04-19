@@ -284,7 +284,7 @@ const AdminGlobalLayout = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-black text-white flex">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
@@ -294,26 +294,26 @@ const AdminGlobalLayout = ({ children }) => {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 sm:w-72 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 sm:w-72 bg-black/50 backdrop-blur-3xl border-r border-white/10 shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-3 sm:p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-red-600 to-red-700">
+          <div className="flex items-center justify-between p-3 sm:p-4 md:p-6 border-b border-white/10 border-white/10 bg-gradient-to-r from-red-600 to-red-700">
             <div className="flex items-center">
               <FaShieldAlt className="text-lg sm:text-xl md:text-2xl text-white mr-2 sm:mr-3" />
               <h1 className="text-base sm:text-lg md:text-xl font-bold text-white">Admin Panel</h1>
             </div>
             <button
               onClick={() => setSidebarOpen(false)}
-              className="lg:hidden p-2 rounded-md text-white hover:bg-red-700 transition-colors"
+              className="lg:hidden p-2  text-white hover:bg-red-700 transition-colors"
             >
               <FaTimes className="h-4 w-5" />
             </button>
           </div>
 
           {/* Search */}
-          <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="p-3 sm:p-4 border-b border-white/10 border-white/10">
             <div className="relative">
               <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input
@@ -321,7 +321,7 @@ const AdminGlobalLayout = ({ children }) => {
                 placeholder="Search menu items..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-white/20 border-white/20  bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm"
               />
             </div>
           </div>
@@ -331,7 +331,7 @@ const AdminGlobalLayout = ({ children }) => {
             {filteredMenuItems.length === 0 ? (
               <div className="text-center py-6 sm:py-8">
                 <FaSearch className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-gray-500 dark:text-gray-400 text-sm">No menu items found</p>
+                <p className="text-gray-400 text-sm">No menu items found</p>
               </div>
             ) : (
               filteredMenuItems.map((item) => {
@@ -343,23 +343,23 @@ const AdminGlobalLayout = ({ children }) => {
                     key={item.name}
                     to={item.path}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center px-3 sm:px-4 py-2 sm:py-3 text-left rounded-lg transition-all duration-200 group ${
+                    className={`flex items-center px-3 sm:px-4 py-2 sm:py-3 text-left  transition-all duration-200 group ${
                       isActive
                         ? 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-r-2 border-red-700 shadow-sm'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
+                        : 'text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-white dark:hover:text-white'
                     }`}
                   >
                     <Icon className={`h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3 transition-colors ${
-                      isActive ? 'text-red-700 dark:text-red-300' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300'
+                      isActive ? 'text-red-700 dark:text-red-300' : 'text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300'
                     }`} />
                     <div className="min-w-0 flex-1">
                       <div className={`font-medium transition-colors text-sm sm:text-base ${
-                        isActive ? 'text-red-700 dark:text-red-300' : 'text-gray-900 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white'
+                        isActive ? 'text-red-700 dark:text-red-300' : 'text-white group-hover:text-white dark:group-hover:text-white'
                       }`}>
                         {item.name}
                       </div>
                       <div className={`text-xs sm:text-sm transition-colors ${
-                        isActive ? 'text-red-600 dark:text-red-400' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'
+                        isActive ? 'text-red-600 dark:text-red-400' : 'text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'
                       }`}>
                         {item.description}
                       </div>
@@ -371,15 +371,15 @@ const AdminGlobalLayout = ({ children }) => {
           </nav>
 
           {/* Footer */}
-          <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
+          <div className="p-3 sm:p-4 border-t border-white/10 border-white/10 bg-gray-50 bg-white/5">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 bg-red-600 rounded-full flex items-center justify-center mr-2 sm:mr-3">
                   <FaUser className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate">{adminAuth?.username || 'Admin'}</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{adminAuth?.email}</p>
+                  <p className="text-xs sm:text-sm font-medium text-white truncate">{adminAuth?.username || 'Admin'}</p>
+                  <p className="text-xs text-gray-400 truncate">{adminAuth?.email}</p>
                 </div>
               </div>
             </div>
@@ -390,17 +390,17 @@ const AdminGlobalLayout = ({ children }) => {
       {/* Main content */}
       <div className="ml-0 lg:ml-72 flex-1 min-h-screen">
         {/* Top navbar */}
-        <div className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 min-h-[56px] sm:min-h-[64px]">
+        <div className="bg-black/50 backdrop-blur-3xl shadow-sm border-b border-white/10 sticky top-0 z-40 min-h-[56px] sm:min-h-[64px]">
           <div className="flex items-center justify-between px-2 sm:px-3 md:px-4 py-3 sm:py-4 h-14 sm:h-16">
             {/* Left side */}
             <div className="flex items-center">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                className="lg:hidden p-2  text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
               >
                 <FaBars className="h-4 w-5" />
               </button>
-              <h2 className="ml-2 sm:ml-3 md:ml-4 text-sm sm:text-base md:text-lg font-semibold text-gray-900 dark:text-white truncate">
+              <h2 className="ml-2 sm:ml-3 md:ml-4 text-sm sm:text-base md:text-lg font-semibold text-white truncate">
                 {menuItems.find(item => isActivePath(item.path))?.name || 'Admin Panel'}
               </h2>
             </div>
@@ -414,7 +414,7 @@ const AdminGlobalLayout = ({ children }) => {
                 
                     setShowNotifications(!showNotifications);
                   }}
-                  className="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="relative p-2  hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   title={`Notifications: ${notifications.length} total, ${unreadData?.unreadCount || 0} unread`}
                 >
                   <FaBell className={`h-4 w-5 ${
@@ -431,12 +431,12 @@ const AdminGlobalLayout = ({ children }) => {
                 </button>
 
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-72 sm:w-80 md:w-96 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50 max-h-96 overflow-y-auto">
+                  <div className="absolute right-0 mt-2 w-72 sm:w-80 md:w-96 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50 max-h-96 overflow-y-auto">
                     {/* Header with title and buttons */}
-                    <div className="px-3 sm:px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                    <div className="px-3 sm:px-4 py-2 border-b border-white/10 border-white/10">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
-                          <h3 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base">
+                          <h3 className="font-medium text-white text-sm sm:text-base">
                             🔔 Notifications
                             {notifications.length > 0 && (
                               <span className="ml-2 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full">
@@ -448,7 +448,7 @@ const AdminGlobalLayout = ({ children }) => {
                         <div className="flex items-center space-x-2">
                                                   <button
                           onClick={() => refetchNotifications()}
-                          className={`text-xs px-2 py-1 rounded transition-colors ${
+                          className={`text-xs px-2 py-1  transition-colors ${
                             notificationsLoading 
                               ? 'bg-gray-400 text-white cursor-not-allowed' 
                               : 'bg-gray-600 text-white hover:bg-gray-700'
@@ -472,7 +472,7 @@ const AdminGlobalLayout = ({ children }) => {
                                 alert('Test failed: ' + error.message);
                               }
                             }}
-                            className="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                            className="text-xs px-2 py-1 bg-green-600 text-white  hover:bg-green-700 transition-colors"
                             title="Test API endpoint"
                           >
                             🧪
@@ -487,7 +487,7 @@ const AdminGlobalLayout = ({ children }) => {
                         {unreadData?.unreadCount > 0 && (
                           <button
                             onClick={() => markAllMutation.mutate()}
-                            className="text-xs px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                            className="text-xs px-2 py-1 bg-blue-600 text-white  hover:bg-blue-700 transition-colors"
                           >
                             Mark all read
                           </button>
@@ -495,7 +495,7 @@ const AdminGlobalLayout = ({ children }) => {
                         {notifications.length > 0 && (
                           <button
                             onClick={() => deleteAllMutation.mutate()}
-                            className="text-xs px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                            className="text-xs px-2 py-1 bg-red-600 text-white  hover:bg-red-700 transition-colors"
                           >
                             Delete all
                           </button>
@@ -505,17 +505,17 @@ const AdminGlobalLayout = ({ children }) => {
                     {notificationsLoading ? (
                       <div className="px-3 sm:px-4 py-6 sm:py-8 text-center">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Loading notifications...</p>
+                        <p className="text-xs text-gray-400">Loading notifications...</p>
                       </div>
                     ) : notificationsError ? (
                       <div className="px-3 sm:px-4 py-6 sm:py-8 text-center">
                         <div className="text-red-500 mb-2">⚠️ Error Loading Notifications</div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                        <p className="text-xs text-gray-400 mb-2">
                           {notificationsError.message || 'Unknown error occurred'}
                         </p>
                         <button
                           onClick={() => refetchNotifications()}
-                          className="text-xs px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                          className="text-xs px-3 py-1 bg-red-600 text-white  hover:bg-red-700 transition-colors"
                         >
                           🔄 Retry
                         </button>
@@ -523,7 +523,7 @@ const AdminGlobalLayout = ({ children }) => {
                     ) : notifications.length === 0 ? (
                       <div className="px-3 sm:px-4 py-6 sm:py-8 text-center">
                         <FaBell className="h-6 w-6 sm:h-8 sm:w-8 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500 dark:text-gray-400 text-sm">No notifications</p>
+                        <p className="text-gray-400 text-sm">No notifications</p>
                         <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                           Notifications will appear here when received
                         </p>
@@ -533,33 +533,33 @@ const AdminGlobalLayout = ({ children }) => {
                       notifications.slice(0, 5).map((n) => {
                 
                         return (
-                          <div key={n._id || n.id} className={`px-3 sm:px-4 py-2 sm:py-3 hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-100 dark:border-gray-600 last:border-b-0 transition-colors ${
+                          <div key={n._id || n.id} className={`px-3 sm:px-4 py-2 sm:py-3 hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-white/5 border-white/20 last:border-b-0 transition-colors ${
                             !n.isRead ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''
                           }`}>
                             <div className="flex items-start">
                               <div className="flex-shrink-0 mt-1">
-                                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 bg-white/5 flex items-center justify-center">
                                   {getNotificationIcon(n.type)}
                                 </div>
                               </div>
                               <div className="ml-2 sm:ml-3 flex-1 min-w-0">
                                 <div className="flex items-start justify-between">
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate">
+                                    <p className="text-xs sm:text-sm font-medium text-white truncate">
                                       {n.title || n.message?.substring(0, 50) || n.type || 'Notification'}
                                     </p>
-                                    <p className="text-xs text-gray-700 dark:text-gray-300 mt-1 line-clamp-2">
+                                    <p className="text-xs text-gray-300 mt-1 line-clamp-2">
                                       {n.message || n.description || n.content || 'No message content'}
                                     </p>
                                     
                                     {/* Debug: Show raw notification data if no structured content */}
                                     {!n.message && !n.description && !n.content && (
-                                      <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                      <div className="mt-2 text-xs text-gray-400">
                                         <details className="cursor-pointer">
                                           <summary className="hover:text-gray-700 dark:hover:text-gray-300">
                                             🔍 Debug: Raw Notification Data
                                           </summary>
-                                          <div className="mt-1 p-2 bg-gray-50 dark:bg-gray-700 rounded text-xs">
+                                          <div className="mt-1 p-2 bg-gray-50 bg-white/5  text-xs">
                                             <pre className="whitespace-pre-wrap break-words">
                                               {JSON.stringify(n, null, 2)}
                                             </pre>
@@ -570,7 +570,7 @@ const AdminGlobalLayout = ({ children }) => {
                                     
                                     {/* Show additional details for admin notifications */}
                                     {n.type === 'admin' && n.metadata?.additionalData?.adminContact && (
-                                      <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded text-xs">
+                                      <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700  text-xs">
                                         <div className="text-blue-800 dark:text-blue-200 font-medium mb-1">
                                           📧 Contact Admin:
                                         </div>
@@ -587,12 +587,12 @@ const AdminGlobalLayout = ({ children }) => {
                                     
                                     {/* Show metadata if available */}
                                     {n.metadata && Object.keys(n.metadata).length > 0 && (
-                                      <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                      <div className="mt-2 text-xs text-gray-400">
                                         <details className="cursor-pointer">
                                           <summary className="hover:text-gray-700 dark:hover:text-gray-300">
                                             📋 Additional Details
                                           </summary>
-                                          <div className="mt-1 p-2 bg-gray-50 dark:bg-gray-700 rounded text-xs">
+                                          <div className="mt-1 p-2 bg-gray-50 bg-white/5  text-xs">
                                             <pre className="whitespace-pre-wrap break-words">
                                               {JSON.stringify(n.metadata, null, 2)}
                                             </pre>
@@ -601,14 +601,14 @@ const AdminGlobalLayout = ({ children }) => {
                                       </div>
                                     )}
                                     
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                                    <p className="text-xs text-gray-400 mt-2">
                                       {n.createdAt ? new Date(n.createdAt).toLocaleString() : 'No date'}
                                     </p>
                                   </div>
                                   <div className="flex items-center gap-1 ml-2">
                                     {!n.isRead && (
                                       <button 
-                                        className="text-xs px-2 py-1 text-blue-600 hover:bg-blue-100 dark:hover:bg-blue-900/20 rounded transition-colors" 
+                                        className="text-xs px-2 py-1 text-blue-600 hover:bg-blue-100 dark:hover:bg-blue-900/20  transition-colors" 
                                         onClick={() => readOneMutation.mutate(n._id)}
                                         title="Mark as read"
                                       >
@@ -616,7 +616,7 @@ const AdminGlobalLayout = ({ children }) => {
                                       </button>
                                     )}
                                     <button 
-                                      className="text-xs px-2 py-1 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/20 rounded transition-colors" 
+                                      className="text-xs px-2 py-1 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/20  transition-colors" 
                                       onClick={() => deleteOneMutation.mutate(n._id)}
                                       title="Delete notification"
                                     >
@@ -650,7 +650,7 @@ const AdminGlobalLayout = ({ children }) => {
                     
                     {/* View all notifications link */}
                     {notifications.length > 5 && (
-                      <div className="px-3 sm:px-4 py-2 border-t border-gray-200 dark:border-gray-700">
+                      <div className="px-3 sm:px-4 py-2 border-t border-white/10 border-white/10">
                         <Link
                           to="/admin/notifications"
                           className="block text-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
@@ -667,7 +667,7 @@ const AdminGlobalLayout = ({ children }) => {
               {/* Dark mode toggle */}
               <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="p-2  hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 title="Toggle dark mode"
               >
                 {isDarkMode ? (
@@ -681,33 +681,33 @@ const AdminGlobalLayout = ({ children }) => {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-center space-x-2 p-2  hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-red-600 rounded-full flex items-center justify-center">
                     <FaShieldAlt className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden md:block">
+                  <span className="text-sm font-medium text-gray-300 hidden md:block">
                     {adminAuth?.username || 'Admin'}
                   </span>
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 sm:w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50">
-                    <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-200 dark:border-gray-700">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">{adminAuth?.username || 'Admin'}</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{adminAuth?.email}</p>
+                  <div className="absolute right-0 mt-2 w-48 sm:w-56 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50">
+                    <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-white/10 border-white/10">
+                      <p className="text-sm font-medium text-white">{adminAuth?.username || 'Admin'}</p>
+                      <p className="text-sm text-gray-400">{adminAuth?.email}</p>
                     </div>
                     <div className="py-1">
                       <Link
                         to="/admin/profile"
-                        className="flex items-center px-3 sm:px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="flex items-center px-3 sm:px-4 py-2 text-sm text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => setDropdownOpen(false)}
                       >
                         <FaUser className="h-4 w-4 mr-2" />
                         Profile
                       </Link>
                     </div>
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-1">
+                    <div className="border-t border-white/10 border-white/10 pt-1">
                       <button
                         onClick={handleConfirmLogout}
                         className="w-full flex items-center px-3 sm:px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"

@@ -453,15 +453,15 @@ const CreatePost = () => {
 
   return (
     <PlanAccessGuard feature="create_post">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
-          <h1 className="text-3xl font-serif font-bold mb-8 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-black text-white transition-colors duration-300 min-h-screen">
+        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-8">
+          <h1 className="text-3xl font-bold mb-8 text-center">
             Write your story
           </h1>
 
           {/* Plan Status Banner */}
           <div
-            className={`mb-6 p-4 rounded-lg border ${
+            className={`mb-6 p-4 rounded-none border ${
               userPlan === "Free"
                 ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800"
                 : userPlan === "Premium"
@@ -527,13 +527,13 @@ const CreatePost = () => {
 
           <form onSubmit={formik.handleSubmit} className="space-y-8">
             {/* AI Draft Generator */}
-            <div className="rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50/70 dark:bg-blue-900/20 p-4 sm:p-5 space-y-3">
+            <div className="rounded-none border border-blue-200 dark:border-blue-800 bg-blue-50/70 dark:bg-blue-900/20 p-4 sm:p-5 space-y-3">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div>
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h2 className="text-lg font-semibold text-white">
                     AI Blog Writer
                   </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-400">
                     Generate a draft, then refine it before publishing.
                   </p>
                 </div>
@@ -541,7 +541,7 @@ const CreatePost = () => {
                   type="button"
                   onClick={handleGenerateDraft}
                   disabled={aiGenerateMutation.isPending}
-                  className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
+                  className="px-4 py-2 rounded-none bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
                 >
                   {aiGenerateMutation.isPending
                     ? "Generating..."
@@ -555,28 +555,28 @@ const CreatePost = () => {
                   value={aiTopic}
                   onChange={(e) => setAiTopic(e.target.value)}
                   placeholder="Topic, e.g. React performance tips"
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  className="px-3 py-2 border border-white/20 border-white/20  bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white"
                 />
                 <input
                   type="text"
                   value={aiAudience}
                   onChange={(e) => setAiAudience(e.target.value)}
                   placeholder="Audience"
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  className="px-3 py-2 border border-white/20 border-white/20 rounded-none bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white"
                 />
                 <input
                   type="text"
                   value={aiTone}
                   onChange={(e) => setAiTone(e.target.value)}
                   placeholder="Tone"
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  className="px-3 py-2 border border-white/20 border-white/20  bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white"
                 />
                 <input
                   type="text"
                   value={aiGoal}
                   onChange={(e) => setAiGoal(e.target.value)}
                   placeholder="Goal"
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  className="px-3 py-2 border border-white/20 border-white/20  bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white"
                 />
               </div>
 
@@ -595,7 +595,7 @@ const CreatePost = () => {
                 placeholder="Title"
                 disabled={isBanned}
                 {...formik.getFieldProps("title")}
-                className={`w-full text-4xl font-serif font-bold border-none focus:outline-none focus:ring-0 p-0 bg-white dark:bg-gray-900 dark:text-white ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`w-full text-4xl font-serif font-bold border-none focus:outline-none focus:ring-0 p-0 bg-black text-white dark:text-white ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
               />
               {formik.touched.title && formik.errors.title && (
                 <p className="text-sm text-red-600 mt-1">
@@ -606,7 +606,7 @@ const CreatePost = () => {
 
             {/* Ban Message */}
             {isBanned && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200  p-4">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <svg
@@ -649,7 +649,7 @@ const CreatePost = () => {
 
             {/* Featured Image */}
             <div className="space-y-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-sm font-medium text-gray-300">
                 Featured Image
               </label>
 
@@ -658,13 +658,13 @@ const CreatePost = () => {
                   <img
                     src={imagePreview}
                     alt="Preview"
-                    className="w-full h-64 object-cover rounded-lg"
+                    className="w-full h-64 object-cover rounded-none"
                   />
                   <button
                     type="button"
                     onClick={removeImage}
                     disabled={isBanned}
-                    className={`absolute top-2 right-2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                    className={`absolute top-2 right-2 bg-black/50 backdrop-blur-xl border border-white/10 text-white p-2 rounded-none shadow-lg border border-white/10 border-white/20 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     <FaTimesCircle className="text-red-500 text-xl" />
                   </button>
@@ -675,11 +675,11 @@ const CreatePost = () => {
                     type="button"
                     onClick={() => !isBanned && fileInputRef.current.click()}
                     disabled={isBanned}
-                    className={`flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                    className={`flex flex-col items-center justify-center w-full h-32 border-2 border-white/20 border-white/20 border-dashed rounded-none cursor-pointer bg-gray-50 hover:bg-white/5 text-white dark:hover:bg-gray-700 transition-colors ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <svg
-                        className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                        className="w-8 h-8 mb-4 text-gray-400"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 20 16"
@@ -692,11 +692,11 @@ const CreatePost = () => {
                           d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                         />
                       </svg>
-                      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                      <p className="mb-2 text-sm text-gray-400">
                         <span className="font-semibold">Click to upload</span>{" "}
                         or drag and drop
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-gray-400">
                         JPEG, PNG, WebP (Max 5MB)
                       </p>
                     </div>
@@ -721,7 +721,7 @@ const CreatePost = () => {
 
             {/* Category */}
             <div className="">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Category{" "}
                 {canSelectMultipleCategories(userPlan)
                   ? "(Multiple Selection Available)"
@@ -729,7 +729,7 @@ const CreatePost = () => {
               </label>
 
               {!canSelectMultipleCategories(userPlan) && (
-                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-none">
                   <p className="text-sm text-blue-800 dark:text-blue-200">
                     📝 <strong>Free Plan:</strong> You can select one category
                     per post.
@@ -796,6 +796,7 @@ const CreatePost = () => {
                       document.documentElement.classList.contains("dark")
                         ? "#374151"
                         : "#ffffff",
+                    borderRadius: "0px",
                     borderColor: document.documentElement.classList.contains(
                       "dark",
                     )
@@ -876,7 +877,7 @@ const CreatePost = () => {
 
             {/* Tags */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Tags (optional)
               </label>
               <div className="space-y-2">
@@ -934,7 +935,7 @@ const CreatePost = () => {
                       }
                     }}
                     disabled={isBanned}
-                    className={`flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                    className={`flex-1 px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400 ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
                   />
                   <button
                     type="button"
@@ -954,12 +955,12 @@ const CreatePost = () => {
                       }
                     }}
                     disabled={isBanned || !formik.values.tagInput?.trim()}
-                    className={`px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                    className={`px-4 py-2 bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     Add
                   </button>
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-400">
                   Press Enter or click Add to add tags. Maximum 20 characters
                   per tag.
                 </p>
@@ -973,7 +974,7 @@ const CreatePost = () => {
 
             {/* Post Status */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Post Status
               </label>
               <div className="space-y-3">
@@ -988,7 +989,7 @@ const CreatePost = () => {
                       disabled={isBanned}
                       className="mr-2 text-blue-600 focus:ring-blue-500"
                     />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                    <span className="text-sm text-gray-300">
                       Save as Draft
                     </span>
                   </label>
@@ -1002,7 +1003,7 @@ const CreatePost = () => {
                       disabled={isBanned}
                       className="mr-2 text-blue-600 focus:ring-blue-500"
                     />
-                    <span className="text-sm text-gray-700 dark:text-gray-300">
+                    <span className="text-sm text-gray-300">
                       Publish Now
                     </span>
                   </label>
@@ -1019,7 +1020,7 @@ const CreatePost = () => {
                         disabled={isBanned}
                         className="mr-2 text-blue-600 focus:ring-blue-500"
                       />
-                      <span className="text-sm text-gray-700 dark:text-gray-300">
+                      <span className="text-sm text-gray-300">
                         Schedule for Later ⏰
                       </span>
                     </label>
@@ -1037,7 +1038,7 @@ const CreatePost = () => {
                           Schedule for Later 🔒
                         </span>
                       </label>
-                      <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20 rounded border border-blue-200 dark:border-blue-700">
+                      <div className="mt-2 p-2 bg-blue-50 dark:bg-blue-900/20  border border-blue-200 dark:border-blue-700">
                         <p className="text-xs text-blue-700 dark:text-blue-300">
                           Upgrade to Premium to schedule posts for later
                           publication
@@ -1051,7 +1052,7 @@ const CreatePost = () => {
                 {formik.values.status === "scheduled" &&
                   hasScheduledPosts(userPlan) && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         Schedule Date & Time
                       </label>
                       <input
@@ -1062,7 +1063,7 @@ const CreatePost = () => {
                         }
                         disabled={isBanned}
                         min={new Date().toISOString().slice(0, 16)}
-                        className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`w-full px-3 py-2 border border-white/20 border-white/20  focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
                       />
                       {formik.touched.scheduledFor &&
                         formik.errors.scheduledFor && (
@@ -1077,7 +1078,7 @@ const CreatePost = () => {
 
             {/* Description */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Your Story
               </label>
 
@@ -1088,7 +1089,7 @@ const CreatePost = () => {
                 className="mb-3"
               />
 
-              <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden bg-white dark:bg-gray-900">
+              <div className="border border-white/20 border-white/20  overflow-hidden bg-black text-white">
                 {hasAdvancedEditor(userPlan) ? (
                   <AdvancedEditorLock userPlan={userPlan} isActive={true}>
                     <ReactQuill
@@ -1115,10 +1116,10 @@ const CreatePost = () => {
                       }}
                       onBlur={formik.handleBlur}
                       disabled={isBanned}
-                      className={`w-full h-64 p-4 border-0 focus:ring-0 resize-none text-gray-900 dark:text-white bg-white dark:bg-gray-900 placeholder-gray-500 dark:placeholder-gray-400 ${isBanned ? "opacity-50" : ""}`}
+                      className={`w-full h-64 p-4 border-0 focus:ring-0 resize-none text-white bg-black text-white placeholder-gray-500 dark:placeholder-gray-400 ${isBanned ? "opacity-50" : ""}`}
                       placeholder="Write your story... (Simple text editor for Free plan)"
                     />
-                    <div className="absolute bottom-2 right-2 text-xs text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                    <div className="absolute bottom-2 right-2 text-xs text-gray-500 bg-gray-100 bg-white/5 px-2 py-1 ">
                       Free Plan - Basic Editor
                     </div>
                   </div>
@@ -1135,7 +1136,7 @@ const CreatePost = () => {
             <div className="flex flex-col space-y-3">
               {/* Character limit warning */}
               {!isWithinCharacterLimit(userPlan, formik.values.description) && (
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3">
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800  p-3">
                   <p className="text-sm text-red-800 dark:text-red-200">
                     ⚠️ Your content exceeds the {getCharacterLimit(userPlan)}{" "}
                     character limit for the {userPlan} plan. Please reduce your

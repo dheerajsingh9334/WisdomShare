@@ -98,6 +98,40 @@ cron.schedule(
   { scheduled: true, timezone: "America/New_York" },
 );
 
+// Daily job: Expire subscription plans after 30 days
+cron.schedule(
+  "0 3 * * *", // every day at 03:00
+  async () => {
+    try {
+      const Plan = require("./models/Plan/Plan");
+      // Find the "Free" plan to reset to
+      const freePlan = await Plan.findOne({ tier: "free" });
+      
+      const now = new Date();
+      const result = await User.updateMany(
+        { 
+          planExpirationDate: { $lt: now },
+          plan: { $ne: freePlan?._id } 
+        },
+        { 
+          $set: { 
+            hasSelectedPlan: true, 
+            plan: freePlan?._id || null, // Reset to free plan if found, else null
+            planExpirationDate: null 
+          } 
+        }
+      );
+      
+      if (result.modifiedCount > 0) {
+        console.log(`🕒 Expired ${result.modifiedCount} subscription plans`);
+      }
+    } catch (err) {
+      console.error("❌ Error expiring plans:", err);
+    }
+  },
+  { scheduled: true, timezone: "America/New_York" }
+);
+
 const app = express();
 //! PORT
 const PORT = process.env.PORT || 5000;

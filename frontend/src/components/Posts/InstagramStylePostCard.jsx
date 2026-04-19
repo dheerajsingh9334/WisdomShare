@@ -33,9 +33,9 @@ const InstagramStylePostCard = ({ post, userPlan, onLike, onComment }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+    <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg overflow-hidden border border-white/10 border-white/10 hover:shadow-xl transition-all duration-300">
       {/* Post Header */}
-      <div className="p-4 border-b border-gray-100 dark:border-gray-700">
+      <div className="p-4 border-b border-white/5 border-white/10">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link to={`/user/${post.author?._id}`} className="flex-shrink-0">
@@ -48,14 +48,14 @@ const InstagramStylePostCard = ({ post, userPlan, onLike, onComment }) => {
             <div>
               <Link 
                 to={`/user/${post.author?._id}`}
-                className="font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="font-semibold text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 {post.author?.username}
                 {(isPremiumUser || isProUser) && (
                   <FaCrown className="inline ml-2 text-yellow-500" size={14} />
                 )}
               </Link>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-gray-400">
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
             </div>
@@ -79,22 +79,22 @@ const InstagramStylePostCard = ({ post, userPlan, onLike, onComment }) => {
 
       {/* Post Content */}
       <div className="p-4">
-        <h2 className="font-bold text-lg text-gray-900 dark:text-white mb-2">
+        <h2 className="font-bold text-lg text-white mb-2">
           {post.title}
         </h2>
         <div 
-          className="text-gray-700 dark:text-gray-300 text-sm line-clamp-3"
+          className="text-gray-300 text-sm line-clamp-3"
           dangerouslySetInnerHTML={{ __html: post.description }}
         />
         
         {/* Post Stats - Only for Premium+ users */}
         {hasViewAnalytics && (
-          <div className="flex items-center space-x-4 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-            <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
+          <div className="flex items-center space-x-4 mt-3 pt-3 border-t border-white/5 border-white/10">
+            <div className="flex items-center space-x-1 text-gray-400">
               <FaEye size={14} />
               <span className="text-xs">{localViews.toLocaleString()} views</span>
             </div>
-            <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
+            <div className="flex items-center space-x-1 text-gray-400">
               <FaComment size={14} />
               <span className="text-xs">{post.comments?.length || 0} comments</span>
             </div>
@@ -156,20 +156,20 @@ const InstagramStylePostCard = ({ post, userPlan, onLike, onComment }) => {
 
         {/* Comment Section */}
         {showComments && hasLikeAccess && (
-          <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+          <div className="mt-4 pt-4 border-t border-white/5 border-white/10">
             <div className="flex space-x-2">
               <input
                 type="text"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Add a comment..."
-                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                className="flex-1 px-3 py-2 border border-white/20 border-white/20  text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
                 onKeyPress={(e) => e.key === 'Enter' && handleComment()}
               />
               <button
                 onClick={handleComment}
                 disabled={!comment.trim()}
-                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white rounded-lg text-sm font-medium transition-colors"
+                className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 text-white  text-sm font-medium transition-colors"
               >
                 Post
               </button>
@@ -179,7 +179,7 @@ const InstagramStylePostCard = ({ post, userPlan, onLike, onComment }) => {
 
         {/* Upgrade Prompt for Free Users */}
         {!hasLikeAccess && (
-          <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+          <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20  border border-blue-200 dark:border-blue-700">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-800 dark:text-blue-200">
@@ -191,7 +191,7 @@ const InstagramStylePostCard = ({ post, userPlan, onLike, onComment }) => {
               </div>
               <Link
                 to="/plan-management"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1  text-xs font-medium transition-colors"
               >
                 Upgrade
               </Link>

@@ -54,7 +54,7 @@ const MyFollowers = () => {
 
   if (isLoading) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <section className="min-h-screen flex items-center justify-center bg-black text-white">
         <p className="text-gray-600 dark:text-gray-300">Loading followers…</p>
       </section>
     );
@@ -62,7 +62,7 @@ const MyFollowers = () => {
 
   if (isError) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 text-center">
+      <section className="min-h-screen flex items-center justify-center bg-black text-white px-4 text-center">
         <p className="text-red-500">
           Failed to load followers: {error?.response?.data?.message || error?.message}
         </p>
@@ -71,17 +71,17 @@ const MyFollowers = () => {
   }
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <section className="relative py-16 md:py-24 overflow-hidden bg-black text-white min-h-screen">
       <div className="relative max-w-7xl px-4 mx-auto">
         <div className="mb-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-3">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
             Followers
           </h1>
           <p className="text-gray-600 dark:text-gray-300">People who follow you · {myFollowers.length}</p>
         </div>
 
         {myFollowers.length === 0 ? (
-          <div className="max-w-2xl mx-auto text-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-10">
+          <div className="max-w-2xl mx-auto text-center bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-10">
             <h2 className="text-2xl font-semibold mb-2">No followers yet</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Share your stories and engage with the community to gain followers.
@@ -90,7 +90,7 @@ const MyFollowers = () => {
               <Link to="/trending" className="px-5 py-2 rounded-full bg-green-600 text-white hover:bg-green-700">
                 Explore trending
               </Link>
-              <Link to="/ranking" className="px-5 py-2 rounded-full border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700">
+              <Link to="/ranking" className="px-5 py-2 rounded-full border border-white/20 border-white/20 hover:bg-gray-50 dark:hover:bg-gray-700">
                 Creators ranking
               </Link>
             </div>
@@ -105,7 +105,7 @@ const MyFollowers = () => {
               return (
                 <div
                   key={follower?._id || follower?.username}
-                  className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-md transition cursor-pointer"
+                  className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-6 hover:shadow-md transition cursor-pointer"
                   onClick={() => followerId && navigate(`/user/${followerId}`)}
                 >
                   <div className="text-center">
@@ -118,17 +118,17 @@ const MyFollowers = () => {
                         />
                       </div>
                     </Link>
-                    <h5 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    <h5 className="text-xl font-semibold text-white">
                       {follower?.username || 'Unknown'}
                     </h5>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-sm text-gray-400 mt-1">
                       {follower?.email || 'No email'}
                     </p>
                     {followerId && (
                       <div className="mt-4 grid grid-cols-2 gap-2">
                         <Link
                           to={profileUrl || '#'}
-                          className="px-3 py-2 text-sm font-medium rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 text-center"
+                          className="px-3 py-2 text-sm font-medium  bg-gray-100 bg-white/5 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 text-center"
                         >
                           Profile
                         </Link>
@@ -137,7 +137,7 @@ const MyFollowers = () => {
                             <button
                               onClick={(e) => { e.stopPropagation(); handleUnfollow(followerId); }}
                               disabled={pendingId === followerId}
-                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-red-600 rounded hover:bg-red-700 disabled:opacity-60"
+                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-red-600  hover:bg-red-700 disabled:opacity-60"
                             >
                               <RiUserUnfollowFill /> {pendingId === followerId ? 'Unfollowing…' : 'Unfollow'}
                             </button>
@@ -145,7 +145,7 @@ const MyFollowers = () => {
                             <button
                               onClick={(e) => { e.stopPropagation(); handleFollow(followerId); }}
                               disabled={pendingId === followerId}
-                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-60"
+                              className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm text-white bg-blue-600  hover:bg-blue-700 disabled:opacity-60"
                             >
                               <RiUserFollowLine /> {pendingId === followerId ? 'Following…' : 'Follow'}
                             </button>

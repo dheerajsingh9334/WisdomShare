@@ -145,40 +145,40 @@ const SystemSettings = () => {
   const renderGeneralSettings = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Site Information</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Site Information</h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Site Name
             </label>
             <input
               type="text"
               value={formData.siteName}
               onChange={(e) => handleSettingChange('siteName', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Site Description
             </label>
             <textarea
               value={formData.siteDescription}
               onChange={(e) => handleSettingChange('siteDescription', e.target.value)}
               rows="3"
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
         </div>
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">System Status</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">System Status</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">Maintenance Mode</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Temporarily disable the platform</p>
+              <h4 className="text-sm font-medium text-white">Maintenance Mode</h4>
+              <p className="text-sm text-gray-400">Temporarily disable the platform</p>
             </div>
             <button
               onClick={() => handleToggleMaintenance()}
@@ -187,7 +187,7 @@ const SystemSettings = () => {
               }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-4 w-4 transform rounded-full bg-black/40 backdrop-blur-md text-white transition-transform ${
                   formData.maintenanceMode ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
@@ -195,8 +195,8 @@ const SystemSettings = () => {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">User Registration</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Allow new users to register</p>
+              <h4 className="text-sm font-medium text-white">User Registration</h4>
+              <p className="text-sm text-gray-400">Allow new users to register</p>
             </div>
             <button
               onClick={() => handleSettingChange('registrationEnabled', !formData.registrationEnabled)}
@@ -205,7 +205,7 @@ const SystemSettings = () => {
               }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-4 w-4 transform rounded-full bg-black/40 backdrop-blur-md text-white transition-transform ${
                   formData.registrationEnabled ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
@@ -219,16 +219,16 @@ const SystemSettings = () => {
   const renderSecuritySettings = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Access Control</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Access Control</h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Default User Role
             </label>
             <select
               value={formData.defaultUserRole}
               onChange={(e) => handleSettingChange('defaultUserRole', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
             >
               <option value="user">User</option>
               <option value="moderator">Moderator</option>
@@ -239,28 +239,28 @@ const SystemSettings = () => {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">File Upload Settings</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">File Upload Settings</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Max File Size (MB)
             </label>
             <input
               type="number"
               value={formData.maxFileSize}
               onChange={(e) => handleSettingChange('maxFileSize', parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Allowed File Types
             </label>
             <input
               type="text"
               value={formData.allowedFileTypes.join(', ')}
               onChange={(e) => handleSettingChange('allowedFileTypes', e.target.value.split(',').map(t => t.trim()))}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white placeholder-gray-500 dark:placeholder-gray-400"
               placeholder="jpg, jpeg, png, gif"
             />
           </div>
@@ -272,40 +272,40 @@ const SystemSettings = () => {
   const renderContentSettings = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Content Limits</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Content Limits</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Max Posts Per User
             </label>
             <input
               type="number"
               value={formData.maxPostsPerUser}
               onChange={(e) => handleSettingChange('maxPostsPerUser', parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-300 mb-2">
               Max Comments Per Post
             </label>
             <input
               type="number"
               value={formData.maxCommentsPerPost}
               onChange={(e) => handleSettingChange('maxCommentsPerPost', parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+              className="w-full px-3 py-2 border border-white/20 border-white/20  focus:outline-none focus:ring-2 focus:ring-blue-500 bg-black/40 backdrop-blur-md text-white bg-white/5 text-white"
             />
           </div>
         </div>
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Content Moderation</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Content Moderation</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">Auto Moderation</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Automatically moderate content</p>
+              <h4 className="text-sm font-medium text-white">Auto Moderation</h4>
+              <p className="text-sm text-gray-400">Automatically moderate content</p>
             </div>
             <button
               onClick={() => handleSettingChange('autoModerationEnabled', !formData.autoModerationEnabled)}
@@ -314,7 +314,7 @@ const SystemSettings = () => {
               }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-4 w-4 transform rounded-full bg-black/40 backdrop-blur-md text-white transition-transform ${
                   formData.autoModerationEnabled ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
@@ -328,12 +328,12 @@ const SystemSettings = () => {
   const renderNotificationSettings = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Notification Preferences</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Notification Preferences</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">Email Notifications</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Send notifications via email</p>
+              <h4 className="text-sm font-medium text-white">Email Notifications</h4>
+              <p className="text-sm text-gray-400">Send notifications via email</p>
             </div>
             <button
               onClick={() => handleNestedSettingChange('notificationSettings', 'emailNotifications', !formData.notificationSettings.emailNotifications)}
@@ -342,7 +342,7 @@ const SystemSettings = () => {
               }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-4 w-4 transform rounded-full bg-black/40 backdrop-blur-md text-white transition-transform ${
                   formData.notificationSettings.emailNotifications ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
@@ -350,8 +350,8 @@ const SystemSettings = () => {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">Push Notifications</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Send browser push notifications</p>
+              <h4 className="text-sm font-medium text-white">Push Notifications</h4>
+              <p className="text-sm text-gray-400">Send browser push notifications</p>
             </div>
             <button
               onClick={() => handleNestedSettingChange('notificationSettings', 'pushNotifications', !formData.notificationSettings.pushNotifications)}
@@ -360,7 +360,7 @@ const SystemSettings = () => {
               }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-4 w-4 transform rounded-full bg-black/40 backdrop-blur-md text-white transition-transform ${
                   formData.notificationSettings.pushNotifications ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
@@ -368,8 +368,8 @@ const SystemSettings = () => {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white">Admin Notifications</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Send notifications to administrators</p>
+              <h4 className="text-sm font-medium text-white">Admin Notifications</h4>
+              <p className="text-sm text-gray-400">Send notifications to administrators</p>
             </div>
             <button
               onClick={() => handleNestedSettingChange('notificationSettings', 'adminNotifications', !formData.notificationSettings.adminNotifications)}
@@ -378,7 +378,7 @@ const SystemSettings = () => {
               }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                className={`inline-block h-4 w-4 transform rounded-full bg-black/40 backdrop-blur-md text-white transition-transform ${
                   formData.notificationSettings.adminNotifications ? 'translate-x-6' : 'translate-x-1'
                 }`}
               />
@@ -392,8 +392,8 @@ const SystemSettings = () => {
   const renderMonetizationSettings = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Revenue Settings</h3>
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <h3 className="text-lg font-semibold text-white mb-4">Revenue Settings</h3>
+        <div className="bg-yellow-50 border border-yellow-200  p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <CurrencyDollarIcon className="h-5 w-5 text-yellow-400" />
@@ -434,10 +434,10 @@ const SystemSettings = () => {
     return (
       <div className="p-6">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
+          <div className="h-8 bg-gray-200  w-1/4 mb-6"></div>
           <div className="space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-16 bg-gray-200 rounded"></div>
+              <div key={i} className="h-16 bg-gray-200 "></div>
             ))}
           </div>
         </div>
@@ -458,24 +458,24 @@ const SystemSettings = () => {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">System Settings</h1>
-        <p className="text-gray-600 dark:text-gray-400">Manage platform configuration and preferences</p>
+        <h1 className="text-2xl font-bold text-white mb-2">System Settings</h1>
+        <p className="text-gray-400">Manage platform configuration and preferences</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Settings</h2>
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-4">
+            <h2 className="text-lg font-semibold text-white mb-4">Settings</h2>
             <nav className="space-y-2">
               {sections.map((section) => (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`w-full flex items-center px-3 py-2 text-sm font-medium  transition-colors ${
                     activeSection === section.id
                       ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      : 'text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                 >
                   <section.icon className="h-5 w-5 mr-3" />
@@ -488,14 +488,14 @@ const SystemSettings = () => {
 
         {/* Main content */}
         <div className="lg:col-span-3">
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-6">
             {renderActiveSection()}
             
-            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <div className="mt-8 pt-6 border-t border-white/10 border-white/10">
               <button
                 onClick={handleSaveSettings}
                 disabled={updateSettingsMutation.isPending}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="px-6 py-2 bg-blue-600 text-white  hover:bg-blue-700 disabled:opacity-50 transition-colors"
               >
                 {updateSettingsMutation.isPending ? 'Saving...' : 'Save Settings'}
               </button>
@@ -507,24 +507,24 @@ const SystemSettings = () => {
       {/* Maintenance Mode Warning Modal */}
       {showMaintenanceWarning && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md mx-4">
+          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  p-6 max-w-md mx-4">
             <div className="flex items-center mb-4">
               <ExclamationTriangleIcon className="h-6 w-6 text-red-500 mr-2" />
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Enable Maintenance Mode?</h3>
+              <h3 className="text-lg font-semibold text-white">Enable Maintenance Mode?</h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-gray-400 mb-6">
               This will temporarily disable the platform for all users. Only administrators will be able to access the system.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={confirmMaintenanceMode}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="px-4 py-2 bg-red-600 text-white  hover:bg-red-700 transition-colors"
               >
                 Enable Maintenance Mode
               </button>
               <button
                 onClick={() => setShowMaintenanceWarning(false)}
-                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                className="px-4 py-2 bg-gray-500 text-white  hover:bg-gray-600 transition-colors"
               >
                 Cancel
               </button>
