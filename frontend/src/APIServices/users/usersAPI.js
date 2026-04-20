@@ -235,6 +235,18 @@ export const getUserPlanAndUsageAPI = async () => {
   }
 };
 
+// ! Get lightweight user stats for sidebar
+export const getUserStatsAPI = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/users/stats`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || error.message || "Failed to fetch user stats");
+  }
+};
+
 // ! Get user's plan and billing history
 export const getUserPlanHistoryAPI = async () => {
   try {

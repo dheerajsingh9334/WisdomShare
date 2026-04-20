@@ -116,10 +116,8 @@ function App() {
 
   const { userAuth } = useSelector((state) => state.auth);
 
-  // Show loading state while checking authentication
-  if (authLoading) {
-    return <LoadingSpinner />;
-  }
+  // Initial auth status check doesn't need to block the entire app shell
+  // We'll let components handle their own authenticated/loading states
 
   return (
     <DarkModeProvider>

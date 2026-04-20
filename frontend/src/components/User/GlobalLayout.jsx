@@ -1,5 +1,15 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
+import * as HeroIcons from "@heroicons/react/24/outline";
 import {
+  FaPen,
+  FaBell,
+  FaSun,
+  FaMoon,
+  FaBars,
+  FaTimes,
+  FaLock,
+} from "react-icons/fa";
+const {
   Cog6ToothIcon,
   HomeIcon,
   BellIcon,
@@ -13,22 +23,14 @@ import {
   SparklesIcon,
   DocumentTextIcon,
   TrophyIcon,
-} from "@heroicons/react/24/outline";
-import {
-  FaPen,
-  FaBell,
-  FaSun,
-  FaMoon,
-  FaBars,
-  FaTimes,
-  FaLock,
-} from "react-icons/fa";
+} = HeroIcons;
 import { Link, useLocation, Outlet } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   getUserPlanAndUsageAPI,
+  getUserStatsAPI,
   logoutAPI,
 } from "../../APIServices/users/usersAPI";
 import { getUserPublishedPostsAPI } from "../../APIServices/posts/postsAPI";
@@ -194,68 +196,30 @@ export default function GlobalLayout({ userAuth, children }) {
     cacheTime: 600000, // 10 minutes
   });
 
-  // Fetch user's published posts for mini analytics
-  const { data: userPostsData = {} } = useQuery({
-    queryKey: ["user-posts-mini", userAuth?._id],
-    queryFn: getUserPublishedPostsAPI,
+  // Access the auth status query state
+  const { isLoading: authLoading } = useQuery({
+    queryKey: ["user-auth"],
+    enabled: false, // Don't trigger a new fetch, just read existing cache
+  });
+
+  // Fetch user's lightweight stats for mini analytics
+  const { data: userStats = {} } = useQuery({
+    queryKey: ["user-stats-mini", userAuth?._id],
+    queryFn: getUserStatsAPI,
     enabled: !!userAuth?._id,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  // Calculate mini analytics
+  // Calculate mini analytics - simplified to use direct stats
   const miniAnalytics = useMemo(() => {
-    const userPosts = userPostsData?.posts || [];
-
-    if (!userPosts?.length) {
-      return {
-        totalPosts: 0,
-        totalViews: 0,
-        totalLikes: 0,
-        totalComments: 0,
-        recentData: [],
-      };
-    }
-
-    GlobalLayout.propTypes = {
-      userAuth: PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.shape({
-          _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        }),
-      ]),
-      children: PropTypes.node,
-    };
-
-    const totalPosts = userPosts.length;
-    const totalViews = userPosts.reduce(
-      (sum, post) => sum + (post.numViews || 0),
-      0,
-    );
-    const totalLikes = userPosts.reduce(
-      (sum, post) => sum + (post.likes?.length || 0),
-      0,
-    );
-    const totalComments = userPosts.reduce(
-      (sum, post) => sum + (post.comments?.length || 0),
-      0,
-    );
-
-    // Recent 7 days data for mini chart
-    const recentData = userPosts.slice(-7).map((post, index) => ({
-      day: index + 1,
-      views: post.numViews || 0,
-      likes: post.likes?.length || 0,
-      comments: post.comments?.length || 0,
-    }));
-
     return {
-      totalPosts,
-      totalViews,
-      totalLikes,
-      totalComments,
-      recentData,
+      totalPosts: userStats?.totalPosts || 0,
+      totalViews: userStats?.totalViews || 0,
+      totalLikes: userStats?.totalLikes || 0,
+      totalComments: userStats?.totalComments || 0,
+      recentData: userStats?.recentData || [],
     };
-  }, [userPostsData]);
+  }, [userStats]);
 
   // Memoize computed values
   const currentPlan = useMemo(
@@ -693,7 +657,12 @@ export default function GlobalLayout({ userAuth, children }) {
 
               {/* Right: Actions */}
               <div className="flex items-center space-x-4">
-                {userAuth ? (
+                {authLoading ? (
+                  <div className="flex items-center space-x-2 animate-pulse">
+                    <div className="h-8 w-8 bg-gray-700 rounded-full"></div>
+                    <div className="h-4 w-20 bg-gray-700 rounded"></div>
+                  </div>
+                ) : userAuth ? (
                   <>
                     {/* User Plan Status */}
                     <UserPlanStatus />

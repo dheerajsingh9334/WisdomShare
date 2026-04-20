@@ -569,19 +569,18 @@ getUserProfileById: asyncHandler(async (req, res) => {
   getUserPlanAndUsage: asyncHandler(async (req, res) => {
     const user = await User.findById(req.user)
       .populate("plan")
-      .populate("posts")
-      .select("plan posts totalPosts totalViews totalLikes totalComments planExpirationDate");
+      .select("plan totalPosts planExpirationDate");
 
     if (!user) {
       throw new Error("User not found");
     }
 
-    const currentPostCount = user.posts?.length || 0;
-  const userPlan = user.plan;
-  const planExpirationDate = user.planExpirationDate;
-  const tier = (userPlan?.tier || userPlan?.planName || 'free').toString().toLowerCase();
-  const tierDefaults = { free: 30, premium: 100, pro: 300 };
-  const effectiveLimit = (typeof userPlan?.postLimit === 'number') ? userPlan.postLimit : tierDefaults[tier] ?? 30;
+    const currentPostCount = user.totalPosts || 0;
+    const userPlan = user.plan;
+    const planExpirationDate = user.planExpirationDate;
+    const tier = (userPlan?.tier || userPlan?.planName || 'free').toString().toLowerCase();
+    const tierDefaults = { free: 30, premium: 100, pro: 300 };
+    const effectiveLimit = (typeof userPlan?.postLimit === 'number') ? userPlan.postLimit : tierDefaults[tier] ?? 30;
     
     // Calculate usage and limits
     const usage = {
@@ -595,6 +594,42 @@ getUserProfileById: asyncHandler(async (req, res) => {
     };
 
     res.json({ usage });
+  }),
+
+  //! Get lightweight user stats for sidebar
+  getUserStats: asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user)
+      .select("totalPosts totalViews totalLikes totalComments");
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Get recent 7 published posts for the mini chart
+    const recentPosts = await Post.find({
+      author: req.user,
+      status: "published",
+      adminManaged: { $ne: true }
+    })
+    .sort({ publishedAt: -1 })
+    .limit(7)
+    .select("publishedAt viewsCount likes comments");
+
+    // Map to a simplified format for the frontend chart
+    const recentData = recentPosts.reverse().map((post, index) => ({
+      day: index + 1,
+      views: post.viewsCount || 0,
+      likes: post.likes?.length || 0,
+      comments: post.comments?.length || 0,
+    }));
+
+    res.json({
+      totalPosts: user.totalPosts || 0,
+      totalViews: user.totalViews || 0,
+      totalLikes: user.totalLikes || 0,
+      totalComments: user.totalComments || 0,
+      recentData
+    });
   }),
 
   //! Get user's plan change history

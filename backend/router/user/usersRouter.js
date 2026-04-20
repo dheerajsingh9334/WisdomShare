@@ -81,6 +81,9 @@ usersRouter.get("/plan-usage", isAuthenticated, userController.getUserPlanAndUsa
 // Get user's plan change history
 usersRouter.get("/plan-history", isAuthenticated, userController.getUserPlanHistory);
 
+// Get lightweight user stats for sidebar
+usersRouter.get("/stats", isAuthenticated, userController.getUserStats);
+
 // Save post routes
 usersRouter.put("/save-post/:postId", isAuthenticated, userController.savePost);
 usersRouter.put("/unsave-post/:postId", isAuthenticated, userController.unsavePost);
