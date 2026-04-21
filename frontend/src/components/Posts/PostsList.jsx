@@ -351,7 +351,7 @@ const PostsList = () => {
   const loadingSkeletonCount = 20;
 
   return (
-    <div className="min-h-screen bg-black text-white w-full overflow-x-hidden">
+    <div className="min-h-screen bg-transparent text-white w-full overflow-x-hidden">
       <HeroSection />
 
       {/* Main Content - Only Latest Stories Section */}
@@ -398,7 +398,7 @@ const PostsList = () => {
               </div>
             ) : (
               allPosts.map((post) => (
-                <div key={post._id} className="flex flex-col h-full -[2rem] border border-blue-500/10 bg-[#1e293b]/30 p-2 shadow-2xl overflow-hidden hover:border-blue-500/30 transition-all duration-300">
+                <div key={post._id} className="flex flex-col h-full border border-blue-500/10 bg-transparent p-2 shadow-2xl overflow-hidden hover:border-blue-500/30 transition-all duration-300">
                   <PostCard 
                     post={post} 
                     isLiked={post.likes?.includes(currentUserId)}

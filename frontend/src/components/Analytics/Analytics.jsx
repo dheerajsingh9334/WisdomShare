@@ -29,7 +29,7 @@ const Analytics = () => {
 
   if (!canAccess) {
     return (
-      <div className="bg-black text-white py-12">
+      <div className="bg-transparent text-white py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           <PlanUpgradePrompt 
             feature="Analytics"
@@ -44,7 +44,7 @@ const Analytics = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-black text-white py-12">
+      <div className="bg-transparent text-white py-12">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
@@ -57,7 +57,7 @@ const Analytics = () => {
 
   if (error) {
     return (
-      <div className="bg-black text-white py-12">
+      <div className="bg-transparent text-white py-12">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center">
             <p className="text-red-600 dark:text-red-400">Failed to load analytics data. Please try again.</p>
@@ -78,7 +78,7 @@ const Analytics = () => {
   const totalPosts = posts.length;
 
   return (
-    <div className="bg-black text-white py-12">
+    <div className="bg-transparent text-white py-12">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="mb-8">
@@ -91,7 +91,7 @@ const Analytics = () => {
         </div>
 
         {/* Overview Stats with Links - Divide Grid Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl mb-8 overflow-hidden rounded-none">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-x divide-y divide-white/10 border border-white/10 bg-neutral-900/40 backdrop-blur-xl mb-8 overflow-hidden rounded-none">
           <Link to="/dashboard/posts" className="block p-8 hover:bg-white/5 transition-all group">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
@@ -145,7 +145,7 @@ const Analytics = () => {
         </div>
 
         {/* Additional Stats with Links - Divide Grid Style */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y divide-white/10 border border-white/10 bg-black/40 backdrop-blur-xl mb-8 overflow-hidden rounded-none">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y divide-white/10 border border-white/10 bg-neutral-900/40 backdrop-blur-xl mb-8 overflow-hidden rounded-none">
           <Link to="/dashboard/posts" className="block p-6 hover:bg-white/5 transition-all group">
             <div className="flex items-center justify-between">
               <div className="flex items-center">

@@ -52,7 +52,7 @@ const CreatorsRanking = () => {
 
   if (followersLoading || likesLoading || viewsLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-none h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
           <h2 className="text-2xl font-bold text-gray-300 mb-2">Loading Rankings</h2>
@@ -64,7 +64,7 @@ const CreatorsRanking = () => {
 
   if (followersError || likesError || viewsError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
           <div className="w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-none flex items-center justify-center mx-auto mb-4">
             <FaCrown className="text-red-500 text-2xl" />
@@ -141,7 +141,7 @@ const CreatorsRanking = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-transparent">
       <div className="max-w-none mx-auto px-3 sm:px-4 md:px-6 lg:px-4 xl:px-6 py-6 sm:py-8">
         {/* Hero Header - Responsive */}
         <div className="text-center mb-8 sm:mb-12">
@@ -156,7 +156,7 @@ const CreatorsRanking = () => {
           </p>
           
           {/* Enhanced Ranking Statistics - Responsive grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-x divide-y divide-white/10 border border-white/10 dark:bg-black/40 backdrop-blur-xl max-w-5xl mx-auto overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-x divide-y divide-white/10 border border-white/10 bg-neutral-900/40 backdrop-blur-xl max-w-5xl mx-auto overflow-hidden">
             <div className="p-6 transition-all hover:bg-white/5 group">
               <div className="flex items-center gap-3 mb-2">
                 <FaUsers className="text-blue-500 text-lg group-hover:scale-110 transition-transform" />
@@ -468,7 +468,7 @@ const CreatorsRanking = () => {
 
         {/* Footer Stats */}
         <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 bg-black/60 backdrop-blur-xl border border-white/10 rounded-none border border-white/20 shadow-lg">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-neutral-900/40 backdrop-blur-xl border border-white/10 rounded-none border border-white/20 shadow-lg">
             <FaFire className="text-orange-500" />
             <span className="text-sm text-gray-400">
               Rankings updated in real-time • Last updated: {new Date().toLocaleTimeString()}
@@ -479,7 +479,7 @@ const CreatorsRanking = () => {
         {/* Additional Ranking Insights */}
         {rankingStats.totalCreators > 0 && (
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white/60 bg-black/60 backdrop-blur-xl border border-white/10/60 backdrop-blur-sm  p-6 border border-white/20 border-white/10/50">
+            <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10/60 backdrop-blur-sm  p-6 border border-white/20 border-white/10/50">
               <h3 className="text-lg font-semibold text-white mb-3">Ranking Insights</h3>
               <div className="space-y-2 text-sm text-gray-400">
                 <p>• Top creator has {top10Followers[0]?.followersCount || 0} followers</p>
@@ -489,7 +489,7 @@ const CreatorsRanking = () => {
               </div>
             </div>
             
-            <div className="bg-white/60 bg-black/60 backdrop-blur-xl border border-white/10/60 backdrop-blur-sm  p-6 border border-white/20 border-white/10/50">
+            <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10/60 backdrop-blur-sm  p-6 border border-white/20 border-white/10/50">
               <h3 className="text-lg font-semibold text-white mb-3">How Rankings Work</h3>
               <div className="space-y-2 text-sm text-gray-400">
                 <p>• <strong>Followers:</strong> Based on community size and influence</p>

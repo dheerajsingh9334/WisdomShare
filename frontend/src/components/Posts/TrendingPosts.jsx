@@ -67,8 +67,8 @@ const TrendingPosts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white px-2">
-      <div className="bg-black/60 backdrop-blur-xl border-b border-white/10 sticky top-0 z-10">
+    <div className="min-h-screen bg-transparent text-white px-2">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border-b border-white/10 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">

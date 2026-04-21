@@ -172,7 +172,7 @@ const Notifications = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black text-white py-12">
+      <div className="min-h-screen bg-transparent text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
@@ -185,7 +185,7 @@ const Notifications = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-black text-white py-12">
+      <div className="min-h-screen bg-transparent text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center text-red-600 dark:text-red-400">
             <p>Error loading notifications: {error.message}</p>
@@ -196,7 +196,7 @@ const Notifications = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white py-12">
+    <div className="min-h-screen bg-transparent text-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 mb-6 sm:mb-8">
@@ -218,7 +218,7 @@ const Notifications = () => {
                 <button
                   onClick={handleMarkAllAsRead}
                   disabled={markAllAsReadMutation.isPending}
-                  className="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-green-600 text-white  hover:bg-green-700 disabled:opacity-50 transition-colors text-sm"
+                  className="inline-flex items-center justify-center px-3 sm:px-4 py-2 glass-premium-button text-white  hover:bg-green-700 disabled:opacity-50 transition-colors text-sm"
                 >
                   <FaCheck className="mr-2" />
                   Mark all as read
@@ -298,7 +298,7 @@ const Notifications = () => {
             filteredNotifications.map((notification) => (
               <div
                 key={notification._id}
-                className={`bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 transition-all duration-200 ${
+                className={`bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 transition-all duration-200 ${
                   !notification.isRead 
                     ? 'ring-2 ring-green-500/20 bg-green-50/50 dark:bg-green-900/10' 
                     : 'hover:shadow-xl'

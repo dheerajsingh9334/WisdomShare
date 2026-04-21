@@ -33,7 +33,7 @@ interface MetricCardProps {
 }
 
 const MetricCard: FC<MetricCardProps> = ({ title, value, unit = '', icon, description, valueClassName }) => (
-  <Card className="flex-1 min-w-[200px] rounded-none bg-black/50 backdrop-blur-xl border-white/10">
+  <Card className="flex-1 min-w-[200px] rounded-none bg-neutral-900/40 backdrop-blur-xl border-white/10">
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-sm font-medium text-gray-400">{title}</CardTitle>
       {icon}
@@ -84,7 +84,7 @@ export const SalesDashboard: FC<PerformanceDashboardProps> = ({
   };
 
   return (
-    <div className="w-full bg-black text-white flex flex-col gap-6">
+    <div className="w-full bg-transparent text-white flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Performance Overview</h1>
         <p className="text-gray-400">Detailed insights into your content engagement and reach.</p>
@@ -113,7 +113,7 @@ export const SalesDashboard: FC<PerformanceDashboardProps> = ({
           description="Average engagement per post"
           valueClassName="text-white"
         />
-        <Card className="flex-1 min-w-[200px] rounded-none bg-black/50 backdrop-blur-xl border-white/10">
+        <Card className="flex-1 min-w-[200px] rounded-none bg-neutral-900/40 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-gray-400">Overall Reach</CardTitle>
             <Eye className="h-4 w-4 text-white/50" />
@@ -128,7 +128,7 @@ export const SalesDashboard: FC<PerformanceDashboardProps> = ({
       </div>
 
       {/* Engagement Chart */}
-      <Card className="rounded-none bg-black/50 backdrop-blur-xl border-white/10">
+      <Card className="rounded-none bg-neutral-900/40 backdrop-blur-xl border-white/10">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <BarChart className="h-5 w-5 text-white/80" /> Recent Content Performance
@@ -165,7 +165,7 @@ export const SalesDashboard: FC<PerformanceDashboardProps> = ({
       </Card>
 
       {/* All Posts Table Section */}
-      <Card className="rounded-none bg-black/50 backdrop-blur-xl border-white/10">
+      <Card className="rounded-none bg-neutral-900/40 backdrop-blur-xl border-white/10">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle className="flex items-center gap-2">

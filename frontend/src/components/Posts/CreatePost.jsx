@@ -453,8 +453,8 @@ const CreatePost = () => {
 
   return (
     <PlanAccessGuard feature="create_post">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-black text-white transition-colors duration-300 min-h-screen">
-        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-transparent text-white transition-colors duration-300 min-h-screen">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white shadow-2xl p-8">
           <h1 className="text-3xl font-bold mb-8 text-center">
             Write your story
           </h1>
@@ -527,7 +527,7 @@ const CreatePost = () => {
 
           <form onSubmit={formik.handleSubmit} className="space-y-8">
             {/* AI Draft Generator */}
-            <div className="rounded-none border border-blue-200 dark:border-blue-800 bg-blue-50/70 dark:bg-blue-900/20 p-4 sm:p-5 space-y-3">
+            <div className="rounded-none border border-blue-500/20 bg-blue-900/10 backdrop-blur-md p-4 sm:p-5 space-y-3">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div>
                   <h2 className="text-lg font-semibold text-white">
@@ -595,7 +595,7 @@ const CreatePost = () => {
                 placeholder="Title"
                 disabled={isBanned}
                 {...formik.getFieldProps("title")}
-                className={`w-full text-4xl font-serif font-bold border-none focus:outline-none focus:ring-0 p-0 bg-black text-white dark:text-white ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`w-full text-4xl font-serif font-bold border-none focus:outline-none focus:ring-0 p-0 bg-transparent text-white dark:text-white ${isBanned ? "opacity-50 cursor-not-allowed" : ""}`}
               />
               {formik.touched.title && formik.errors.title && (
                 <p className="text-sm text-red-600 mt-1">

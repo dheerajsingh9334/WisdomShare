@@ -224,9 +224,9 @@ const DashboardPosts = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-transparent text-white">
       {/* Header - Responsive layout */}
-      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 border-white/10">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border-b border-white/10">
         <div className="max-w-none mx-auto px-3 sm:px-4 md:px-6 lg:px-4 xl:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-white">My Posts</h1>
@@ -293,7 +293,7 @@ const DashboardPosts = () => {
                 }}
                 className={`flex-1 py-2 px-2 sm:px-4  text-xs sm:text-sm font-medium transition-colors ${
                   activeTab === tab.id
-                    ? "bg-black/50 backdrop-blur-xl border border-white/10 text-white text-white shadow-sm"
+                    ? "bg-neutral-900/60 backdrop-blur-xl border border-white/20 text-white shadow-lg"
                     : "text-gray-400 hover:text-white dark:hover:text-white"
                 }`}
               >
@@ -392,7 +392,7 @@ const DashboardPosts = () => {
             {filteredPosts.map((post) => (
               <div
                 key={post._id}
-                className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-4 sm:p-6 hover:shadow-md transition-shadow"
+                className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white p-4 sm:p-6 hover:shadow-2xl transition-all duration-300"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">

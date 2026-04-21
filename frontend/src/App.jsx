@@ -64,10 +64,11 @@ const CategoryManagement = lazy(() => import("./components/Admin/CategoryManagem
 const NotificationManagement = lazy(() => import("./components/Admin/NotificationManagement"));
 const SystemSettings = lazy(() => import("./components/Admin/SystemSettings"));
 const AdminProfile = lazy(() => import("./components/Admin/AdminProfile"));
+const LiveTracker = lazy(() => import("./components/Tracker/LiveTracker"));
 
 // Fallback component
 const LoadingSpinner = () => (
-  <div className="min-h-screen bg-black text-white flex items-center justify-center">
+  <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
     <div className="text-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
       <p className="mt-4 text-gray-400">Loading...</p>
@@ -122,7 +123,7 @@ function App() {
   return (
     <DarkModeProvider>
       <NotificationProvider>
-        <div className="min-h-screen bg-black text-white transition-colors duration-300">
+        <div className="min-h-screen bg-transparent text-white transition-colors duration-300">
           <BrowserRouter
             future={{
               v7_startTransition: true,
@@ -646,6 +647,14 @@ function App() {
                     </GlobalLayout>
                   }
                   path="/ai-studio"
+                />
+                <Route
+                  element={
+                    <GlobalLayout userAuth={userAuth}>
+                      <LiveTracker />
+                    </GlobalLayout>
+                  }
+                  path="/demo"
                 />
 
                 {/* Edit post route - moved to root level */}

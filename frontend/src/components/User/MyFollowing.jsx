@@ -77,7 +77,7 @@ const MyFollowing = () => {
   };
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-black text-white min-h-screen">
+    <section className="relative py-16 md:py-24 overflow-hidden bg-transparent text-white min-h-screen">
       <div className="relative max-w-7xl px-4 mx-auto">
         <div className="mb-10 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
@@ -87,12 +87,12 @@ const MyFollowing = () => {
         </div>
 
         {myFollowing.length === 0 ? (
-          <div className="max-w-2xl mx-auto text-center bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-10">
+          <div className="max-w-2xl mx-auto text-center bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-10">
             <h2 className="text-2xl font-semibold mb-2">You are not following anyone yet</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Discover creators you like and follow them to see their latest posts.
             </p>
-            <Link to="/trending" className="px-5 py-2 rounded-full bg-green-600 text-white hover:bg-green-700">
+            <Link to="/trending" className="px-5 py-2 glass-premium-button text-white">
               Explore trending
             </Link>
           </div>
@@ -107,7 +107,7 @@ const MyFollowing = () => {
                   return (
                     <div
                       key={user._id}
-                      className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-6 text-center hover:shadow-md transition cursor-pointer"
+                      className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-6 text-center hover:shadow-md transition cursor-pointer"
                       onClick={() => navigate(`/user/${user._id}`)}
                     >
                       <Link to={`/user/${user._id}`} onClick={(e) => e.stopPropagation()}>
@@ -181,7 +181,7 @@ const MyFollowing = () => {
                           if (!postId) return;
                           if (e.key === 'Enter' || e.key === ' ') navigate(`/posts/${postId}`);
                         }}
-                        className="cursor-pointer bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  hover:shadow-md transition overflow-hidden"
+                        className="cursor-pointer bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  hover:shadow-md transition overflow-hidden"
                       >
                         {imageUrl && (
                           <img src={imageUrl} alt={post.title} className="w-full h-44 object-cover" />

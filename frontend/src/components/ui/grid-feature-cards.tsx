@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 import React from 'react';
 
 type FeatureType = {
@@ -7,29 +7,29 @@ type FeatureType = {
 	description: string;
 };
 
-type FeatureCardPorps = React.ComponentProps<'div'> & {
+type FeatureCardProps = React.ComponentProps<'div'> & {
 	feature: FeatureType;
 };
 
-export function FeatureCard({ feature, className, ...props }: FeatureCardPorps) {
+export function FeatureCard({ feature, className, ...props }: FeatureCardProps) {
 	const p = genRandomPattern();
 
 	return (
-		<div className={cn('relative overflow-hidden p-6 hover:bg-white/[0.02] transition-colors', className)} {...props}>
+		<div className={cn('relative overflow-hidden p-6 bg-neutral-900/40 backdrop-blur-xl border border-white/10', className)} {...props}>
 			<div className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full [mask-image:linear-gradient(white,transparent)]">
-				<div className="from-foreground/5 to-foreground/1 absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100">
+				<div className="from-white/10 to-transparent absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] opacity-100">
 					<GridPattern
 						width={20}
 						height={20}
 						x="-12"
 						y="4"
 						squares={p}
-						className="fill-white/5 stroke-white/10 absolute inset-0 h-full w-full mix-blend-overlay"
+						className="fill-white/10 stroke-white/20 absolute inset-0 h-full w-full mix-blend-overlay"
 					/>
 				</div>
 			</div>
-			<feature.icon className="text-white/75 size-6" strokeWidth={1} aria-hidden />
-			<h3 className="mt-10 text-sm md:text-base font-medium text-white">{feature.title}</h3>
+			<feature.icon className="text-white/80 size-6" strokeWidth={1} aria-hidden />
+			<h3 className="mt-10 text-sm md:text-base text-white font-medium">{feature.title}</h3>
 			<p className="text-gray-400 relative z-20 mt-2 text-xs font-light">{feature.description}</p>
 		</div>
 	);
@@ -55,8 +55,8 @@ function GridPattern({
 			<rect width="100%" height="100%" strokeWidth={0} fill={`url(#${patternId})`} />
 			{squares && (
 				<svg x={x} y={y} className="overflow-visible">
-					{squares.map(([x, y], index) => (
-						<rect strokeWidth="0" key={index} width={width + 1} height={height + 1} x={x * width} y={y * height} className="fill-white/10" />
+					{squares.map(([sqX, sqY], index) => (
+						<rect strokeWidth="0" key={index} width={width + 1} height={height + 1} x={sqX * width} y={sqY * height} />
 					))}
 				</svg>
 			)}

@@ -54,7 +54,7 @@ const MyFollowers = () => {
 
   if (isLoading) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-black text-white">
+      <section className="min-h-screen flex items-center justify-center bg-transparent text-white">
         <p className="text-gray-600 dark:text-gray-300">Loading followers…</p>
       </section>
     );
@@ -62,7 +62,7 @@ const MyFollowers = () => {
 
   if (isError) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-black text-white px-4 text-center">
+      <section className="min-h-screen flex items-center justify-center bg-transparent text-white px-4 text-center">
         <p className="text-red-500">
           Failed to load followers: {error?.response?.data?.message || error?.message}
         </p>
@@ -71,7 +71,7 @@ const MyFollowers = () => {
   }
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden bg-black text-white min-h-screen">
+    <section className="relative py-16 md:py-24 overflow-hidden bg-transparent text-white min-h-screen">
       <div className="relative max-w-7xl px-4 mx-auto">
         <div className="mb-10 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-3">
@@ -87,7 +87,7 @@ const MyFollowers = () => {
               Share your stories and engage with the community to gain followers.
             </p>
             <div className="flex items-center justify-center gap-3">
-              <Link to="/trending" className="px-5 py-2 rounded-full bg-green-600 text-white hover:bg-green-700">
+              <Link to="/trending" className="px-5 py-2 rounded-full glass-premium-button text-white hover:bg-green-700">
                 Explore trending
               </Link>
               <Link to="/ranking" className="px-5 py-2 rounded-full border border-white/20 border-white/20 hover:bg-gray-50 dark:hover:bg-gray-700">

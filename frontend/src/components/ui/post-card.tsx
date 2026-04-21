@@ -28,7 +28,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, isSaved, isLiked, onSa
   };
 
   return (
-   <div className="w-full h-full flex flex-col -[2rem] bg-[#0B1121]/80 backdrop-blur-xl border border-blue-500/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-5 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] hover:border-blue-500/30 group">
+   <div className="w-full h-full flex flex-col bg-neutral-900/40 backdrop-blur-xl border border-blue-500/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-5 transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.3)] hover:border-blue-500/30 group">
       {/* Header */}
       <div className="flex items-center justify-between gap-4 card-header">
         <Link to={`/user/${post?.author?._id}`} className="flex items-center gap-4 hover:opacity-80 transition-opacity">

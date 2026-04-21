@@ -176,7 +176,7 @@ const PostDetails = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 dark:text-gray-300">Loading post...</p>
@@ -187,7 +187,7 @@ const PostDetails = () => {
 
   if (isError) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-500 text-lg mb-4">Error loading post</p>
           <p className="text-gray-600 dark:text-gray-300">{error.message}</p>
@@ -203,9 +203,9 @@ const PostDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-transparent text-white">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-10 bg-black/50 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 border-white/10 shadow-sm">
+      <div className="sticky top-0 z-10 bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border-b border-white/10 shadow-sm">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <button
@@ -254,7 +254,7 @@ const PostDetails = () => {
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <article className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 overflow-hidden">
+          <article className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white shadow-2xl overflow-hidden">
           {/* Hero Image */}
           {image && (
             <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 xl:h-96 overflow-hidden">
@@ -326,7 +326,7 @@ const PostDetails = () => {
               )}
             </div>
 
-            <div className="mb-6  border border-emerald-200 dark:border-emerald-800 bg-emerald-50/70 dark:bg-emerald-900/20 p-4">
+            <div className="mb-6 rounded-none border border-emerald-500/20 bg-emerald-900/10 backdrop-blur-md p-4">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <div>
                   <h3 className="text-sm font-semibold text-white">
@@ -356,7 +356,7 @@ const PostDetails = () => {
 
             {/* User Profile Info */}
             {post?.author && (
-              <div className="mb-6 p-4 bg-gray-50 bg-white/5/50  border border-white/10 border-white/20">
+              <div className="mb-6 p-4 bg-white/5 backdrop-blur-md border border-white/10">
                 <h3 className="text-sm font-medium text-gray-300 mb-3">
                   About the Author
                 </h3>

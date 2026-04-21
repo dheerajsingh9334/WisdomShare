@@ -284,7 +284,7 @@ const AdminGlobalLayout = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white flex">
+    <div className="min-h-screen bg-transparent text-white flex">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
@@ -294,7 +294,7 @@ const AdminGlobalLayout = ({ children }) => {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 sm:w-72 bg-black/50 backdrop-blur-3xl border-r border-white/10 shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 sm:w-72 bg-neutral-900/40 backdrop-blur-3xl border-r border-white/10 shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
@@ -390,7 +390,7 @@ const AdminGlobalLayout = ({ children }) => {
       {/* Main content */}
       <div className="ml-0 lg:ml-72 flex-1 min-h-screen">
         {/* Top navbar */}
-        <div className="bg-black/50 backdrop-blur-3xl shadow-sm border-b border-white/10 sticky top-0 z-40 min-h-[56px] sm:min-h-[64px]">
+        <div className="bg-neutral-900/40 backdrop-blur-3xl shadow-sm border-b border-white/10 sticky top-0 z-40 min-h-[56px] sm:min-h-[64px]">
           <div className="flex items-center justify-between px-2 sm:px-3 md:px-4 py-3 sm:py-4 h-14 sm:h-16">
             {/* Left side */}
             <div className="flex items-center">
@@ -431,7 +431,7 @@ const AdminGlobalLayout = ({ children }) => {
                 </button>
 
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-72 sm:w-80 md:w-96 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50 max-h-96 overflow-y-auto">
+                  <div className="absolute right-0 mt-2 w-72 sm:w-80 md:w-96 bg-neutral-900/60 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50 max-h-96 overflow-y-auto">
                     {/* Header with title and buttons */}
                     <div className="px-3 sm:px-4 py-2 border-b border-white/10 border-white/10">
                       <div className="flex items-center justify-between mb-2">
@@ -692,7 +692,7 @@ const AdminGlobalLayout = ({ children }) => {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 sm:w-56 bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50">
+                  <div className="absolute right-0 mt-2 w-48 sm:w-56 bg-neutral-900/60 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 py-2 z-50">
                     <div className="px-3 sm:px-4 py-2 sm:py-3 border-b border-white/10 border-white/10">
                       <p className="text-sm font-medium text-white">{adminAuth?.username || 'Admin'}</p>
                       <p className="text-sm text-gray-400">{adminAuth?.email}</p>

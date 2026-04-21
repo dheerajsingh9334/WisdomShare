@@ -139,13 +139,13 @@ const AdminMainDashboard = () => {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+        <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 bg-white/5  w-1/3 mb-2"></div>
             <div className="h-4 bg-gray-200 bg-white/5  w-2/3"></div>
           </div>
         </div>
-        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+        <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <div className="animate-pulse">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((i) => (
@@ -161,7 +161,7 @@ const AdminMainDashboard = () => {
   if (error) {
     return (
       <div className="space-y-6">
-        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+        <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <div className="text-center">
             <FaExclamationTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Error Loading Dashboard</h2>
@@ -181,7 +181,7 @@ const AdminMainDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600  shadow-sm p-8 text-white relative overflow-hidden">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 shadow-sm p-8 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative z-10">
           <div className="flex items-center justify-between">
@@ -239,7 +239,7 @@ const AdminMainDashboard = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
         <h2 className="text-xl font-bold text-white mb-6">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {quickActions.map((action) => {
@@ -270,7 +270,7 @@ const AdminMainDashboard = () => {
       {/* System Status & Activity Feed */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* System Status */}
-        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+        <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <h2 className="text-xl font-bold text-white mb-4">System Status</h2>
           <div className="space-y-4">
             <div className="flex items-center p-4 bg-green-50 dark:bg-green-900/20 ">
@@ -305,7 +305,7 @@ const AdminMainDashboard = () => {
         </div>
 
         {/* Activity Feed */}
-        <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
+        <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm p-6">
           <h2 className="text-xl font-bold text-white mb-4">Recent Activity</h2>
           {activityLoading ? (
             <div className="space-y-4 max-h-96 overflow-y-auto">

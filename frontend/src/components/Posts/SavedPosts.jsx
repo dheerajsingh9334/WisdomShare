@@ -76,7 +76,7 @@ const SavedPosts = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
           <p className="text-gray-400">Loading saved posts...</p>
@@ -87,7 +87,7 @@ const SavedPosts = () => {
 
   if (savedPosts.length === 0) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-transparent text-white flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">📚</div>
           <h2 className="text-2xl font-bold text-white mb-2">No saved posts yet</h2>
@@ -104,7 +104,7 @@ const SavedPosts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white py-8">
+    <div className="min-h-screen bg-transparent text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">

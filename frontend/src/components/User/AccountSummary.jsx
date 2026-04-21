@@ -36,31 +36,31 @@ const AccountSummaryDashboard = () => {
   });
 
   const stats = [
-    { icon: <FaEye />, label: "Views", value: totalViews, bgColor: "bg-blue-500" },
-    { icon: <FaUsers />, label: "Followers", value: totalFollowers, bgColor: "bg-purple-500" },
-    { icon: <FaThumbsUp />, label: "Likes", value: totalLikes, bgColor: "bg-yellow-500" },
-    { icon: <FaThumbsDown />, label: "Dislikes", value: totalDislikes, bgColor: "bg-red-500" },
-    { icon: <FaUsers />, label: "Following", value: totalFollowing, bgColor: "bg-indigo-500" },
-    { icon: <FaFlag />, label: "Posts", value: userPosts, bgColor: "bg-pink-500" },
-    { icon: <FaCommentDots />, label: "Comments", value: totalComments, bgColor: "bg-teal-500" },
-    { icon: <FaBookmark />, label: "Saved Posts", value: data?.user?.savedPosts?.length || 0, bgColor: "bg-purple-500" },
+    { icon: <FaEye />, label: "Views", value: totalViews, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaUsers />, label: "Followers", value: totalFollowers, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaThumbsUp />, label: "Likes", value: totalLikes, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaThumbsDown />, label: "Dislikes", value: totalDislikes, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaUsers />, label: "Following", value: totalFollowing, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaFlag />, label: "Posts", value: userPosts, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaCommentDots />, label: "Comments", value: totalComments, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
+    { icon: <FaBookmark />, label: "Saved Posts", value: data?.user?.savedPosts?.length || 0, bgColor: "bg-neutral-900/40 backdrop-blur-xl border border-white/10" },
   ];
 
   return (
     <div className={`${r.spacing.containerSmall} space-y-4 sm:space-y-6`}>
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <h1 className={`${r.text.h1} font-bold text-white`}>
-          Welcome back, {data?.user?.username}! 👋
+        <h1 className={`${r.text.h1} font-bold text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]`}>
+          Welcome back, <span className="text-blue-400">{data?.user?.username}</span>! 👋
         </h1>
       </div>
 
       {/* Quick Actions Grid */}
-      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow p-3 sm:p-4 md:p-6 border border-white/10 border-white/10">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white shadow-2xl p-3 sm:p-4 md:p-6">
         <h3 className={`${r.text.h4} font-semibold text-white mb-3 sm:mb-4`}>
           Quick Actions
         </h3>
         <div className={`${r.layout.grid3} gap-3 sm:gap-4`}>
-          <Link to="/dashboard/create-post" className="p-3 sm:p-4  border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
+          <Link to="/dashboard/create-post" className="p-3 sm:p-4 border border-blue-500/20 bg-blue-900/10 hover:bg-blue-900/20 backdrop-blur-md transition-all duration-200">
             <div className="flex items-start justify-between mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl">✍️</span>
             </div>
@@ -70,12 +70,12 @@ const AccountSummaryDashboard = () => {
             <p className={`${r.text.bodySmall} text-gray-400 mb-2 sm:mb-3`}>
               Share your thoughts with the community
             </p>
-            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm  transition duration-200">
+            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 glass-premium-button transition duration-200">
               Create
             </div>
           </Link>
 
-          <Link to="/dashboard/analytics" className="p-3 sm:p-4  border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
+          <Link to="/dashboard/analytics" className="p-3 sm:p-4 border border-blue-500/20 bg-blue-900/10 hover:bg-blue-900/20 backdrop-blur-md transition-all duration-200">
             <div className="flex items-start justify-between mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl">📊</span>
             </div>
@@ -85,12 +85,12 @@ const AccountSummaryDashboard = () => {
             <p className={`${r.text.bodySmall} text-gray-400 mb-2 sm:mb-3`}>
               View your content performance
             </p>
-            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm  transition duration-200">
+            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 glass-premium-button transition duration-200">
               View
             </div>
           </Link>
 
-          <Link to="/dashboard/posts" className="p-3 sm:p-4  border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 hover:shadow-md transition-all duration-200">
+          <Link to="/dashboard/posts" className="p-3 sm:p-4 border border-blue-500/20 bg-blue-900/10 hover:bg-blue-900/20 backdrop-blur-md transition-all duration-200">
             <div className="flex items-start justify-between mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl">📝</span>
             </div>
@@ -100,7 +100,7 @@ const AccountSummaryDashboard = () => {
             <p className={`${r.text.bodySmall} text-gray-400 mb-2 sm:mb-3`}>
               Manage your published content
             </p>
-            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm  transition duration-200">
+            <div className="inline-block w-full text-center px-3 sm:px-4 py-2 glass-premium-button transition duration-200">
               Manage
             </div>
           </Link>

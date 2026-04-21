@@ -96,7 +96,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white transition-colors duration-300">
+    <div className="min-h-screen bg-transparent text-white transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -112,7 +112,7 @@ const Settings = () => {
           {/* Main Settings */}
           <div className="lg:col-span-2 space-y-6">
             {/* Profile Settings */}
-            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 p-6">
+            <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 p-6">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/20 ">
                   <FaUserCircle className="text-blue-600 dark:text-blue-400 text-xl" />
@@ -168,7 +168,7 @@ const Settings = () => {
             </div>
 
             {/* Account Preferences */}
-            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 p-6">
+            <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 p-6">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-indigo-100 dark:bg-indigo-900/20 ">
                   <FaCog className="text-indigo-600 dark:text-indigo-400 text-xl" />
@@ -212,7 +212,7 @@ const Settings = () => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Account Status */}
-            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 p-6">
+            <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-sm border border-white/10 border-white/10 p-6">
               <h3 className="font-semibold text-white mb-4">
                 Account Status
               </h3>
@@ -230,7 +230,7 @@ const Settings = () => {
           </div>
 
           {/* Account Actions */}
-          <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-6">
+          <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  border border-white/10 border-white/10 p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-semibold text-white">Account Actions</h3>
@@ -249,7 +249,7 @@ const Settings = () => {
           {/* Delete Account Modal */}
           {showDeleteModal && (
             <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-              <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg  bg-black/50 backdrop-blur-xl border border-white/10 text-white">
+              <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg  bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white">
                 <div className="mt-3">
                   <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 dark:bg-red-900/30 rounded-full">
                     <ExclamationTriangleIcon className="h-6 w-6 text-red-600 dark:text-red-400" />

@@ -195,7 +195,7 @@ const AIStudio = () => {
               className={`px-3 py-1.5 text-sm capitalize ${
                 mode === option
                   ? "bg-blue-600 text-white"
-                  : "bg-black/50 backdrop-blur-xl border border-white/10 text-white text-gray-700 dark:text-gray-200"
+                  : "bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white text-gray-700 dark:text-gray-200"
               }`}
             >
               {option}
@@ -226,7 +226,7 @@ const AIStudio = () => {
         ))}
       </div>
 
-      <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-4">
+      <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-4">
         {activeTab === TAB_KEYS.writer && (
           <form
             className="space-y-3"
@@ -502,7 +502,7 @@ const AIStudio = () => {
             No direct result yet.
           </p>
         ) : (
-          <pre className="mt-2 text-xs bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-3 overflow-auto max-h-80">
+          <pre className="mt-2 text-xs bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-3 overflow-auto max-h-80">
             {JSON.stringify(directResult, null, 2)}
           </pre>
         )}
@@ -542,7 +542,7 @@ const AIStudio = () => {
               </p>
             )}
             {taskResult && (
-              <pre className="mt-2 text-xs bg-black/50 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-3 overflow-auto max-h-80">
+              <pre className="mt-2 text-xs bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white border border-white/10 border-white/10  p-3 overflow-auto max-h-80">
                 {JSON.stringify(taskResult, null, 2)}
               </pre>
             )}

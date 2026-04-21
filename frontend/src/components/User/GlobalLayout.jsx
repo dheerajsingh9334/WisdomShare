@@ -43,6 +43,7 @@ import UserPlanStatus from "../Navbar/UserPlanStatus";
 import { lazy, Suspense } from "react";
 
 const MiniAnalyticsChart = lazy(() => import("./MiniAnalyticsChart"));
+import GlobalBackground from "../ui/GlobalBackground";
 
 
 const navigation = [
@@ -339,7 +340,7 @@ export default function GlobalLayout({ userAuth, children }) {
 
   return (
     <div
-      className="min-h-screen bg-black flex"
+      className="min-h-screen bg-transparent flex relative"
       style={{
         "--sidebar-width": navbarSidebarOpen ? "16rem" : "0rem",
         "--sidebar-width-sm": navbarSidebarOpen ? "12rem" : "0rem",
@@ -348,6 +349,7 @@ export default function GlobalLayout({ userAuth, children }) {
         "--sidebar-width-xl": navbarSidebarOpen ? "18rem" : "0rem",
       }}
     >
+      <GlobalBackground />
       {/* Sidebar Overlay - show on mobile when sidebar is open */}
       {layoutConfig.showOverlay && (
         <div
@@ -359,7 +361,7 @@ export default function GlobalLayout({ userAuth, children }) {
       {/* Left Sidebar - Enhanced responsive design */}
       <div
         data-sidebar
-        className={`fixed inset-y-0 left-0 z-50 w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 bg-black/50 backdrop-blur-3xl border-r border-white/10 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 left-0 z-50 w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 bg-neutral-900/40 backdrop-blur-3xl border-r border-white/10 shadow-2xl transform transition-transform duration-300 ease-in-out ${
           navbarSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -507,7 +509,7 @@ export default function GlobalLayout({ userAuth, children }) {
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
                   Quick Stats
                 </h3>
-                <div className="bg-gray-50 bg-black/60 backdrop-blur-xl border border-white/10  p-4 space-y-3">
+                <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10  p-4 space-y-3">
                   {/* Stats Grid - 2x2 layout for better fit */}
                   <div className="grid grid-cols-2 gap-3">
                     <div className="text-center">
@@ -599,7 +601,7 @@ export default function GlobalLayout({ userAuth, children }) {
         }`}
       >
         {/* Navbar - Fixed Header without sidebar offset */}
-        <nav className="hidden lg:block fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-3xl border-b border-white/10 transition-all duration-300 ease-in-out">
+        <nav className="hidden lg:block fixed top-0 left-0 right-0 z-50 bg-neutral-900/40 backdrop-blur-3xl border-b border-white/10 transition-all duration-300 ease-in-out">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               {/* Left: Logo and Navbar Sidebar Toggle */}
@@ -796,7 +798,7 @@ export default function GlobalLayout({ userAuth, children }) {
       </div>
 
       {/* Mobile Navbar - Only visible on small devices */}
-      <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-white/10 border-white/10 shadow-lg">
+      <nav className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-neutral-900/40 backdrop-blur-3xl text-white border-b border-white/10 shadow-lg">
         <div className="px-3 sm:px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Left: Sidebar Toggle and Logo */}

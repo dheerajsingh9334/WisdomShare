@@ -52,7 +52,7 @@ const PlanManagement = () => {
 
   if (plansLoading || usageLoading) {
     return (
-      <div className="min-h-screen bg-black text-white py-8 sm:py-12">
+      <div className="min-h-screen bg-transparent text-white py-8 sm:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
@@ -157,7 +157,7 @@ const PlanManagement = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white py-8 sm:py-12">
+    <div className="min-h-screen bg-transparent text-white py-8 sm:py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -191,7 +191,7 @@ const PlanManagement = () => {
         {/* Current Plan Status */}
         {usage && (
           <div className="max-w-4xl mx-auto mb-12 sm:mb-16">
-            <div className="bg-black/50 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8">
+            <div className="bg-neutral-900/40 backdrop-blur-xl border border-white/10 text-white  shadow-lg border border-white/10 border-white/10 p-4 sm:p-6 lg:p-8">
               <div className="text-center mb-4 sm:mb-6">
                 <h2
                   className={`${r.text.h2} text-white mb-2`}
@@ -480,7 +480,7 @@ const PlanManagement = () => {
           </div>
 
           {/* Premium Plan */}
-          <div className="bg-gradient-to-br from-green-500 to-green-600  shadow-xl p-4 sm:p-6 lg:p-8 relative transform scale-105">
+          <div className="bg-neutral-900/60 backdrop-blur-2xl border-2 border-green-500/50 shadow-2xl p-4 sm:p-6 lg:p-8 relative transform scale-105">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
               <span className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">
                 MOST POPULAR
@@ -504,7 +504,7 @@ const PlanManagement = () => {
               </div>
               <Link
                 to={`/checkout/${premiumPlan?._id || "premium"}`}
-                className={`w-full inline-flex items-center justify-center px-6 py-3 bg-black/40 backdrop-blur-md text-white text-green-600  text-sm font-semibold hover:bg-gray-50 transition duration-200`}
+                className={`w-full inline-flex items-center justify-center px-6 py-3 glass-premium-button text-white text-sm font-semibold hover:bg-gray-50 transition duration-200`}
               >
                 Start Premium
               </Link>
